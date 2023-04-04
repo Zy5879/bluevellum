@@ -1,7 +1,7 @@
 function Accessories() {
   return (
     <>
-      <div>This is Accessories</div>
+      <main>This is Accessories</main>
     </>
   );
 }

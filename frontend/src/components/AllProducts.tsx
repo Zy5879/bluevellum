@@ -1,7 +1,7 @@
 function AllProducts() {
   return (
     <>
-      <div>All Products</div>
+      <main>All Products</main>
     </>
   );
 }

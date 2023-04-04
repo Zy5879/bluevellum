@@ -1,7 +1,7 @@
 function Wallets() {
   return (
     <>
-      <div>This is Wallets</div>
+      <main>This is Wallets</main>
     </>
   );
 }

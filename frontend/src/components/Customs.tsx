@@ -1,7 +1,7 @@
 function Customs() {
   return (
     <>
-      <div>This is Customs</div>
+      <main>This is Customs</main>
     </>
   );
 }

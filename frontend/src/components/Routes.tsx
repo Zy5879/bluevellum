@@ -4,6 +4,7 @@ import Cart from "./Cart";
 import Wallets from "./Wallets";
 import Accessories from "./Accessories";
 import AllProducts from "./AllProducts";
+import NotFound from "./NotFound";
 import { Route, Routes } from "react-router-dom";
 
 function RouteProvider() {
@@ -15,6 +16,7 @@ function RouteProvider() {
       <Route path="/products/customs" element={<Customs />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/products/allProducts" element={<AllProducts />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
