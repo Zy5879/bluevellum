@@ -12,9 +12,11 @@
   "author": "Zaire McAllister",
   "license": "ISC",
   "dependencies": {
+    "@types/morgan": "^1.9.4",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",
