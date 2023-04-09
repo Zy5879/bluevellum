@@ -6,6 +6,10 @@ productsRouter.get("/bags", (_req, res) => {
   const bags = data.map((item) => item.bags);
   res.json(bags);
 });
+// productsRouter.get("/bags/:id", (req, res) => {
+//   const bagsId = Number(req.params.id);
+//   const bags = data.map((item) => item.bags);
+// });
 productsRouter.get("/wallets", (_req, res) => {
   const wallets = data.map((item) => item.wallets);
   res.json(wallets);

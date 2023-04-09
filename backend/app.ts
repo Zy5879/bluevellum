@@ -1,7 +1,7 @@
 import express from "express";
 import { homeRouter } from "./controllers/home";
 import { productsRouter } from "./controllers/products";
-import { unknownEndpoint } from "./utils/middleware";
+import { errorHandler, unknownEndpoint } from "./utils/middleware";
 import cors from "cors";
 import morgan from "morgan";
 
@@ -14,5 +14,6 @@ app.use("/", homeRouter);
 app.use("/products", productsRouter);
 
 app.use(unknownEndpoint);
+app.use(errorHandler);
 
 export default app;
