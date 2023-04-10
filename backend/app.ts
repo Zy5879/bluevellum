@@ -1,5 +1,4 @@
 import express from "express";
-import { homeRouter } from "./controllers/home";
 import { productsRouter } from "./controllers/products";
 import { errorHandler, unknownEndpoint } from "./utils/middleware";
 import cors from "cors";
@@ -10,7 +9,6 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
-app.use("/", homeRouter);
 app.use("/products", productsRouter);
 
 app.use(unknownEndpoint);
