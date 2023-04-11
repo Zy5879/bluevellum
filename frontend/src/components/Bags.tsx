@@ -1,26 +1,39 @@
 import { useEffect, useState } from "react";
 import bagService from "../services/getBags";
+import { BagInfo } from "../types/type";
+
 function Bags() {
-  const [bags, setBags] = useState<Response | null>(null);
+  const [bags, setBags] = useState<BagInfo[]>();
+
   useEffect(() => {
     const getBags = async () => {
       try {
         const response = await bagService.getAll();
         setBags(response);
-      } catch (error) {
+      } catch (error: unknown) {
         if (error instanceof Error) {
-          error.message;
-        } else {
-          return;
+          return error.message;
         }
       }
     };
     void getBags();
   }, []);
+
   return (
-    <>
-      <main>This is Bags</main>
-    </>
+    <main>
+      <h1>This is bags</h1>
+      <section>
+        {bags
+          ? bags.map((item) => (
+              <div key={item.id}>
+                <p>{item.name}</p>
+                <p>{item.cost}</p>
+                <img src={item.img} />
+              </div>
+            ))
+          : ""}
+      </section>
+    </main>
   );
 }
 

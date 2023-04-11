@@ -16,6 +16,7 @@ export enum Types {
 export interface BagData {
   id: number;
   name: string;
+  type: Types;
   cost: number;
   category: Category;
   inventory: number;
