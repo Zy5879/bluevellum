@@ -12,4 +12,13 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./src/setupTests.ts"],
   },
+  server: {
+    proxy: {
+      "/products": {
+        target: "http://localhost:3000/",
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
 });
