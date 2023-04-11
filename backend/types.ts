@@ -11,6 +11,7 @@ export enum Category {
 export enum Types {
   Bag = "bag",
   Accessories = "accessory",
+  Wallet = "wallet",
 }
 
 export interface BagData {

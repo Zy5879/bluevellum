@@ -115,7 +115,7 @@ export const data = [
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/BLACK_APPLE_WATCH_BAND_400x.jpg?v=1578444070",
   },
   {
-    id: 13,
+    id: 23,
     name: "'SADDLE TAN' MENS'S LEATHER BELT",
     cost: 65,
     category: "belt",
@@ -127,7 +127,7 @@ export const data = [
     name: '"RUSSET", MINMALIST WALLET',
     cost: 55,
     category: "wallet",
-    type: "accessory",
+    type: "wallet",
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/NO.66RUSSET1275x275_200x.jpg?v=1611802352",
   },
   {
@@ -135,7 +135,7 @@ export const data = [
     name: '"BLACK BROWN", MINMALIST WALLET',
     cost: 55,
     category: "wallet",
-    type: "accessory",
+    type: "wallet",
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/NO.66BUCKBROWN1275x275_1ba6a1fa-d806-4042-840b-38b52efaaa1e_200x.jpg?v=1611802263",
   },
   {
@@ -143,7 +143,7 @@ export const data = [
     name: '"SADDLE TAN", MINMALIST WALLET',
     cost: 55,
     category: "wallet",
-    type: "accessory",
+    type: "wallet",
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/NO.66SADDLETANMINIMALIST275X275_200x.jpg?v=1611802412",
   },
   {
@@ -151,7 +151,7 @@ export const data = [
     name: 'NO.66 | "RUSSET", MINMALIST WALLET',
     cost: 55,
     category: "wallet",
-    type: "accessory",
+    type: "wallet",
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/NO.67RUSSETSTANDARD1275X275_200x.jpg?v=1611803672",
   },
   {
@@ -159,7 +159,7 @@ export const data = [
     name: 'NO.65 | "BLACK", MINMALIST WALLET',
     cost: 55,
     category: "wallet",
-    type: "accessory",
+    type: "wallet",
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/BLACK_MINI_WALLET_200x.jpg?v=1578441675",
   },
   {
@@ -167,7 +167,7 @@ export const data = [
     name: 'NO.65 | "SADDLE TAN", MINMALIST WALLET',
     cost: 55,
     category: "wallet",
-    type: "accessory",
+    type: "wallet",
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/Saddle_Tan_Wallet275_200x.jpg?v=1578441302",
   },
   {
@@ -175,7 +175,7 @@ export const data = [
     name: 'NO.65 | "MAHOGANY", MINMALIST WALLET',
     cost: 55,
     category: "wallet",
-    type: "accessory",
+    type: "wallet",
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/Saddle_Tan_Wallet275_200x.jpg?v=1578441302",
   },
   {
@@ -183,7 +183,7 @@ export const data = [
     name: 'NO.65 | "BRITISH TAN", MINMALIST WALLET',
     cost: 50,
     category: "wallet",
-    type: "accessory",
+    type: "wallet",
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/BRITISH_TAN_MINI_WALLET_200x.jpg?v=1578442583",
   },
 ];

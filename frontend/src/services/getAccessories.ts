@@ -1,14 +1,14 @@
 import axios from "axios";
 import { LeatherInfo } from "../types/type";
-const baseUrl = "/products/bags";
+const baseUrl = "/products/accessories";
 
-export const getAll = async () => {
+const getAllAccessories = async () => {
   const response = await axios.get<LeatherInfo[]>(baseUrl);
   return response.data;
 };
 
-const bagService = {
-  getAll,
+const accService = {
+  getAllAccessories,
 };
 
-export default bagService;
+export default accService;

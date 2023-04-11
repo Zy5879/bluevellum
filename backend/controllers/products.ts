@@ -50,8 +50,14 @@ productsRouter.get("/bags/handbag/:id", (req, res) => {
   const findId = item.find((t) => t.id === id);
   res.json(findId);
 });
-
 //END OF BAG ROUTES
+
+productsRouter.get("/wallets", (_req, res) => {
+  const item = data.filter((obj) => {
+    return obj.type === "wallet";
+  });
+  res.json(item);
+});
 
 productsRouter.get("/accessories", (_req, res) => {
   const item = data.filter((obj) => {
@@ -59,20 +65,28 @@ productsRouter.get("/accessories", (_req, res) => {
   });
   res.json(item);
 });
-productsRouter.get("/accessories/wallets", (_req, res) => {
+
+productsRouter.get("/wallets/:id", (req, res) => {
   const item = data.filter((obj) => {
-    return obj.category === "wallet";
-  });
-  res.json(item);
-});
-productsRouter.get("/accessories/wallets/:id", (req, res) => {
-  const item = data.filter((obj) => {
-    return obj.category === "wallet";
+    return obj.type === "wallet";
   });
   const id = Number(req.params.id);
   const findWalletId = item.find((w) => w.id === id);
   res.json(findWalletId);
 });
+//END OF WALLET ROUTES
+
+// productsRouter.get("/accessories", (_req, res) => {
+//   const item = data.filter((obj) => {
+//     return obj.type === "accessory";
+//   });
+//   res.json(item);
+// });
+//   const id = Number(req.params.id);
+//   const findWalletId = item.find((w) => w.id === id);
+//   res.json(findWalletId);
+// });
+
 productsRouter.get("/accessories/belt", (_req, res) => {
   const item = data.filter((obj) => {
     return obj.category === "belt";

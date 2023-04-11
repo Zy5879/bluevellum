@@ -1,4 +1,4 @@
-export type BagInfo = {
+export type LeatherInfo = {
   id: number;
   name: string;
   cost: number;

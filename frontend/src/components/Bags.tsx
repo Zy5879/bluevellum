@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import bagService from "../services/getBags";
-import { BagInfo } from "../types/type";
+import { LeatherInfo } from "../types/type";
 
 function Bags() {
-  const [bags, setBags] = useState<BagInfo[]>();
+  const [bags, setBags] = useState<LeatherInfo[]>();
 
   useEffect(() => {
     const getBags = async () => {
