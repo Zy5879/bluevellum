@@ -2,8 +2,9 @@ import config from "./utils/config";
 // import * as dotenv from "dotenv";
 // dotenv.config();
 import express from "express";
+import "express-async-errors";
 import { productsRouter } from "./controllers/products";
-import { errorHandler, unknownEndpoint } from "./utils/middleware";
+import { globalErrorHandler, unknownEndpoint } from "./utils/middleware";
 import cors from "cors";
 import morgan from "morgan";
 import mongoose from "mongoose";
@@ -31,6 +32,6 @@ app.use(express.json());
 app.use("/products", productsRouter);
 
 app.use(unknownEndpoint);
-app.use(errorHandler);
+app.use(globalErrorHandler);
 
 export default app;

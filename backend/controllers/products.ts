@@ -1,13 +1,32 @@
 import { Router } from "express";
+import asyncHandler from "express-async-handler";
 import data from "../data/mockData";
+import Leather from "../models/leather";
 export const productsRouter = Router();
 
-productsRouter.get("/bags", (_req, res) => {
-  const item = data.filter((obj) => {
-    return obj.type === "bag";
-  });
-  res.json(item);
-});
+productsRouter.get(
+  "/bags",
+  asyncHandler(async (_req, res) => {
+    const item = await Leather.find({ type: "bag" });
+    res.json(item);
+  })
+);
+
+// productsRouter.get("/bags", asyncHandler (async (_req, res,) => {
+//   const item = await Leather.find({ type: "bag" });
+//    res.json(item);
+//   Leather.find({ type: "ba" })
+//     .then((response) => {
+//       res.json(response);
+//     }).catch(_err => {
+//       if(!res) {
+//         res.status(400).end()
+//       }
+//     })
+//     });
+//   const item = await Leather.find({ type: "bag" });
+//   res.json(item);
+// }));
 productsRouter.get("/bags/gentlemanbag", (_req, res) => {
   const item = data.filter((obj) => {
     return obj.category === "gentlemanbag";
