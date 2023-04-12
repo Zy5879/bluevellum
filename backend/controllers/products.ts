@@ -1,6 +1,6 @@
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
-import data from "../data/mockData";
+// import data from "../data/mockData";
 import Leather from "../models/leather";
 export const productsRouter = Router();
 
@@ -11,145 +11,147 @@ productsRouter.get(
     res.json(item);
   })
 );
-
-// productsRouter.get("/bags", asyncHandler (async (_req, res,) => {
-//   const item = await Leather.find({ type: "bag" });
-//    res.json(item);
-//   Leather.find({ type: "ba" })
-//     .then((response) => {
-//       res.json(response);
-//     }).catch(_err => {
-//       if(!res) {
-//         res.status(400).end()
-//       }
-//     })
-//     });
-//   const item = await Leather.find({ type: "bag" });
-//   res.json(item);
-// }));
-productsRouter.get("/bags/gentlemanbag", (_req, res) => {
-  const item = data.filter((obj) => {
-    return obj.category === "gentlemanbag";
-  });
-  res.json(item);
-});
-productsRouter.get("/bags/gentlemanbag/:id", (req, res) => {
-  const item = data.filter((obj) => {
-    return obj.category === "gentlemanbag";
-  });
-  const id = Number(req.params.id);
-  const findId = item.find((g) => g.id === id);
-  res.json(findId);
-});
-productsRouter.get("/bags/tote", (_req, res) => {
-  const item = data.filter((obj) => {
-    return obj.category === "tote";
-  });
-  res.json(item);
-});
-productsRouter.get("/bags/tote/:id", (req, res) => {
-  const item = data.filter((obj) => {
-    return obj.category === "tote";
-  });
-  const id = Number(req.params.id);
-  const findId = item.find((t) => t.id === id);
-  res.json(findId);
-});
-productsRouter.get("/bags/handbag", (_req, res) => {
-  const item = data.filter((obj) => {
-    return obj.category === "handbag";
-  });
-  res.json(item);
-});
-productsRouter.get("/bags/handbag/:id", (req, res) => {
-  const item = data.filter((obj) => {
-    return obj.category === "handbag";
-  });
-  const id = Number(req.params.id);
-  const findId = item.find((t) => t.id === id);
-  res.json(findId);
-});
+productsRouter.get(
+  "/bags/gentlemanbag",
+  asyncHandler(async (_req, res) => {
+    const item = await Leather.find({ category: "gentlemanbag" });
+    res.json(item);
+  })
+);
+productsRouter.get(
+  "/bags/gentlemanbag/:id",
+  asyncHandler(async (req, res) => {
+    const item = await Leather.findById(req.params.id);
+    if (item) {
+      res.json(item);
+    } else {
+      res.status(400).end();
+    }
+  })
+);
+productsRouter.get(
+  "/bags/tote",
+  asyncHandler(async (_req, res) => {
+    const item = await Leather.find({ category: "tote" });
+    res.json(item);
+  })
+);
+productsRouter.get(
+  "/bags/tote/:id",
+  asyncHandler(async (req, res) => {
+    const item = await Leather.findById(req.params.id);
+    if (item) {
+      res.json(item);
+    } else {
+      res.status(400).end();
+    }
+  })
+);
+productsRouter.get(
+  "/bags/handbag",
+  asyncHandler(async (_req, res) => {
+    const item = await Leather.find({ category: "handbag" });
+    res.json(item);
+  })
+);
+productsRouter.get(
+  "/bags/handbag/:id",
+  asyncHandler(async (req, res) => {
+    const item = await Leather.findById(req.params.id);
+    if (item) {
+      res.json(item);
+    } else {
+      res.status(400).end();
+    }
+  })
+);
 //END OF BAG ROUTES
 
-productsRouter.get("/wallets", (_req, res) => {
-  const item = data.filter((obj) => {
-    return obj.type === "wallet";
-  });
-  res.json(item);
-});
+productsRouter.get(
+  "/wallets",
+  asyncHandler(async (_req, res) => {
+    const item = await Leather.find({ type: "wallet" });
+    res.json(item);
+  })
+);
+productsRouter.get(
+  "/wallets/:id",
+  asyncHandler(async (req, res) => {
+    const item = await Leather.findById(req.params.id);
+    if (item) {
+      res.json(item);
+    } else {
+      res.status(400).end();
+    }
+  })
+);
 
-productsRouter.get("/accessories", (_req, res) => {
-  const item = data.filter((obj) => {
-    return obj.type === "accessory";
-  });
-  res.json(item);
-});
-
-productsRouter.get("/wallets/:id", (req, res) => {
-  const item = data.filter((obj) => {
-    return obj.type === "wallet";
-  });
-  const id = Number(req.params.id);
-  const findWalletId = item.find((w) => w.id === id);
-  res.json(findWalletId);
-});
 //END OF WALLET ROUTES
 
-// productsRouter.get("/accessories", (_req, res) => {
-//   const item = data.filter((obj) => {
-//     return obj.type === "accessory";
-//   });
-//   res.json(item);
-// });
-//   const id = Number(req.params.id);
-//   const findWalletId = item.find((w) => w.id === id);
-//   res.json(findWalletId);
-// });
+productsRouter.get(
+  "/accessories",
+  asyncHandler(async (_req, res) => {
+    const item = await Leather.find({ type: "accessory" });
+    res.json(item);
+  })
+);
 
-productsRouter.get("/accessories/belt", (_req, res) => {
-  const item = data.filter((obj) => {
-    return obj.category === "belt";
-  });
-  res.json(item);
-});
-productsRouter.get("/accessories/belt/:id", (req, res) => {
-  const item = data.filter((obj) => {
-    return obj.category === "belt";
-  });
-  const id = Number(req.params.id);
-  const findId = item.find((b) => b.id === id);
-  res.json(findId);
-});
-productsRouter.get("/accessories/watch", (_req, res) => {
-  const item = data.filter((obj) => {
-    return obj.category === "watch";
-  });
-  res.json(item);
-});
-productsRouter.get("/accessories/watch/:id", (req, res) => {
-  const item = data.filter((obj) => {
-    return obj.category === "watch";
-  });
-  const id = Number(req.params.id);
-  const findId = item.find((wtc) => wtc.id === id);
-  res.json(findId);
-});
+productsRouter.get(
+  "/accessories/belt",
+  asyncHandler(async (_req, res) => {
+    const item = await Leather.find({ category: "belt" });
+    res.json(item);
+  })
+);
+productsRouter.get(
+  "/accessories/belt/:id",
+  asyncHandler(async (req, res) => {
+    const item = await Leather.findById(req.params.id);
+    if (item) {
+      res.json(item);
+    } else {
+      res.status(400).end();
+    }
+  })
+);
+productsRouter.get(
+  "/accessories/watch",
+  asyncHandler(async (_req, res) => {
+    const item = await Leather.find({ category: "watch" });
+    res.json(item);
+  })
+);
+productsRouter.get(
+  "/accessories/watch/:id",
+  asyncHandler(async (req, res) => {
+    const item = await Leather.findById(req.params.id);
+    if (item) {
+      res.json(item);
+    } else {
+      res.status(400).end();
+    }
+  })
+);
 
 //END OF ACCESSORIES ROUTES
 
-productsRouter.get("/customs", (_req, res) => {
-  const item = data.filter((obj) => {
-    return obj.category === "custom";
-  });
-  res.json(item);
-});
-productsRouter.get("/customs/:id", (req, res) => {
-  const item = data.filter((obj) => {
-    return obj.category === "custom";
-  });
-  const id = Number(req.params.id);
-  const findId = item.filter((cus) => cus.id === id);
-  res.json(findId);
-});
+productsRouter.get(
+  "/customs",
+  asyncHandler(async (_req, res) => {
+    const item = await Leather.find({ category: "custom" });
+    res.json(item);
+  })
+);
+productsRouter.get(
+  "/customs/:id",
+  asyncHandler(async (req, res) => {
+    const item = await Leather.findById(req.params.id);
+    if (item) {
+      res.json(item);
+    } else {
+      res.status(400).end();
+    }
+  })
+);
 
 //END OF CUSTOM ROUTES
