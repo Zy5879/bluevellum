@@ -1,5 +1,5 @@
 export type LeatherInfo = {
-  id: number;
+  id: string;
   name: string;
   cost: number;
   type: string;

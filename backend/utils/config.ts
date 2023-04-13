@@ -10,8 +10,3 @@ const config = {
 };
 
 export default config;
-
-// export = PORT;
-// module.exports = {
-//   PORT,
-// };

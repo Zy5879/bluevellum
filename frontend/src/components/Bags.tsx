@@ -12,7 +12,7 @@ function Bags() {
         setBags(response);
       } catch (error: unknown) {
         if (error instanceof Error) {
-          return error.message;
+          throw Error(error.message);
         }
       }
     };
