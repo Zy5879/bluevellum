@@ -23,5 +23,21 @@ export interface BagData {
   inventory: number;
   img: string;
 }
+export interface IUser {
+  firstname: string;
+  lastname: string;
+  email: string;
+  passwordHash: string;
+  cart?: string | number[];
+}
+
+export interface Leather {
+  name: string;
+  type: Types;
+  cost: number;
+  category: Category;
+  inventory: number;
+  img: string;
+}
 
 export type NewBagData = Omit<BagData, "id">;

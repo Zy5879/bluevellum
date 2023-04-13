@@ -1,14 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import mongoose from "mongoose";
+import { IUser } from "../types";
 import mongooseUniqueValidator from "mongoose-unique-validator";
 
-interface IUser {
-  firstname: string;
-  lastname: string;
-  email: string;
-  passwordHash: string;
-  cart: string | number[];
-}
+// export interface IUser {
+//   firstname: string;
+//   lastname: string;
+//   email: string;
+//   passwordHash: string;
+//   cart?: string | number[];
+// }
 
 const userSchema = new mongoose.Schema<IUser>({
   firstname: {

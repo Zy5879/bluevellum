@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
-import { Category, Types } from "../types";
+import { Category, Types, Leather } from "../types";
 
-interface Leather {
-  name: string;
-  type: Types;
-  cost: number;
-  category: Category;
-  inventory: number;
-  img: string;
-}
+// interface Leather {
+//   name: string;
+//   type: Types;
+//   cost: number;
+//   category: Category;
+//   inventory: number;
+//   img: string;
+// }
 
 const leatherSchema = new mongoose.Schema<Leather>({
   name: {
