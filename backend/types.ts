@@ -27,7 +27,7 @@ export interface IUser {
   firstname: string;
   lastname: string;
   email: string;
-  passwordHash: string;
+  password: string;
   cart?: string | number[];
 }
 

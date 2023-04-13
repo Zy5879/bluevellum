@@ -1,5 +1,6 @@
 import { Router } from "express";
 import bcrypt from "bcrypt";
+
 import { ParamsDictionary } from "express-serve-static-core";
 import { IUser } from "../types";
 import User from "../models/user";
@@ -9,15 +10,15 @@ export const userSignupRouter = Router();
 userSignupRouter.post<ParamsDictionary, unknown, IUser>(
   "/",
   asyncHandler(async (req, res) => {
-    const { firstname, lastname, email, passwordHash } = req.body;
+    const { firstname, lastname, email, password } = req.body;
     const saltRounds = 10;
-    const password = await bcrypt.hash(passwordHash, saltRounds);
+    const passwordHash = await bcrypt.hash(password, saltRounds);
 
     const user = new User({
       firstname,
       lastname,
       email,
-      password,
+      password: passwordHash,
     });
 
     const saveUser = await user.save();
@@ -38,3 +39,5 @@ userSignupRouter.get(
     res.json(users);
   })
 );
+
+export default userSignupRouter;

@@ -2,7 +2,13 @@ import config from "./utils/config";
 import express from "express";
 import "express-async-errors";
 import { productsRouter } from "./controllers/products";
-import { globalErrorHandler, unknownEndpoint } from "./utils/middleware";
+import userLoginRouter from "./controllers/userSignin";
+import userSignupRouter from "./controllers/usersSignup";
+import {
+  errorHandler,
+  globalErrorHandler,
+  unknownEndpoint,
+} from "./utils/middleware";
 import cors from "cors";
 import morgan from "morgan";
 import mongoose from "mongoose";
@@ -28,8 +34,11 @@ app.use(morgan("dev"));
 app.use(express.json());
 
 app.use("/products", productsRouter);
+app.use("/login", userLoginRouter);
+app.use("/signup", userSignupRouter);
 
 app.use(unknownEndpoint);
+app.use(errorHandler);
 app.use(globalErrorHandler);
 
 export default app;

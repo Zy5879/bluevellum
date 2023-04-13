@@ -24,9 +24,9 @@ const userSchema = new mongoose.Schema<IUser>({
     type: String,
     required: true,
   },
-  passwordHash: {
+  password: {
     type: String,
-    required: true,
+    required: true
   },
   cart: [
     {
