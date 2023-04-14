@@ -3,14 +3,6 @@ import mongoose from "mongoose";
 import { IUser } from "../types";
 import mongooseUniqueValidator from "mongoose-unique-validator";
 
-// export interface IUser {
-//   firstname: string;
-//   lastname: string;
-//   email: string;
-//   passwordHash: string;
-//   cart?: string | number[];
-// }
-
 const userSchema = new mongoose.Schema<IUser>({
   firstname: {
     type: String,
@@ -26,12 +18,12 @@ const userSchema = new mongoose.Schema<IUser>({
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   cart: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Leather",
+      ref: "Cart",
     },
   ],
 });
