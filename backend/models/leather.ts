@@ -10,18 +10,15 @@ import { Category, Types, Leather } from "../types";
 //   img: string;
 // }
 
-const leatherSchema = new mongoose.Schema<Leather>({
+export const leatherSchema = new mongoose.Schema<Leather>({
   name: {
     type: String,
-    required: true,
   },
   cost: {
     type: Number,
-    required: true,
   },
   type: {
     type: String,
-    required: true,
     enum: Types,
   },
   category: {
@@ -30,11 +27,9 @@ const leatherSchema = new mongoose.Schema<Leather>({
   },
   inventory: {
     type: Number,
-    required: true,
   },
   img: {
     type: String,
-    required: true,
   },
 });
 

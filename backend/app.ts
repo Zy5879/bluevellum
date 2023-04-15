@@ -4,6 +4,7 @@ import "express-async-errors";
 import { productsRouter } from "./controllers/products";
 import userLoginRouter from "./controllers/userSignin";
 import userSignupRouter from "./controllers/usersSignup";
+import { cartRouter } from "./controllers/carts";
 import {
   errorHandler,
   globalErrorHandler,
@@ -36,6 +37,7 @@ app.use(express.json());
 app.use("/products", productsRouter);
 app.use("/login", userLoginRouter);
 app.use("/signup", userSignupRouter);
+app.use("/cart", cartRouter);
 
 app.use(unknownEndpoint);
 app.use(errorHandler);
