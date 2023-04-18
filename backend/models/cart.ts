@@ -9,10 +9,8 @@ const cartSchema = new mongoose.Schema<Carts>(
     },
     cart: [
       {
-        item: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Leather",
-        },
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Leather",
       },
     ],
     total: {

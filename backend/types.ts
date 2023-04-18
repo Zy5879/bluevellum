@@ -30,8 +30,8 @@ export interface IUser {
   lastname: string;
   email: string;
   password: string;
-  // cart: ObjectId | string | number[];
-  // total: number;
+  cart: unknown[];
+  total: number;
 }
 
 export interface Leather {
