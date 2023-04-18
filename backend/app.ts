@@ -5,6 +5,7 @@ import { productsRouter } from "./controllers/products";
 import userLoginRouter from "./controllers/userSignin";
 import userSignupRouter from "./controllers/usersSignup";
 import { cartRouter } from "./controllers/carts";
+import { stripeRouter } from "./controllers/stripe";
 import {
   errorHandler,
   globalErrorHandler,
@@ -38,6 +39,7 @@ app.use("/products", productsRouter);
 app.use("/login", userLoginRouter);
 app.use("/signup", userSignupRouter);
 app.use("/cart", cartRouter);
+app.use("/stripe", stripeRouter);
 
 app.use(unknownEndpoint);
 app.use(errorHandler);

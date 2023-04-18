@@ -22,7 +22,8 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3",
     "mongoose-unique-validator": "^4.0.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "stripe": "^12.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",

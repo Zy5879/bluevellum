@@ -25,7 +25,7 @@ userLoginRouter.post<ParamsDictionary, any, IUser>(
     };
 
     const secret = process.env.SECRET as Secret;
-    
+
     const token = jwt.sign(userForToken, secret, {
       expiresIn: 60 * 60,
     });
