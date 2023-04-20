@@ -1,5 +1,4 @@
 import { ObjectId } from "mongoose";
-
 export enum Category {
   Wallet = "wallet",
   Custom = "custom",
@@ -31,7 +30,6 @@ export interface IUser {
   email: string;
   password: string;
   cart: unknown[];
-  total: number;
 }
 
 export interface Leather {
@@ -43,10 +41,14 @@ export interface Leather {
   img: string;
 }
 
+export interface CartItems {
+  leatherId: ObjectId | string;
+  qty: number;
+}
+
 export interface Carts {
-  user: ObjectId;
-  cart: unknown[];
-  total: number;
+  userId: ObjectId;
+  cart: CartItems[];
 }
 
 export type NewBagData = Omit<BagData, "id">;

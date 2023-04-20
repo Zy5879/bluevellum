@@ -223,7 +223,7 @@ import { Router, Request } from "express";
 import User from "../models/user";
 import asyncHandler from "express-async-handler";
 import Cart from "../models/cart";
-import { Carts } from "../types";
+import { CartItems, Carts } from "../types";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { ParamsDictionary } from "express-serve-static-core";
 import Leather from "../models/leather";
@@ -237,66 +237,161 @@ const getTokenFrom = (request: Request) => {
   return null;
 };
 
-cartRouter.post<ParamsDictionary, any, Carts>(
+cartRouter.post<ParamsDictionary, any, Carts & CartItems>(
   "/",
   asyncHandler(async (req, res): Promise<any> => {
-    // const leatherId = req.params.id;
-    // const userId = req.params.user;
+    const { leatherId, qty } = req.body;
+    console.log(leatherId);
+
     const token = getTokenFrom(req) as string;
-    // const secret = process.env.SECRET as Secret;
     const decodedToken = jwt.verify(
       token,
       `${process.env.SECRET}`
     ) as JwtPayload;
-
     const user = await User.findById(decodedToken.id);
 
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // let carts = await Cart.findOne({ user: user._id }).populate("cart");
+    let carts = await Cart.findOne({ userId: user._id });
 
-    const leather = await Leather.findById(req.body.cart);
-
-    if (!leather) {
-      return res.status(404).json({ error: "Product not found" });
+    if (!carts) {
+      carts = new Cart({ userId: user._id, cart: [] });
     }
 
-    // const carts = await Cart.findOne({user: user._id});
+    const leather = await Leather.findById(leatherId);
 
-    const cart = new Cart({
-      cart: req.body.cart,
-      user: user._id,
-    });
+    if (!leather) {
+      return res.status(404).json({ error: "Product does not exist" });
+    }
 
-    const savedCart = await cart.save();
+    // const price = leather.cost;
+
+    const existingItem = carts.cart.find(
+      (item) => item.leatherId.toString() === leatherId
+    );
+
+    // console.log(existingItem);
+
+    if (existingItem) {
+      existingItem.qty++;
+    } else {
+      carts.cart.push({
+        leatherId,
+        qty,
+      });
+    }
+
+    const savedCart = await carts.save();
     user.cart = user.cart.concat(savedCart._id);
     await user.save();
-
     res.json(savedCart);
-
-    // if (!carts) {
-    //   carts = new Cart({ user: user._id, cart: [] });
-    // } else {
-    //   console.log(leather);
-    //   user.cart.push(leather);
-    //   res.json(await carts.save());
-    // }
-
-    // const leather = await Leather.findById(req.body.cart);
-
-    // return res.json({
-    //   message: `Added ${leather.name} to ${user.firstname} cart`,
-    // });
-
-    // const savedCart = await cart.save();
-    // const user = await User.findByIdAndUpdate(
-    //   userId,
-    //   {$push: {cart: savedCart._id}},{new: true}
+    // const updatedUser = await User.findByIdAndUpdate(
+    //   user._id,
+    //   { $push: { cart: savedCart._id } },
+    //   { new: true }
     // );
+    // return updatedUser;
+    // const newCart = new Cart({
+    //   userId: carts,
+    //   cart:
+    // })
   })
 );
+
+// cartRouter.post<ParamsDictionary, any, Carts>(
+//   "/",
+//   asyncHandler(async (req, res): Promise<any> => {
+//     const { productId, quantity } = req.body;
+// //     // const leatherId = req.params.id;
+// //     // const userId = req.params.user;
+//     const token = getTokenFrom(req) as string;
+//     // const secret = process.env.SECRET as Secret;
+//     const decodedToken = jwt.verify(
+//       token,
+//       `${process.env.SECRET}`
+//     ) as JwtPayload;
+
+//     const user = await User.findById(decodedToken.id);
+
+//     if (!user) {
+//       return res.status(404).json({ error: "User not found" });
+//     }
+
+//     const leather = await Leather.findById(productId);
+
+//     if (!leather) {
+//       return res.status(404).json({ error: "Product not found" });
+//     }
+
+//     // const carts = await Cart.findOne({ user: user._id }).populate("cart");
+
+//     // if (carts) {
+//     //   if (carts.cart === req.body.cart) {
+//     //     carts.qty++;
+//     //   }
+//     // }
+
+//     // if(carts?.cart === req.body.cart) {
+
+//     // }
+
+//     const cart = new Cart({
+//       cart: req.body.cart,
+//       user: user._id,
+//     });
+
+//     const savedCart = await cart.save();
+//     user.cart = user.cart.concat(savedCart._id);
+//     await user.save();
+
+//     res.json(savedCart);
+
+//     // if (!carts) {
+//     //   carts = new Cart({ user: user._id, cart: [] });
+//     // } else {
+//     //   console.log(leather);
+//     //   user.cart.push(leather);
+//     //   res.json(await carts.save());
+//     // }
+
+//     // const leather = await Leather.findById(req.body.cart);
+
+//     // return res.json({
+//     //   message: `Added ${leather.name} to ${user.firstname} cart`,
+//     // });
+
+//     // const savedCart = await cart.save();
+//     // const user = await User.findByIdAndUpdate(
+//     //   userId,
+//     //   {$push: {cart: savedCart._id}},{new: true}
+//     // );
+//   })
+// );
+
+// cartRouter.get(
+//   "/",
+//   asyncHandler(async (req, res) => {
+//     const carts = await Cart.find({user: req.params}).populate("cart");
+//     res.json(carts);
+//   })
+// );
+// cartRouter.put<ParamsDictionary, any, Carts>(
+//   "/:id",
+//   asyncHandler(async (req, _res) => {
+//     // const body = req.body;
+
+//     const cart = {
+//       cart: req.body.cart,
+//       qty: req.body.qty++,
+//     };
+//     const updatedCart = await Cart.findByIdAndUpdate(req.params.id, cart, {
+//       new: true,
+//     });
+//     response.json(updatedCart);
+//   })
+// );
 
 // cartRouter.post("/", async(req:Request, res: Response): Promise<unknown> => {
 //   const userId = req.params.userId;
