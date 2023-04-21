@@ -219,7 +219,8 @@
 //   })
 // );
 
-import { Router, Request } from "express";
+import { Router } from "express";
+import { getTokenFrom } from "../utils/middleware";
 import User from "../models/user";
 import asyncHandler from "express-async-handler";
 import Cart from "../models/cart";
@@ -229,18 +230,133 @@ import { ParamsDictionary } from "express-serve-static-core";
 import Leather from "../models/leather";
 export const cartRouter = Router();
 
-const getTokenFrom = (request: Request) => {
-  const authorization = request.get("authorization");
-  if (authorization && authorization.startsWith("Bearer ")) {
-    return authorization.replace("Bearer ", "");
-  }
-  return null;
-};
-
 cartRouter.post<ParamsDictionary, any, Carts & CartItems>(
   "/",
   asyncHandler(async (req, res): Promise<any> => {
     const { leatherId, qty } = req.body;
+    console.log(leatherId);
+
+    const token = getTokenFrom(req) as string;
+    const decodedToken = jwt.verify(
+      token,
+      `${process.env.SECRET}`
+    ) as JwtPayload;
+    const user = await User.findById(decodedToken.id);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    const leather = await Leather.findById(leatherId);
+
+    if (!leather) {
+      return res.status(404).json({ error: "Product does not exist" });
+    }
+
+    let carts = await Cart.findOne({ userId: user._id });
+    if (!carts) {
+      carts = new Cart({ userId: user._id, cart: [] });
+    }
+    // console.log(carts);
+    // res.json(carts);
+
+    // res.json(carts);
+
+    // if (!carts?.leatherId) {
+    //   carts = new Cart({ userId: user._id, cart: { leatherId: leatherId } });
+    // }
+
+    // const existingItem = carts.cart.find((item) =>
+    //   console.log(item.leatherId.toString() === leatherId)
+    // );
+    const existingItem = carts.cart.find(
+      (item) => item.leatherId.toString() === leatherId
+    );
+
+    // console.log(existingItem);
+
+    // console.log(carts);
+    // res.json(carts);
+    // res.json(existingItem);
+
+    // const savedCart = await carts.save();
+
+    if (existingItem) {
+      const updatedCart = await Cart.findOneAndUpdate(
+        { "cart.leatherId": leatherId },
+        { $inc: { "cart.$.qty": 1 } },
+        { new: true }
+      );
+      console.log("existing item");
+      return res.json(updatedCart);
+    } else {
+      //   //   console.log("item does not exist");
+      //   //   res.json();
+      const newCart = new Cart({
+        userId: user._id,
+        cart: { leatherId: leatherId, qty: qty },
+      });
+      // console.log("no existing item");
+      const savedCart = await newCart.save();
+      user.cart = user.cart.concat(savedCart._id);
+      await user.save();
+      return res.json(savedCart);
+      // const updatedUser = await User.findOneAndUpdate(
+      //   { cart: carts },
+      //   {
+      //     $push: savedCart._id,
+      //   }
+      // );
+      // return res.json(updatedUser);
+      // carts.cart.push({
+      //   leatherId,
+      //   qty,
+      // });
+      // const savedCart = await carts.save();
+    }
+
+    // console.log(updatedCart), res.json(updatedCart);
+
+    // const updatedUser = await User.findOneAndUpdate(
+    //   { cart: carts._id },
+    //   { $inc: { qty: 1 } },
+    //   { new: true }
+    // );
+
+    // console.log(carts);
+    // res.json(updatedUser);
+    // const price = leather.cost;
+
+    // console.log(existingItem);
+
+    // if (existingItem) {
+    //   existingItem.qty++;
+    // } else {
+    // carts.cart.push({
+    //   leatherId,
+    //   qty,
+    // });
+
+    // const savedCart = await carts.save();
+    // user.cart = user.cart.concat(savedCart._id);
+    // await user.save();
+    // res.json(savedCart);
+    // const updatedUser = await User.findByIdAndUpdate(
+    //   user._id,
+    //   { $push: { cart: savedCart._id } },
+    //   { new: true }
+    // );
+    // return updatedUser;
+    // const newCart = new Cart({
+    //   userId: carts,
+    //   cart:
+    // })
+  })
+);
+
+cartRouter.put<ParamsDictionary, any, Carts & CartItems>(
+  "/",
+  asyncHandler(async (req, res): Promise<any> => {
+    const { leatherId } = req.body;
     console.log(leatherId);
 
     const token = getTokenFrom(req) as string;
@@ -266,39 +382,112 @@ cartRouter.post<ParamsDictionary, any, Carts & CartItems>(
       return res.status(404).json({ error: "Product does not exist" });
     }
 
-    // const price = leather.cost;
-
-    const existingItem = carts.cart.find(
-      (item) => item.leatherId.toString() === leatherId
+    const updatedCart = await Cart.findOneAndUpdate(
+      { "cart.leatherId": leatherId },
+      {
+        $inc: { "cart.$.qty": -1 },
+        // $pull: { cart: { _id: carts._id, qty: { $lt: 2 } } },
+      },
+      { new: true }
     );
 
-    // console.log(existingItem);
-
-    if (existingItem) {
-      existingItem.qty++;
-    } else {
-      carts.cart.push({
-        leatherId,
-        qty,
-      });
-    }
-
-    const savedCart = await carts.save();
-    user.cart = user.cart.concat(savedCart._id);
-    await user.save();
-    res.json(savedCart);
-    // const updatedUser = await User.findByIdAndUpdate(
-    //   user._id,
-    //   { $push: { cart: savedCart._id } },
-    //   { new: true }
-    // );
-    // return updatedUser;
-    // const newCart = new Cart({
-    //   userId: carts,
-    //   cart:
-    // })
+    console.log(updatedCart), res.json(updatedCart);
   })
 );
+
+// cartRouter.delete<ParamsDictionary, any, CartItems & Carts>(
+//   "/:id",
+//   asyncHandler(async (req, res): Promise<any> => {
+// const { leatherId } = req.body;
+// const token = getTokenFrom(req) as string;
+// const decodedToken = jwt.verify(
+//   token,
+//   `${process.env.SECRET}`
+// ) as JwtPayload;
+// const user = await User.findById(decodedToken.id);
+// if (!user) {
+//   return res.status(404).json({ error: "User not found" });
+// }
+// const carts = await Cart.findOne({ userId: user._id });
+// if (!carts) {
+//   return res.status(404).json({ error: "Cart is already empty" });
+// }
+// const leather = await Leather.findById(leatherId);
+// if (!leather) {
+//   return res.status(404).json({ error: "Product does not exist" });
+// }
+// const updatedUser = await User.findByIdAndUpdate(
+//   { user, "carts.items._id": carts._id },
+//   {
+//     $inc: { "carts.item.$.qty": -1 },
+//     $pull: { carts: { _id: leatherId, qty: { $lt: 2 } } },
+//   },
+//   { new: true }
+// );
+// res.json(updatedUser);
+// const existingItem = carts.cart.find(
+//   (item) => item.leatherId.toString() === leatherId
+// );
+// if(existingItem) {
+//   if(existingItem.qty > 1) {
+//    await Cart.findByIdAndUpdate(carts._id,)
+//   } else {
+//     await User.findByIdAndDelete(carts._id);
+//     await Cart.findByIdAndDelete(carts._id);
+//   }
+// } else {
+//   return res.status(404).json({error: "Product has already been taken out of cart"});
+// }
+// const { userId, leatherId } = req.body;
+// const carts = await Cart.findOne({ userId: userId });
+// const existingItem = carts?.cart.find(
+//   (item) => item.leatherId.toString() === leatherId
+// );
+// if (existingItem) {
+//   if (existingItem.qty > 1) {
+//     existingItem.qty--;
+//   }
+// }
+// console.log(carts);
+// res.json(existingItem);
+// await Cart.findByIdAndUpdate(userId, {$inc: {}});
+// const { leatherId } = req.body;
+// console.log(leatherId);
+// const token = getTokenFrom(req) as string;
+// const decodedToken = jwt.verify(
+//   token,
+//   `${process.env.SECRET}`
+// ) as JwtPayload;
+// const user = await User.findById(decodedToken.id);
+// if (!user) {
+//   return res.status(404).json({ error: "User not found" });
+// }
+// const carts = await Cart.findOne({ userId: user._id });
+// if (!carts) {
+//   return res.status(404).json({ error: "Your cart is already empty" });
+// }
+// const leather = await Leather.findById(leatherId);
+// if (!leather) {
+//   return res.status(404).json({ error: "Product does not exist" });
+// }
+// const existingItem = carts.cart.find(
+//   (item) => item.leatherId.toString() === leatherId
+// );
+// if (existingItem) {
+//   if (existingItem.qty > 1) {
+//     existingItem.qty--;
+//   } else {
+//     await Cart.findByIdAndRemove(existingItem);
+//     await User.findByIdAndRemove(carts._id.toString());
+//     res.status(204).end();
+//   }
+//   // const savedCart = await carts.save();
+// } else {
+//   return res.json({ error: "Server Error" });
+// }
+// console.log(carts._id);
+//   })
+// );
 
 // cartRouter.post<ParamsDictionary, any, Carts>(
 //   "/",

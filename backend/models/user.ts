@@ -32,17 +32,7 @@ const userSchema = new mongoose.Schema<IUser>({
   //     },
   //   },
   // ],
-  cart: [
-    { type: mongoose.Schema.Types.ObjectId, ref: "Cart" },
-    //   // {
-    //   item: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: "Leather",
-    //   },
-    // },
-  ],
-  // total: {
-  //   type: Number,
+  cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Cart" }],
 });
 
 userSchema.plugin(mongooseUniqueValidator);
@@ -60,3 +50,12 @@ userSchema.set("toJSON", {
 const User = mongoose.model<IUser>("User", userSchema);
 
 export default User;
+
+//   // {
+//   item: {
+//     type: mongoose.Schema.Types.ObjectId,
+//     ref: "Leather",
+//   },
+// },
+// total: {
+//   type: Number,
