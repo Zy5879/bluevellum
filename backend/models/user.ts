@@ -20,19 +20,19 @@ const userSchema = new mongoose.Schema<IUser>({
     type: String,
     required: true,
   },
-  // cart: [
-  //   {
-  //     leatherId: {
-  //       type: mongoose.Schema.Types.ObjectId,
-  //       ref: "Leather",
-  //     },
-  //     qty: {
-  //       type: Number,
-  //       default: 1,
-  //     },
-  //   },
-  // ],
-  cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Cart" }],
+  cart: [
+    {
+      leatherId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Leather",
+      },
+      qty: {
+        type: Number,
+        default: 1,
+      },
+    },
+  ],
+  // cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Cart" }],
 });
 
 userSchema.plugin(mongooseUniqueValidator);

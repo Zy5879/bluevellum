@@ -395,6 +395,25 @@ cartRouter.put<ParamsDictionary, any, Carts & CartItems>(
   })
 );
 
+cartRouter.get<ParamsDictionary, any, CartItems & Carts>(
+  "/",
+  asyncHandler(async (req, res): Promise<any> => {
+    const token = getTokenFrom(req) as string;
+    const decodedToken = jwt.verify(
+      token,
+      `${process.env.SECRET}`
+    ) as JwtPayload;
+    const user = await User.findById(decodedToken.id).populate({
+      path: "cart",
+      populate: { path: "cart.leatherId" },
+    });
+    res.json(user);
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+  })
+);
+
 // cartRouter.delete<ParamsDictionary, any, CartItems & Carts>(
 //   "/:id",
 //   asyncHandler(async (req, res): Promise<any> => {
