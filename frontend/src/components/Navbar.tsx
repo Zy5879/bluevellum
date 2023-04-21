@@ -9,6 +9,8 @@ function Navbar() {
         <NavLink to="/products/wallets">WALLETS</NavLink>
         <NavLink to="/products/accessories">ACCESSORIES</NavLink>
         <NavLink to="/products/customs">CUSTOMS</NavLink>
+        <NavLink to="/cart">CART</NavLink>
+        <NavLink to="/login">LOGIN</NavLink>
       </ul>
     </nav>
   );

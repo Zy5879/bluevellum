@@ -7,6 +7,7 @@ import AllProducts from "./AllProducts";
 import NotFound from "./NotFound";
 import Bags from "./Bags";
 import { Route, Routes } from "react-router-dom";
+import Login from "./Login";
 
 function RouteProvider() {
   return (
@@ -18,6 +19,7 @@ function RouteProvider() {
       <Route path="/products/bags" element={<Bags />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/products/allProducts" element={<AllProducts />} />
+      <Route path="/login" element={<Login />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
