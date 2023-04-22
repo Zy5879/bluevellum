@@ -1,15 +1,17 @@
 import axios from "axios";
-import { CartInfo } from "../types/type";
+import { User } from "../types/type";
 const baseUrl = "/cart";
 
 let token = null;
 
-export const setToken = (newToken: Request) => {
+const setToken = (newToken: Request) => {
   token = `Bearer ${newToken}`;
   return token;
 };
 
-export const getCart = async () => {
-  const response = await axios.get<CartInfo>(baseUrl);
+const getCart = async () => {
+  const response = await axios.get<User>(baseUrl);
   return response.data;
 };
+
+export default { getCart, setToken };
