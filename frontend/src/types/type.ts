@@ -1,4 +1,4 @@
-export type LeatherInfo = {
+export interface LeatherInfo {
   id: string;
   name: string;
   cost: number;
@@ -6,4 +6,9 @@ export type LeatherInfo = {
   category: string;
   inventory: number;
   img: string;
-};
+}
+
+export interface CartInfo extends LeatherInfo {
+  id: string;
+  qty: number;
+}
