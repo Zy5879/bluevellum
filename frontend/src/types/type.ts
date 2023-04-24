@@ -8,25 +8,22 @@ export interface LeatherInfo {
   img: string;
 }
 
-export interface CartInfo {
-  id: string;
-  firstname: string;
-  lastname: string;
-  email: string;
-}
-
 export interface CartItems {
   leatherId: LeatherInfo[];
   qty: number;
 }
 
 export interface User {
+  id: string;
   firstname: string;
   lastname: string;
   email: string;
   cart: CartItems[];
+  token: Request;
 }
 
-export interface Token {
+export interface Token extends User {
   token: Request;
+  // firstname: string;
+  // lastname: string;
 }
