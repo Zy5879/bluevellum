@@ -19,7 +19,7 @@ export interface User {
   lastname: string;
   email: string;
   cart: CartItems[];
-  token: Request;
+  // token: Request;
 }
 
 export interface Token extends User {
