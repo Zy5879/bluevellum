@@ -9,7 +9,7 @@ export interface LeatherInfo {
 }
 
 export interface CartItems {
-  leatherId: LeatherInfo[];
+  leatherId: LeatherInfo;
   qty: number;
 }
 
@@ -19,11 +19,21 @@ export interface User {
   lastname: string;
   email: string;
   cart: CartItems[];
-  // token: Request;
 }
 
-export interface Token extends User {
-  token: Request;
-  // firstname: string;
-  // lastname: string;
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  email: string;
+  firstname: string;
+  token: Request | undefined;
+}
+
+export interface Token {
+  token: Request | undefined;
+
+  lastname: string;
 }

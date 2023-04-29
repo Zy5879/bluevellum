@@ -252,10 +252,13 @@ cartRouter.post<ParamsDictionary, any, Carts & CartItems>(
       return res.status(404).json({ error: "Product does not exist" });
     }
 
-    let carts = await Cart.findOne({ userId: user._id });
-    if (!carts) {
-      carts = new Cart({ userId: user._id, cart: [] });
-    }
+    const carts = await Cart.findOne({ userId: user._id });
+    // if (!carts) {
+    //   carts = new Cart({
+    //     userId: user._id,
+    //     cart: [],
+    //   });
+    // }
     // console.log(carts);
     // res.json(carts);
 
@@ -268,7 +271,7 @@ cartRouter.post<ParamsDictionary, any, Carts & CartItems>(
     // const existingItem = carts.cart.find((item) =>
     //   console.log(item.leatherId.toString() === leatherId)
     // );
-    const existingItem = carts.cart.find(
+    const existingItem = carts?.cart.find(
       (item) => item.leatherId.toString() === leatherId
     );
 
@@ -287,19 +290,26 @@ cartRouter.post<ParamsDictionary, any, Carts & CartItems>(
         { new: true }
       );
       console.log("existing item");
-      return res.json(updatedCart);
+      res.json(updatedCart);
     } else {
       //   //   console.log("item does not exist");
       //   //   res.json();
       const newCart = new Cart({
         userId: user._id,
-        cart: { leatherId: leatherId, qty: qty },
+        cart: { leatherId: leather, qty: qty },
       });
       // console.log("no existing item");
       const savedCart = await newCart.save();
-      user.cart = user.cart.concat(savedCart._id);
-      await user.save();
-      return res.json(savedCart);
+      const updatedUser = await User.findByIdAndUpdate(
+        user._id,
+        { $push: { cart: savedCart._id } },
+        { new: true }
+      ).populate({ path: "cart", populate: { path: "cart.leatherId" } });
+      res.json(updatedUser);
+      // console.log(savedCart);
+      // user.cart = user.cart.concat(savedCart._id);
+      // await user.save();
+      // res.json(savedCart);
       // const updatedUser = await User.findOneAndUpdate(
       //   { cart: carts },
       //   {
@@ -407,9 +417,10 @@ cartRouter.get<ParamsDictionary, any, CartItems & Carts>(
       path: "cart",
       populate: { path: "cart.leatherId" },
     });
-    res.json(user);
     if (!user) {
-      return res.status(404).json({ error: "User not found" });
+      return res.status(404).json({ error: "User not found" }).end();
+    } else {
+      return res.json(user);
     }
   })
 );

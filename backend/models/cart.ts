@@ -7,18 +7,18 @@ export const cartSchema = new mongoose.Schema<Carts>(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    cart: [
-      {
-        leatherId: {
+    cart: {
+      leatherId: [
+        {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Leather",
         },
-        qty: {
-          type: Number,
-          default: 1,
-        },
+      ],
+      qty: {
+        type: Number,
+        default: 1,
       },
-    ],
+    },
   },
   // items: [
   //   {

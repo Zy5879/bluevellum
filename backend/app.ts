@@ -6,6 +6,7 @@ import userLoginRouter from "./controllers/userSignin";
 import userSignupRouter from "./controllers/usersSignup";
 import { cartRouter } from "./controllers/carts";
 import { stripeRouter } from "./controllers/stripe";
+import homeRouter from "./controllers/home";
 import {
   errorHandler,
   globalErrorHandler,
@@ -35,6 +36,7 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 
+app.use("/", homeRouter);
 app.use("/products", productsRouter);
 app.use("/login", userLoginRouter);
 app.use("/signup", userSignupRouter);

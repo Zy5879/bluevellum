@@ -9,15 +9,15 @@ import Bags from "./Bags";
 import { Route, Routes } from "react-router-dom";
 import Login from "./Login";
 
-type RouteProps = {
-  handlePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  // handleEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  // handleLogin: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
-  email: string;
-  password: string;
-};
+// type RouteProps = {
+//   handlePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
+//   handleEmail: (e: React.ChangeEvent<HTMLInputElement>) => void;
+//   handleLogin: (e: React.FormEvent<HTMLFormElement>) => Promise<void>;
+//   email: string;
+//   password: string;
+// };
 
-function RouteProvider(props: RouteProps) {
+function RouteProvider() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -27,18 +27,7 @@ function RouteProvider(props: RouteProps) {
       <Route path="/products/bags" element={<Bags />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/products/allProducts" element={<AllProducts />} />
-      <Route
-        path="/login"
-        element={
-          <Login
-            // handleEmail={props.handleEmail}
-            handlePassword={props.handlePassword}
-            // handleLogin={props.handleLogin}
-            email={props.email}
-            password={props.password}
-          />
-        }
-      />
+      <Route path="/login" element={<Login />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

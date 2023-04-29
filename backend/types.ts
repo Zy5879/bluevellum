@@ -32,6 +32,12 @@ export interface IUser {
   cart: unknown[];
 }
 
+export interface ResUser {
+  firstname: string;
+  lastname: string;
+  email: string;
+  cart: unknown[];
+}
 export interface Leather {
   name: string;
   type: Types;

@@ -1,35 +1,48 @@
-// import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
-// export const productsApi = createApi({
-//   reducerPath: "productsApi",
-//   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/products" }),
-//   endpoints: (builder) => ({
-//     getBags: builder.query({
-//       query: () => "bags",
-//     }),
-//   }),
-// });
-
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../../types/type";
+import { LoginResponse } from "../../types/type";
 
 interface AuthState {
-  user?: User | null;
+  user: LoginResponse | null | undefined;
+  token: string | null | undefined | Request;
+  cart: User | null | undefined;
 }
 
 const initialState: AuthState = {
   user: null,
+  token: null,
+  cart: null,
 };
-
 export const authSlice = createSlice({
   name: "authSlice",
   initialState,
   reducers: {
     logout: () => initialState,
-    userInfo: (state, action: PayloadAction<AuthState>) => {
+    setUser: (
+      state,
+      action: PayloadAction<{
+        user: LoginResponse | undefined;
+        token: string | undefined | Request;
+      }>
+    ) => {
       state.user = action.payload.user;
+      state.token = action.payload.token;
+    },
+    setCart: (
+      state,
+      action: PayloadAction<{ cart: User | null | undefined }>
+    ) => {
+      state.cart = action.payload.cart;
     },
   },
 });
 
-export const { logout, userInfo } = authSlice.actions;
+export const { logout, setUser, setCart } = authSlice.actions;
+
+// export const setCurrentUser = (credentials: object) => {
+//   return async (dispatch) => {
+//     const user = await loginService.login(credentials);
+//     dispatch(setUser(credentials));
+//   }
+// }
 export default authSlice.reducer;
