@@ -18,7 +18,7 @@ homeRouter.get<ParamsDictionary, any, IUser>(
 
     const user = await User.findById(decodedToken.id).populate({
       path: "cart",
-      populate: { path: "cart.leatherId" },
+      populate: { path: "leatherId" },
     });
 
     if (!user) {

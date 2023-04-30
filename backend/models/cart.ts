@@ -1,24 +1,29 @@
 import mongoose from "mongoose";
-import { CartItems, Carts } from "../types";
+import { CartItems } from "../types";
+// import { leatherSchema } from "./leather";
 
-export const cartSchema = new mongoose.Schema<Carts>(
+export const cartSchema = new mongoose.Schema<CartItems>(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    cart: {
-      leatherId: [
-        {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Leather",
-        },
-      ],
-      qty: {
-        type: Number,
-        default: 1,
-      },
-    },
+    leatherId: { type: mongoose.Schema.Types.ObjectId, ref: "Leather" },
+    qty: { type: Number, default: 1 },
+
+    //   cart: [
+    //     {
+    //       leatherId: {
+    //         type: mongoose.Schema.Types.ObjectId,
+    //         ref: "Leather",
+    //       },
+
+    //       qty: {
+    //         type: Number,
+    //         default: 1,
+    //       },
+    //     },
+    //   ],
   },
   // items: [
   //   {
@@ -58,6 +63,6 @@ cartSchema.set("toJSON", {
 });
 
 // const Cart = mongoose.model<Leather>("Cart", cartSchema);
-const Cart = mongoose.model<Carts & CartItems>("Cart", cartSchema);
+const Cart = mongoose.model<CartItems>("Cart", cartSchema);
 
 export default Cart;

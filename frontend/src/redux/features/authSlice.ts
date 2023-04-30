@@ -5,13 +5,13 @@ import { LoginResponse } from "../../types/type";
 interface AuthState {
   user: LoginResponse | null | undefined;
   token: string | null | undefined | Request;
-  cart: User | null | undefined;
+  shoppingcart: User | null | undefined;
 }
 
 const initialState: AuthState = {
   user: null,
   token: null,
-  cart: null,
+  shoppingcart: null,
 };
 export const authSlice = createSlice({
   name: "authSlice",
@@ -30,9 +30,9 @@ export const authSlice = createSlice({
     },
     setCart: (
       state,
-      action: PayloadAction<{ cart: User | null | undefined }>
+      action: PayloadAction<{ shoppingcart: User | null | undefined }>
     ) => {
-      state.cart = action.payload.cart;
+      state.shoppingcart = action.payload.shoppingcart;
     },
   },
 });

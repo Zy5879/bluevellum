@@ -224,13 +224,13 @@ import { getTokenFrom } from "../utils/middleware";
 import User from "../models/user";
 import asyncHandler from "express-async-handler";
 import Cart from "../models/cart";
-import { CartItems, Carts } from "../types";
+import { CartItems } from "../types";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { ParamsDictionary } from "express-serve-static-core";
 import Leather from "../models/leather";
 export const cartRouter = Router();
 
-cartRouter.post<ParamsDictionary, any, Carts & CartItems>(
+cartRouter.post<ParamsDictionary, any, CartItems>(
   "/",
   asyncHandler(async (req, res): Promise<any> => {
     const { leatherId, qty } = req.body;
@@ -252,29 +252,31 @@ cartRouter.post<ParamsDictionary, any, Carts & CartItems>(
       return res.status(404).json({ error: "Product does not exist" });
     }
 
-    const carts = await Cart.findOne({ userId: user._id });
-    // if (!carts) {
-    //   carts = new Cart({
-    //     userId: user._id,
-    //     cart: [],
-    //   });
-    // }
+    let carts = await Cart.findOne({ userId: user._id });
+    if (!carts) {
+      carts = new Cart({
+        userId: user._id,
+        cart: [],
+      });
+    }
     // console.log(carts);
-    // res.json(carts);
+    // // res.json(carts);
 
-    // res.json(carts);
+    // // res.json(carts);
 
-    // if (!carts?.leatherId) {
-    //   carts = new Cart({ userId: user._id, cart: { leatherId: leatherId } });
-    // }
+    // // if (!carts?.leatherId) {
+    // //   carts = new Cart({ userId: user._id, cart: { leatherId: leatherId } });
+    // // }
 
     // const existingItem = carts.cart.find((item) =>
     //   console.log(item.leatherId.toString() === leatherId)
     // );
-    const existingItem = carts?.cart.find(
-      (item) => item.leatherId.toString() === leatherId
-    );
+    // const existingItem = carts?.cart.find(
+    //   (item) => item.leatherId.toString() === leatherId
+    // );
 
+    // const existingItem = user.cart.find((item) => item.leatherId);
+    // console.log(existingItem);
     // console.log(existingItem);
 
     // console.log(carts);
@@ -283,20 +285,24 @@ cartRouter.post<ParamsDictionary, any, Carts & CartItems>(
 
     // const savedCart = await carts.save();
 
+    const existingItem = await Cart.findOne({ leatherId: leatherId });
+
     if (existingItem) {
       const updatedCart = await Cart.findOneAndUpdate(
-        { "cart.leatherId": leatherId },
-        { $inc: { "cart.$.qty": 1 } },
+        { leatherId: leatherId },
+        { $inc: { qty: 1 } },
         { new: true }
       );
       console.log("existing item");
       res.json(updatedCart);
     } else {
-      //   //   console.log("item does not exist");
+      console.log("item does not exist");
       //   //   res.json();
       const newCart = new Cart({
         userId: user._id,
-        cart: { leatherId: leather, qty: qty },
+        leatherId: leatherId,
+        qty: qty,
+        // cart: { leatherId: leather, qty: qty },
       });
       // console.log("no existing item");
       const savedCart = await newCart.save();
@@ -304,7 +310,7 @@ cartRouter.post<ParamsDictionary, any, Carts & CartItems>(
         user._id,
         { $push: { cart: savedCart._id } },
         { new: true }
-      ).populate({ path: "cart", populate: { path: "cart.leatherId" } });
+      ).populate({ path: "cart" });
       res.json(updatedUser);
       // console.log(savedCart);
       // user.cart = user.cart.concat(savedCart._id);
@@ -363,7 +369,7 @@ cartRouter.post<ParamsDictionary, any, Carts & CartItems>(
   })
 );
 
-cartRouter.put<ParamsDictionary, any, Carts & CartItems>(
+cartRouter.put<ParamsDictionary, any, CartItems>(
   "/",
   asyncHandler(async (req, res): Promise<any> => {
     const { leatherId } = req.body;
@@ -405,7 +411,7 @@ cartRouter.put<ParamsDictionary, any, Carts & CartItems>(
   })
 );
 
-cartRouter.get<ParamsDictionary, any, CartItems & Carts>(
+cartRouter.get<ParamsDictionary, any, CartItems>(
   "/",
   asyncHandler(async (req, res): Promise<any> => {
     const token = getTokenFrom(req) as string;

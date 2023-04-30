@@ -4,15 +4,17 @@ import { useEffect } from "react";
 import homeService from "./services/home";
 import { setCart } from "./redux/features/authSlice";
 import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 function App() {
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     const getUserCart = async () => {
       try {
         const response = await homeService.getUserCart();
-        dispatch(setCart({ cart: response }));
+        dispatch(setCart({ shoppingcart: response }));
         console.log(response);
         return response;
       } catch (error) {
@@ -21,7 +23,7 @@ function App() {
     };
 
     void getUserCart();
-  }, [dispatch]);
+  }, [location.key]);
   return (
     <>
       <Navbar />

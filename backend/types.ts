@@ -29,7 +29,7 @@ export interface IUser {
   lastname: string;
   email: string;
   password: string;
-  cart: unknown[];
+  cart: CartItems[];
 }
 
 export interface ResUser {
@@ -48,6 +48,7 @@ export interface Leather {
 }
 
 export interface CartItems {
+  userId: ObjectId;
   leatherId: ObjectId | string;
   qty: number;
 }

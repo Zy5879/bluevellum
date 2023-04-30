@@ -9,7 +9,7 @@ export interface LeatherInfo {
 }
 
 export interface CartItems {
-  leatherId: LeatherInfo;
+  leatherId: LeatherInfo[];
   qty: number;
 }
 

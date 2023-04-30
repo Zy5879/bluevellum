@@ -2,6 +2,8 @@
 import mongoose from "mongoose";
 import { IUser } from "../types";
 import mongooseUniqueValidator from "mongoose-unique-validator";
+// import { leatherSchema } from "./leather";
+// import { leatherSchema } from "./leather";
 
 const userSchema = new mongoose.Schema<IUser>({
   firstname: {
@@ -31,6 +33,7 @@ const userSchema = new mongoose.Schema<IUser>({
   //     },
   //   },
   // ],
+  // cart: [{type: mongoose}],
   cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Cart" }],
 });
 

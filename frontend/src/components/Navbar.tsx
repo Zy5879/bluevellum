@@ -1,23 +1,20 @@
 import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../redux/hooks";
 import { useEffect } from "react";
-import { logout, setUser } from "../redux/features/authSlice";
+import { logout, setUser, setCart } from "../redux/features/authSlice";
 import homeService from "../services/home";
 import { useDispatch } from "react-redux";
 import { LoginResponse } from "../types/type";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
-  const { user, cart } = useAppSelector((state) => state.authUser);
-  const leather = cart?.cart.map((item) => item.qty);
-  console.log(leather);
-  // console.log(data);
-  // if (isLoading) {
-  //   return <div>Loading....</div>;
-  // }
-
-  // if (!userCart) {
-  //   <div>No user</div>;
-  // }
+  const { user, shoppingcart } = useAppSelector((state) => state.authUser);
+  const navigate = useNavigate();
+  const cartQuantity = shoppingcart?.cart.reduce(
+    (acc, val) => acc + val.qty,
+    0
+  );
+  console.log(cartQuantity);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -35,6 +32,7 @@ function Navbar() {
     dispatch(logout);
     window.localStorage.clear();
     window.location.reload();
+    navigate("/");
   };
 
   return (
@@ -46,7 +44,7 @@ function Navbar() {
         <NavLink to="/products/wallets">WALLETS</NavLink>
         <NavLink to="/products/accessories">ACCESSORIES</NavLink>
         <NavLink to="/products/customs">CUSTOMS</NavLink>
-        <NavLink to="/cart">CART</NavLink>
+        <NavLink to="/cart">CART {shoppingcart ? cartQuantity : null}</NavLink>
         <NavLink to="/login">
           {user ? `HELLO ${user.firstname}`.toUpperCase() : "LOGIN"}
         </NavLink>

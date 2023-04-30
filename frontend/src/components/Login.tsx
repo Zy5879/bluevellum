@@ -3,7 +3,7 @@
 import { useCheckLoginMutation } from "../redux/features/authApi";
 // import { useGetCartQuery } from "../redux/features/cartApi";
 import { useState, SyntheticEvent, useEffect } from "react";
-import { setUser } from "../redux/features/authSlice";
+import { setUser, setCart } from "../redux/features/authSlice";
 import homeService from "../services/home";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,7 @@ function Login() {
   const [checkLogin, { data, isSuccess }] = useCheckLoginMutation();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [isLoggedIn, setLogin] = useState<boolean>(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -38,9 +39,26 @@ function Login() {
   useEffect(() => {
     if (isSuccess) {
       dispatch(setUser({ user: data, token: data?.token }));
+      setLogin(true);
       navigate("/");
+      window.location.reload();
     }
   }, [isSuccess]);
+
+  useEffect(() => {
+    const getUserCart = async () => {
+      try {
+        const response = await homeService.getUserCart();
+        dispatch(setCart({ shoppingcart: response }));
+        console.log(response);
+        return response;
+      } catch (error) {
+        return { message: "No User Found" };
+      }
+    };
+
+    void getUserCart();
+  }, [isLoggedIn]);
 
   // if (isSuccess) {
   //   dispatch(setUser({ user: data, token: data?.token }));
