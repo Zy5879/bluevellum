@@ -68,7 +68,7 @@ button:focus-visible {
   }
 } */
 
-nav {
+/* nav {
   display: flex;
   align-items: center;
 }
@@ -76,4 +76,8 @@ nav {
 ul {
   display: flex;
   gap: 1rem;
-}
+} */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

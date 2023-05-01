@@ -34,6 +34,4 @@ export interface LoginResponse {
 
 export interface Token {
   token: Request | undefined;
-
-  lastname: string;
 }

@@ -1,7 +1,7 @@
 function Home() {
   return (
     <>
-      <main>This is Home</main>
+      <main className="p-4">This is Home</main>
     </>
   );
 }

@@ -49,7 +49,7 @@ export interface Leather {
 
 export interface CartItems {
   userId: ObjectId;
-  leatherId: ObjectId | string;
+  leatherId: ObjectId;
   qty: number;
 }
 
