@@ -3,7 +3,7 @@
 import { useCheckLoginMutation } from "../redux/features/authApi";
 // import { useGetCartQuery } from "../redux/features/cartApi";
 import { useState, SyntheticEvent, useEffect } from "react";
-import { setUser, setCart } from "../redux/features/authSlice";
+import { setUser } from "../redux/features/authSlice";
 import homeService from "../services/home";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +12,7 @@ function Login() {
   const [checkLogin, { data, isSuccess }] = useCheckLoginMutation();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [isLoggedIn, setLogin] = useState<boolean>(false);
+  // const [isLoggedIn, setLogin] = useState<boolean>(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -39,26 +39,26 @@ function Login() {
   useEffect(() => {
     if (isSuccess) {
       dispatch(setUser({ user: data, token: data?.token }));
-      setLogin(true);
+      // setLogin(true);
       navigate("/");
       window.location.reload();
     }
   }, [isSuccess]);
 
-  useEffect(() => {
-    const getUserCart = async () => {
-      try {
-        const response = await homeService.getUserCart();
-        dispatch(setCart({ shoppingcart: response }));
-        console.log(response);
-        return response;
-      } catch (error) {
-        return { message: "No User Found" };
-      }
-    };
+  // useEffect(() => {
+  //   const getUserCart = async () => {
+  //     try {
+  //       const response = await homeService.getUserCart();
+  //       dispatch(setCart({ shoppingcart: response }));
+  //       console.log(response);
+  //       return response;
+  //     } catch (error) {
+  //       return { message: "No User Found" };
+  //     }
+  //   };
 
-    void getUserCart();
-  }, [isLoggedIn]);
+  //   void getUserCart();
+  // }, [isLoggedIn]);
 
   // if (isSuccess) {
   //   dispatch(setUser({ user: data, token: data?.token }));
@@ -76,29 +76,41 @@ function Login() {
   // }, []);
 
   return (
-    <div>
-      <form onSubmit={(e) => void handleLogin(e)}>
-        <div>
-          email
+    <div className="flex items-center justify-center p-6">
+      <form
+        className="bg-gray-100 shadow-md rounded p-8 px-8 pg-6 pb-8 mt-8"
+        onSubmit={(e) => void handleLogin(e)}
+      >
+        <div className="mb-4">
+          <label className="block text-gray-700 text sm font-bold mb-2">
+            EMAIL
+          </label>
+          {/* email */}
           <input
             type="email"
             name="email"
             value={email}
             onChange={handleEmail}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
-        <div>
-          password
+        <div className="mb-6">
+          <label className="block text-gray-700 text sm font-bold mb-2">
+            PASSWORD
+          </label>
+          {/* password */}
           <input
             type="password"
             name="password"
             value={password}
             onChange={handlePassword}
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
-        <div>
-          submit
-          <button>Login</button>
+        <div className="flex items-center justify-between">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            Login
+          </button>
         </div>
       </form>
     </div>
