@@ -20,38 +20,47 @@ function Home() {
         <div className="font-bold text-center md:text-xl p-5">
           CHECK OUT THE COLLECTION
         </div>
-        <section className="grid grid-cols-3 gap-4 p-5">
-          <article className="bg-white shadow-lg rounded-sm">
-            <img
-              className=" aspect-square rounded-sm object-cover"
+        <section className="grid gap-4 p-5 md:grid-cols-3 ">
+          <article className="bg-bag relative aspect-square bg-no-repeat bg-cover bg-center shadow-lg rounded-sm">
+            {/* <img
+              className=" aspect-square rounded-sm object-cover "
               src={leatherbag}
               alt="bag"
-            />
-            <div>
-              <p className="text-black">BAGS</p>
-              <button>SHOP BAGS</button>
+            /> */}
+            <div className="absolute top-0 left-0 w-full h-full bg-black/[0.5]"></div>
+            <div className="absolute top-2/4 left-0 right-0 text-center">
+              <p className="text-white font-bold">BAGS</p>
+              <button className="text-black font-bold bg-white rounded p-4 mt-3">
+                SHOP BAGS
+              </button>
             </div>
           </article>
-          <article className="bg-white shadow-lg rounded-sm">
-            <img
+          <article className="shadow-lg relative aspect-square rounded-sm bg-wallet bg-no-repeat bg-cover bg-center">
+            {/* <img
               className="w-full aspect-square rounded-sm object-cover"
               src={leatherWaller}
               alt="leather wallet"
-            />
-            <div>
-              <p>WALLETS</p>
-              <button>SHOP WALLETS</button>
+            /> */}
+            <div className="absolute top-0 left-0 w-full h-full bg-black/[0.5]"></div>
+            <div className="absolute top-2/4 left-0 right-0 text-center">
+              <p className="text-white font-bold">WALLETS</p>
+              <button className="text-black font-bold bg-white rounded p-4 mt-3">
+                SHOP WALLETS
+              </button>
             </div>
           </article>
-          <article className="bg-white shadow-lg rounded-sm">
-            <img
+          <article className="bg-access aspect-square relative bg-no-repeat bg-cover bg-center shadow-lg rounded-sm">
+            {/* <img
               className="w-full aspect-square rounded-sm object-cover"
               src={leatherAcc}
               alt="leather watchband"
-            />
-            <div>
-              <p>ACCESSORIES</p>
-              <button>SHOP ACCESSORIES</button>
+            /> */}
+            <div className="absolute top-0 left-0 w-full h-full bg-black/[0.5]"></div>
+            <div className="absolute top-2/4 left-0 right-0 text-center">
+              <p className="text-white font-bold">ACCESSORIES</p>
+              <button className="text-black font-bold bg-white rounded p-4 mt-3">
+                SHOP ACCESSORIES
+              </button>
             </div>
           </article>
         </section>
