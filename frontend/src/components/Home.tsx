@@ -1,4 +1,7 @@
 import homeleather from "../assets/images/homeleather.png";
+import leatherbag from "../assets/images/leatherbag.png";
+import leatherWaller from "../assets/images/leatherWallet.png";
+import leatherAcc from "../assets/images/leatherAcc.png";
 function Home() {
   return (
     <main>
@@ -14,11 +17,43 @@ function Home() {
         </button>
       </section>
       <section>
-        <div>Check Out The Collection</div>
-        <section>
-          <article>BAGS</article>
-          <article>WALLETS</article>
-          <article>ACCESSORIES</article>
+        <div className="font-bold text-center md:text-xl p-5">
+          CHECK OUT THE COLLECTION
+        </div>
+        <section className="grid grid-cols-3 gap-4 p-5">
+          <article className="bg-white shadow-lg rounded-sm">
+            <img
+              className=" aspect-square rounded-sm object-cover"
+              src={leatherbag}
+              alt="bag"
+            />
+            <div>
+              <p className="text-black">BAGS</p>
+              <button>SHOP BAGS</button>
+            </div>
+          </article>
+          <article className="bg-white shadow-lg rounded-sm">
+            <img
+              className="w-full aspect-square rounded-sm object-cover"
+              src={leatherWaller}
+              alt="leather wallet"
+            />
+            <div>
+              <p>WALLETS</p>
+              <button>SHOP WALLETS</button>
+            </div>
+          </article>
+          <article className="bg-white shadow-lg rounded-sm">
+            <img
+              className="w-full aspect-square rounded-sm object-cover"
+              src={leatherAcc}
+              alt="leather watchband"
+            />
+            <div>
+              <p>ACCESSORIES</p>
+              <button>SHOP ACCESSORIES</button>
+            </div>
+          </article>
         </section>
       </section>
     </main>
