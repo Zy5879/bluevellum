@@ -6,6 +6,8 @@ import Accessories from "./Accessories";
 import AllProducts from "./AllProducts";
 import NotFound from "./NotFound";
 import Bags from "./Bags";
+import RefundPolicy from "./RefundPolicy";
+import ShippingAndDelivery from "./S&D";
 import { Route, Routes } from "react-router-dom";
 import Login from "./Login";
 
@@ -28,6 +30,11 @@ function RouteProvider() {
       <Route path="/cart" element={<Cart />} />
       <Route path="/products/allProducts" element={<AllProducts />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/policy/refund-policy" element={<RefundPolicy />} />
+      <Route
+        path="/policy/shipping-delivery"
+        element={<ShippingAndDelivery />}
+      />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

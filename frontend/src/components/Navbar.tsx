@@ -53,7 +53,9 @@ function Navbar() {
   return (
     <nav className="bg-black w-full backdrop-filter backdrop-blur-lg bg-opacity-20 top-0 z-[1] fixed border-gray-200 text-black dark:bg-black text-white">
       <div className="max-w-screen-xl sticky flex flex-wrap items-center justify-between p-4">
-        <h1 className="text-3l text-white font-semibold">Blue Vellum</h1>
+        <h1 className="text-3l text-white font-semibold">
+          <a href="/">Blue Vellum</a>
+        </h1>
         <button
           type="button"
           className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
