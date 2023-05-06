@@ -5,10 +5,10 @@ export const productApi = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/" }),
   endpoints: (builder) => ({
-    getBags: builder.query<LeatherInfo[], undefined>({
-      query: () => "bags",
+    getBags: builder.query<LeatherInfo[], void>({
+      query: () => "products/bags",
     }),
-    getBageGb: builder.query<LeatherInfo[], undefined>({
+    getBagGb: builder.query<LeatherInfo[], undefined>({
       query: () => "bags/gentleman",
     }),
     getBagsGbId: builder.query<LeatherInfo[], string>({
@@ -26,14 +26,14 @@ export const productApi = createApi({
     getBagsHbId: builder.query<LeatherInfo[], string>({
       query: (id) => `bag/handbag/${id}`,
     }),
-    getWallets: builder.query<LeatherInfo[], undefined>({
-      query: () => "wallets",
+    getWallets: builder.query<LeatherInfo[], void>({
+      query: () => "products/wallets",
     }),
     getWalletsId: builder.query<LeatherInfo[], string>({
       query: (id) => `wallets/${id}`,
     }),
-    getAccess: builder.query<LeatherInfo[], undefined>({
-      query: () => "accessories",
+    getAccess: builder.query<LeatherInfo[], void>({
+      query: () => "products/accessories",
     }),
     getAccessBelt: builder.query<LeatherInfo[], undefined>({
       query: () => "accessories/belt",
@@ -47,7 +47,7 @@ export const productApi = createApi({
     getAcessWatchId: builder.query<LeatherInfo[], string>({
       query: (id) => `accessories/watch/${id}`,
     }),
-    getCustoms: builder.query<LeatherInfo[], undefined>({
+    getCustoms: builder.query<LeatherInfo[], void>({
       query: () => "customs",
     }),
     getCustomsId: builder.query<LeatherInfo[], string>({
@@ -62,7 +62,7 @@ export const {
   useGetAccessQuery,
   useGetAcessWatchIdQuery,
   useGetAcessWatchQuery,
-  useGetBageGbQuery,
+  useGetBagGbQuery,
   useGetBagsGbIdQuery,
   useGetBagsHbIdQuery,
   useGetBagsHbQuery,

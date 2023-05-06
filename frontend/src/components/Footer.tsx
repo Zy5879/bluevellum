@@ -40,14 +40,28 @@ function Footer() {
             CONTACT US
           </h4>
           <div className="flex md:items-center md:justify-center gap-4">
-            <img src={facebook} alt="facebook-logo" className="md:w-10 w-10" />
-            <img src={twitter} alt="twitter-logo" className="md:w-10 w-10" />
+            <a href="https://www.facebook.com/BlueVellum/">
+              <img
+                src={facebook}
+                alt="facebook-logo"
+                className="md:w-10 w-10"
+              />
+            </a>
+            <a href="https://twitter.com/blue_vellum">
+              <img src={twitter} alt="twitter-logo" className="md:w-10 w-10" />
+            </a>
             <img
               src={instagram}
               alt="instagram-logo"
               className="md:w-10 w-10"
             />
-            <img src={youtube} alt="instagram-logo" className="md:w-10 w-10 " />
+            <a href="https://www.youtube.com/channel/UCLv8YD6JTNdkozfp2ZIhbqg">
+              <img
+                src={youtube}
+                alt="instagram-logo"
+                className="md:w-10 w-10 "
+              />
+            </a>
           </div>
         </div>
       </section>
