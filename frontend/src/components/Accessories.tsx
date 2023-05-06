@@ -28,6 +28,7 @@ function Accessories() {
       </main>
     );
   }
+  return null;
   // const [accessories, setAccessories] = useState<LeatherInfo[]>();
 
   // useEffect(() => {

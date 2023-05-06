@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
-import { LeatherInfo } from "../types/type";
-import walletService from "../services/getWallets";
+// import { useState, useEffect } from "react";
+// import { LeatherInfo } from "../types/type";
+// import walletService from "../services/getWallets";
 import { useGetWalletsQuery } from "../redux/features/productApi";
 
 function Wallets() {

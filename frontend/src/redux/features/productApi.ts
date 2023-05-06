@@ -8,69 +8,73 @@ export const productApi = createApi({
     getBags: builder.query<LeatherInfo[], void>({
       query: () => "products/bags",
     }),
-    getBagGb: builder.query<LeatherInfo[], undefined>({
-      query: () => "bags/gentleman",
+    getBagGb: builder.query<LeatherInfo[], void>({
+      query: () => "products/bags/gentleman",
     }),
-    getBagsGbId: builder.query<LeatherInfo[], string>({
-      query: (id) => `bags/gentlemanbag/${id}`,
+    getProductId: builder.query<LeatherInfo, string>({
+      query: (id) => `products/item/${id}`,
     }),
-    getBagsTote: builder.query<LeatherInfo[], undefined>({
-      query: () => "bags/tote",
+    // getBagsGbId: builder.query<LeatherInfo[], string>({
+    //   query: (id) => `bags/gentlemanbag/${id}`,
+    // }),
+    getBagsTote: builder.query<LeatherInfo[], void>({
+      query: () => "products/bags/tote",
     }),
-    getBagsToteId: builder.query<LeatherInfo[], string>({
-      query: (id) => `bags/tote${id}`,
+    // getBagsToteId: builder.query<LeatherInfo[], string>({
+    //   query: (id) => `bags/tote${id}`,
+    // }),
+    getBagsHb: builder.query<LeatherInfo[], void>({
+      query: () => "products/bags/handbag",
     }),
-    getBagsHb: builder.query<LeatherInfo[], undefined>({
-      query: () => "bags/handbag",
-    }),
-    getBagsHbId: builder.query<LeatherInfo[], string>({
-      query: (id) => `bag/handbag/${id}`,
-    }),
+    // getBagsHbId: builder.query<LeatherInfo[], string>({
+    //   query: (id) => `bag/handbag/${id}`,
+    // }),
     getWallets: builder.query<LeatherInfo[], void>({
       query: () => "products/wallets",
     }),
-    getWalletsId: builder.query<LeatherInfo[], string>({
-      query: (id) => `wallets/${id}`,
-    }),
+    // getWalletsId: builder.query<LeatherInfo[], string>({
+    //   query: (id) => `wallets/${id}`,
+    // }),
     getAccess: builder.query<LeatherInfo[], void>({
       query: () => "products/accessories",
     }),
-    getAccessBelt: builder.query<LeatherInfo[], undefined>({
-      query: () => "accessories/belt",
+    getAccessBelt: builder.query<LeatherInfo[], void>({
+      query: () => "products/accessories/belt",
     }),
-    getAccessBeltId: builder.query<LeatherInfo[], string>({
-      query: (id) => `accessories/belt/${id}`,
+    // getAccessBeltId: builder.query<LeatherInfo[], string>({
+    //   query: (id) => `accessories/belt/${id}`,
+    // }),
+    getAcessWatch: builder.query<LeatherInfo[], void>({
+      query: () => "products/accessories/watch",
     }),
-    getAcessWatch: builder.query<LeatherInfo[], undefined>({
-      query: () => "accessories/watch",
-    }),
-    getAcessWatchId: builder.query<LeatherInfo[], string>({
-      query: (id) => `accessories/watch/${id}`,
-    }),
+    // getAcessWatchId: builder.query<LeatherInfo[], string>({
+    //   query: (id) => `accessories/watch/${id}`,
+    // }),
     getCustoms: builder.query<LeatherInfo[], void>({
-      query: () => "customs",
+      query: () => "products/customs",
     }),
-    getCustomsId: builder.query<LeatherInfo[], string>({
-      query: (id) => `customs/${id}`,
-    }),
+    // getCustomsId: builder.query<LeatherInfo[], string>({
+    //   query: (id) => `customs/${id}`,
+    // }),
   }),
 });
 
 export const {
-  useGetAccessBeltIdQuery,
+  // useGetAccessBeltIdQuery,
   useGetAccessBeltQuery,
   useGetAccessQuery,
-  useGetAcessWatchIdQuery,
+  // useGetAcessWatchIdQuery,
   useGetAcessWatchQuery,
   useGetBagGbQuery,
-  useGetBagsGbIdQuery,
-  useGetBagsHbIdQuery,
+  // useGetBagsGbIdQuery,
+  // useGetBagsHbIdQuery,
   useGetBagsHbQuery,
   useGetBagsQuery,
-  useGetBagsToteIdQuery,
+  // useGetBagsToteIdQuery,
   useGetBagsToteQuery,
-  useGetCustomsIdQuery,
+  // useGetCustomsIdQuery,
   useGetCustomsQuery,
-  useGetWalletsIdQuery,
+  // useGetWalletsIdQuery,
   useGetWalletsQuery,
+  useGetProductIdQuery,
 } = productApi;

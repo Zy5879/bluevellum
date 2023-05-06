@@ -8,6 +8,7 @@ import NotFound from "./NotFound";
 import Bags from "./Bags";
 import RefundPolicy from "./RefundPolicy";
 import ShippingAndDelivery from "./S&D";
+import ProductById from "./ProductById";
 import { Route, Routes } from "react-router-dom";
 import Login from "./Login";
 
@@ -35,6 +36,7 @@ function RouteProvider() {
         path="/policy/shipping-delivery"
         element={<ShippingAndDelivery />}
       />
+      <Route path="/products/item/:id" element={<ProductById />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
