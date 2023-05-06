@@ -2,9 +2,14 @@
 // import { LeatherInfo } from "../types/type";
 // import walletService from "../services/getWallets";
 import { useGetWalletsQuery } from "../redux/features/productApi";
+import { useNavigate } from "react-router-dom";
 
 function Wallets() {
   const { data, error, isLoading } = useGetWalletsQuery();
+  const navigate = useNavigate();
+  const handleProductClick = (id: string) => {
+    navigate(`/products/item/${id}`);
+  };
 
   if (isLoading) {
     return <div>Loading....</div>;
@@ -19,7 +24,7 @@ function Wallets() {
       <main>
         <section>
           {data.map((item) => (
-            <div key={item.id}>
+            <div key={item.id} onClick={() => handleProductClick(item.id)}>
               <img src={item.img} />
               <p>{item.name}</p>
               <p>{item.cost}</p>

@@ -2,8 +2,14 @@
 // import { LeatherInfo } from "../types/type";
 // import accService from "../services/getAccessories";
 import { useGetAccessQuery } from "../redux/features/productApi";
+import { useNavigate } from "react-router-dom";
 function Accessories() {
   const { data, isError, isLoading } = useGetAccessQuery();
+  const navigate = useNavigate();
+
+  const handleProductClick = (id: string) => {
+    navigate(`/products/item/${id}`);
+  };
 
   if (isLoading) {
     return <div>Loading....</div>;
@@ -18,7 +24,7 @@ function Accessories() {
       <main>
         <section>
           {data.map((item) => (
-            <div key={item.id}>
+            <div key={item.id} onClick={() => handleProductClick(item.id)}>
               <img src={item.img} />
               <p>{item.name}</p>
               <p>{item.cost}</p>
