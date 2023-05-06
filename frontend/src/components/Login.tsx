@@ -109,7 +109,11 @@ function Login() {
           <button className="bg-black hover:bg-black text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">
             LOGIN
           </button>
-          <button className="bg-black hover:bg-black text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">
+          <button
+            type="button"
+            onClick={() => navigate("/signup")}
+            className="bg-black hover:bg-black text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
+          >
             SIGN UP
           </button>
         </div>

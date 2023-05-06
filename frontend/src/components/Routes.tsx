@@ -11,6 +11,7 @@ import ShippingAndDelivery from "./S&D";
 import ProductById from "./ProductById";
 import { Route, Routes } from "react-router-dom";
 import Login from "./Login";
+import SignUp from "./Signup";
 
 // type RouteProps = {
 //   handlePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -37,6 +38,7 @@ function RouteProvider() {
         element={<ShippingAndDelivery />}
       />
       <Route path="/products/item/:id" element={<ProductById />} />
+      <Route path="/signup" element={<SignUp />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
