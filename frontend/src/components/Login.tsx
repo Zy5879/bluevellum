@@ -76,15 +76,13 @@ function Login() {
   // }, []);
 
   return (
-    <div className="flex items-center justify-center p-6">
+    <div className="flex items-center justify-center p-6 mt-20 mb-20">
       <form
-        className="bg-gray-100 shadow-md rounded p-8 px-8 pg-6 pb-8 mt-8"
+        className="bg-white shadow-md rounded p-8 px-8 pg-6 pb-8 mt-8 md:w-2/4 w-full"
         onSubmit={(e) => void handleLogin(e)}
       >
         <div className="mb-4">
-          <label className="block text-gray-700 text sm font-bold mb-2">
-            EMAIL
-          </label>
+          <label className="block text-black font-bold mb-2">EMAIL</label>
           {/* email */}
           <input
             type="email"
@@ -95,7 +93,7 @@ function Login() {
           />
         </div>
         <div className="mb-6">
-          <label className="block text-gray-700 text sm font-bold mb-2">
+          <label className="block text-black text sm font-bold mb-2">
             PASSWORD
           </label>
           {/* password */}
@@ -108,8 +106,11 @@ function Login() {
           />
         </div>
         <div className="flex items-center justify-between">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-            Login
+          <button className="bg-black hover:bg-black text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">
+            LOGIN
+          </button>
+          <button className="bg-black hover:bg-black text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">
+            SIGN UP
           </button>
         </div>
       </form>

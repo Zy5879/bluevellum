@@ -38,8 +38,12 @@ function Bags() {
       <main className="grid justify-center">
         <section className="grid grid-cols-2 gap-12 md:grid-cols-3 md:max-w-6xl items-center mt-20 mb-20">
           {data.map((item) => (
-            <div key={item.id} onClick={() => handleProductClick(item.id)}>
-              <img src={item.img} alt="leather-bags" className="rounded md" />
+            <div
+              className="cursor-pointer"
+              key={item.id}
+              onClick={() => handleProductClick(item.id)}
+            >
+              <img src={item.img} alt={item.name} className="rounded md" />
               <div className="flex flex-col items-center justify-center">
                 <p className="text-sm text-center mt-6">{item.name}</p>
                 <p>${item.cost}</p>

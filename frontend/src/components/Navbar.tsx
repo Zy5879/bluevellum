@@ -16,7 +16,7 @@ function Navbar() {
     (acc, val) => acc + val.qty,
     0
   );
-  console.log(cartQuantity);
+  // console.log(cartQuantity);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -36,19 +36,28 @@ function Navbar() {
   };
 
   useEffect(() => {
+    // let subscribed = false;
     const getUserCart = async () => {
-      try {
-        const response = await homeService.getUserCart();
-        dispatch(setCart({ shoppingcart: response }));
-        console.log(response);
-        return response;
-      } catch (error) {
-        return { message: "No User Found" };
+      if (user) {
+        try {
+          const response = await homeService.getUserCart();
+          dispatch(setCart({ shoppingcart: response }));
+          console.log(response);
+          return response;
+        } catch (error) {
+          return { message: "No User Found" };
+        }
+      } else {
+        return;
       }
     };
 
     void getUserCart();
-  }, []);
+
+    // return () => {
+    //   subscribed = true;
+    // };
+  }, [dispatch]);
 
   return (
     <nav className="bg-black w-full backdrop-filter backdrop-blur-lg bg-opacity-20 top-0 z-[1] fixed border-gray-200 text-black dark:bg-black text-white">
