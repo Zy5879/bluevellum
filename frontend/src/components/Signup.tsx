@@ -1,22 +1,15 @@
 import { SyntheticEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSignUpMutation } from "../redux/features/authApi";
-
+import { toast } from "react-toastify";
 function SignUp() {
-  // const navigate = useNavigate();
   const re =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  const [signUp, { isSuccess, isLoading, isError }] = useSignUpMutation();
+  const navigate = useNavigate();
 
-  // const [formData, setFormData] = useState({
-  //   firstname: "",
-  //   lastname: "",
-  //   email: "",
-  //   password: "",
-  //   confirmpassword: "",
-  // });
-  const [submitted, setSubmitted] = useState<boolean>(false);
+  const [signUp, { isLoading }] = useSignUpMutation();
+  // const [submitted, setSubmitted] = useState<boolean>(false);
 
   const [email, setEmail] = useState<string>("");
   const [errorEmail, setEmailError] = useState<boolean>(false);
@@ -76,41 +69,35 @@ function SignUp() {
     setConfirmPassword(e.target.value);
   };
 
+  const handleSubmit = async (e: SyntheticEvent) => {
+    e.preventDefault();
+
+    try {
+      await signUp({ firstname, lastname, email, password });
+      toast.success("SIGNUP SUCCESSFUL! LOGIN NOW", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+      setFirstname("");
+      setLastName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      navigate("/");
+    } catch (error) {
+      toast.error("SIGNUP FAILED", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    }
+  };
+
   const passwordValid = password === confirmpassword;
-
-  // const handleSignUpInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value, type, checked } = e.target;
-  //   setFormData((prevForm) => {
-  //     return {
-  //       ...prevForm,
-  //       [name]: type === "checkbox" ? checked : value,
-  //     };
-  //   });
-  // };
-
-  // const handleSignUpForm = (e: SyntheticEvent) => {
-  //   e.preventDefault();
-  //   const { firstname, lastname, email, password, confirmpassword } = formData;
-  // };
-
-  // const handleSignUpForm = async (e: SyntheticEvent) => {
-  //   e.preventDefault();
-  //   try {
-  //     await signUp({
-  //       firstname,
-  //       lastname,
-  //       email,
-  //       password,
-  //       confirmpassword,
-  //     });
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   return (
     <div className="flex items-center justify-center p-6 mt-20 mb-20">
-      <form className="bg-white shadow-md rounded p-8 px-8 pg-6 pb-8 mt-8 md:w-2/4 w-full">
+      <form
+        onSubmit={(e) => void handleSubmit(e)}
+        className="bg-white shadow-md rounded p-8 px-8 pg-6 pb-8 mt-8 md:w-2/4 w-full"
+      >
         <div className="mb-4">
           <label>FIRSTNAME</label>
           <input
@@ -217,11 +204,12 @@ function SignUp() {
               !lastname ||
               !email ||
               !password ||
-              !confirmpassword
+              !confirmpassword ||
+              isLoading
             }
             className="bg-black hover:bg-black text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline disabled:bg-gray-300"
           >
-            SUBMIT
+            {isLoading ? "LOADING..." : "SIGNUP"}
           </button>
         </div>
       </form>
