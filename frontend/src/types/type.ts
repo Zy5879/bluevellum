@@ -32,6 +32,14 @@ export interface LoginResponse {
   token: Request | undefined;
 }
 
+export interface SignUpRequest {
+  firstname: string;
+  lastname: string;
+  email: string;
+  password: string;
+  confirmpassword: string;
+}
+
 export interface Token {
   token: Request | undefined;
 }
