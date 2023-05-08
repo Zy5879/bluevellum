@@ -2,31 +2,32 @@ import { NavLink } from "react-router-dom";
 import { useAppSelector } from "../redux/hooks";
 import { useEffect, useState } from "react";
 import { logout, setUser, setCart } from "../redux/features/authSlice";
-import homeService from "../services/home";
 import { useDispatch } from "react-redux";
 import { LoginResponse } from "../types/type";
 import { useNavigate } from "react-router-dom";
+import { skipToken } from "@reduxjs/toolkit/dist/query";
+import { useGetCartQuery } from "../redux/features/authApi";
 
 function Navbar() {
   const { user, shoppingcart } = useAppSelector((state) => state.authUser);
+  const { data } = useGetCartQuery(user ?? skipToken);
+
   const [open, setOpen] = useState<boolean>(false);
-  // const [isLoggedIn, setLogin] = useState<boolean>(false);
+
   const navigate = useNavigate();
-  const cartQuantity = shoppingcart?.cart.reduce(
-    (acc, val) => acc + val.qty,
-    0
-  );
-  // console.log(cartQuantity);
+  const cartQuantity = data?.cart.reduce((acc, val) => acc + val.qty, 0);
+  console.log(cartQuantity);
 
   const dispatch = useDispatch();
   useEffect(() => {
     const loggedUser = window.localStorage.getItem("loggedInUser");
+
     if (loggedUser) {
       const user = JSON.parse(loggedUser) as LoginResponse;
-      dispatch(setUser({ user: user.data, token: user.data.token }));
-      homeService.setToken(user.data.token);
+      dispatch(setUser({ user: user, token: user.token }));
+      // homeService.setToken(user.data.token);
     }
-  }, [dispatch]);
+  }, [data]);
 
   const userLogOut = () => {
     dispatch(logout);
@@ -36,32 +37,40 @@ function Navbar() {
   };
 
   useEffect(() => {
-    // let subscribed = false;
-    const getUserCart = async () => {
-      if (user) {
-        try {
-          const response = await homeService.getUserCart();
-          dispatch(setCart({ shoppingcart: response }));
-          console.log(response);
-          return response;
-        } catch (error) {
-          return { message: "No User Found" };
-        }
-      } else {
-        return;
-      }
-    };
+    dispatch(setCart({ shoppingcart: data }));
+  }, [data]);
 
-    void getUserCart();
+  // dispatch(setCart({ shoppingcart: cartData }));
 
-    // return () => {
-    //   subscribed = true;
-    // };
-  }, [dispatch]);
+  // dispatch(setCart({ shoppingcart: data }));
+
+  // useEffect(() => {
+  //   // let subscribed = false;
+  //   const getUserCart = async () => {
+  //     if (user?.token) {
+  //       try {
+  //         const response = await homeService.getUserCart();
+  //         dispatch(setCart({ shoppingcart: response }));
+  //         console.log(response);
+  //         return response;
+  //       } catch (error) {
+  //         return;
+  //       }
+  //     } else {
+  //       return;
+  //     }
+  //   };
+
+  //   void getUserCart();
+
+  //   // return () => {
+  //   //   subscribed = true;
+  //   // };
+  // }, [dispatch]);
 
   return (
     <nav className="bg-black w-full backdrop-filter backdrop-blur-lg bg-opacity-20 top-0 z-[1] fixed border-gray-200 text-black dark:bg-black text-white">
-      <div className="max-w-screen-xl sticky flex flex-wrap items-center justify-between p-4">
+      <div className="max-w-screen-2xl sticky flex flex-wrap items-center justify-between p-4">
         <h1 className="text-3l text-white font-semibold">
           <a href="/">Blue Vellum</a>
         </h1>
@@ -88,7 +97,7 @@ function Navbar() {
         <div
           className={`w-full md:block md:w-auto ${open ? "block" : "hidden"}`}
         >
-          <ul className="flex flex-col p-4 gap-3 font-medium md:p-0 mt-4 border-gray-100 rounded-lg md:flex-row md:mt-0 md:border-0  md:dark:bg-black dark:border-gray-700 transition-all duration-500 ease-in">
+          <ul className="flex flex-col md:text-sm p-4 gap-3 font-medium md:p-0 mt-4 border-gray-100 rounded-lg md:flex-row md:mt-0 md:border-0  md:dark:bg-black dark:border-gray-700 transition-all duration-500 ease-in">
             <NavLink
               className="block py-2 pl-3 pr-5 text-white hover:bg-gray-200 md:hover:bg-transparent rounded md:bg-transparent md:p-0 dark:text-white md:hover:text-blue-700"
               // aria-current="page"

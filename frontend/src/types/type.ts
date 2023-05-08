@@ -1,3 +1,5 @@
+import { ObjectId } from "mongoose";
+
 export interface LeatherInfo {
   id: string;
   name: string;
@@ -9,8 +11,8 @@ export interface LeatherInfo {
 }
 
 export interface CartItems {
-  leatherId: LeatherInfo[];
-  qty: number;
+  leatherId: ObjectId | string;
+  qty?: number;
 }
 
 export interface User {

@@ -1,15 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useCheckLoginMutation } from "../redux/features/authApi";
-// import { useGetCartQuery } from "../redux/features/cartApi";
 import { useState, SyntheticEvent, useEffect } from "react";
 import { setUser } from "../redux/features/authSlice";
-import homeService from "../services/home";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
-  const [checkLogin, { data, isSuccess }] = useCheckLoginMutation();
+  const [checkLogin, { data, isLoading, isSuccess, isError }] =
+    useCheckLoginMutation();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   // const [isLoggedIn, setLogin] = useState<boolean>(false);
@@ -26,22 +25,42 @@ function Login() {
   const handleLogin = async (e: SyntheticEvent) => {
     e.preventDefault();
     try {
-      const user = await checkLogin({ email, password });
-      window.localStorage.setItem("loggedInUser", JSON.stringify(user));
-      homeService.setToken(data?.token);
-      setEmail("");
-      setPassword("");
+      await checkLogin({ email, password });
+      // dispatch(setUser({ user: data, token: data?.token }));
+      // window.localStorage.setItem("loggedInUser", JSON.stringify(user));
+      // homeService.setToken(data?.token);
+      // setEmail("");
+      // setPassword("");
+      // navigate("/");
+      // window.location.reload();
     } catch (error) {
       console.log(error);
     }
   };
 
+  // if (isSuccess) {
+  //   dispatch(setUser({ user: data, token: data?.token }));
+  //   window.localStorage.setItem("loggedInUser", JSON.stringify(data));
+  //   setEmail("");
+  //   setPassword("");
+  //   window.location.reload();
+  //   navigate("/");
+  // }
+
+  // if (isError) {
+  //   toast.error("USER NOT FOUND", {
+  //     position: toast.POSITION.TOP_RIGHT,
+  //   });
+  // }
+
   useEffect(() => {
     if (isSuccess) {
       dispatch(setUser({ user: data, token: data?.token }));
+      window.localStorage.setItem("loggedInUser", JSON.stringify(data));
+      // homeService.setToken(data?.token);
       // setLogin(true);
       navigate("/");
-      window.location.reload();
+      // window.location.reload();
     }
   }, [isSuccess]);
 
@@ -91,6 +110,11 @@ function Login() {
             onChange={handleEmail}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
+          {isError ? (
+            <span className="text-red-500 text-sm">Invalid email/password</span>
+          ) : (
+            ""
+          )}
         </div>
         <div className="mb-6">
           <label className="block text-black text sm font-bold mb-2">
@@ -104,14 +128,23 @@ function Login() {
             onChange={handlePassword}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
+          {isError ? (
+            <span className="text-red-500 text-sm">Invalid email/password</span>
+          ) : (
+            ""
+          )}
         </div>
         <div className="flex items-center justify-between">
-          <button className="bg-black hover:bg-black text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">
-            LOGIN
+          <button
+            disabled={isLoading}
+            className="bg-black hover:bg-black text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
+          >
+            {isLoading ? "LOADING..." : "LOGIN"}
           </button>
           <button
             type="button"
             onClick={() => navigate("/signup")}
+            disabled={isLoading}
             className="bg-black hover:bg-black text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
           >
             SIGN UP
