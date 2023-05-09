@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "../../types/type";
+import { CartItems, LeatherInfo } from "../../types/type";
 import { LoginResponse } from "../../types/type";
 
 interface AuthState {
   user: LoginResponse | null | undefined;
   token: string | null | undefined | Request;
-  shoppingcart: User | null | undefined;
+  shoppingcart: CartItems | null | undefined;
 }
 
 const initialState: AuthState = {
@@ -30,7 +30,7 @@ export const authSlice = createSlice({
     },
     setCart: (
       state,
-      action: PayloadAction<{ shoppingcart: User | null | undefined }>
+      action: PayloadAction<{ shoppingcart: CartItems | null | undefined }>
     ) => {
       state.shoppingcart = action.payload.shoppingcart;
     },

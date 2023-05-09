@@ -29,7 +29,7 @@ export interface IUser {
   lastname: string;
   email: string;
   password: string;
-  cart: CartItems[];
+  cart: CartItems;
 }
 
 export interface ResUser {

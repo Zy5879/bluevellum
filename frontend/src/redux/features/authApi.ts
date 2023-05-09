@@ -3,15 +3,11 @@ import {
   LoginResponse,
   LoginRequest,
   SignUpRequest,
+  ProductInfo,
   User,
-  // LeatherInfo,
-  CartItems,
   // CartItems,
-  // CartItems,
+  // CartItems
 } from "../../types/type";
-// import homeService from "../../services/home";
-
-// import { setUser } from "./authSlice";
 
 export const authApi = createApi({
   reducerPath: "authApi",
@@ -19,7 +15,6 @@ export const authApi = createApi({
     baseUrl: "http://localhost:3000",
     prepareHeaders: (headers) => {
       const loggedUser = window.localStorage.getItem("loggedInUser");
-      // console.log(loggedUser);
       if (loggedUser) {
         const user = JSON.parse(loggedUser) as LoginResponse;
         headers.set("Authorization", `Bearer ${user.token}`);
@@ -49,10 +44,26 @@ export const authApi = createApi({
       query: () => "",
       providesTags: ["User"],
     }),
-    addToCart: builder.mutation<void, CartItems>({
+    addToCart: builder.mutation<void, Partial<ProductInfo>>({
       query: (data) => ({
         url: "/cart",
         method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["User"],
+    }),
+    updateCart: builder.mutation<void, Partial<ProductInfo>>({
+      query: (data) => ({
+        url: "/cart",
+        method: "PUT",
+        body: data,
+      }),
+      invalidatesTags: ["User"],
+    }),
+    deleteFromCart: builder.mutation<void, Partial<ProductInfo>>({
+      query: (data) => ({
+        url: "/cart",
+        method: "DELETE",
         body: data,
       }),
       invalidatesTags: ["User"],
@@ -65,4 +76,6 @@ export const {
   useSignUpMutation,
   useGetCartQuery,
   useAddToCartMutation,
+  useUpdateCartMutation,
+  useDeleteFromCartMutation,
 } = authApi;

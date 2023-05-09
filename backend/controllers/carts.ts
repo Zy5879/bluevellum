@@ -233,7 +233,7 @@ export const cartRouter = Router();
 cartRouter.post<ParamsDictionary, any, CartItems>(
   "/",
   asyncHandler(async (req, res): Promise<any> => {
-    const { leatherId, qty } = req.body;
+    const { leatherId } = req.body;
     console.log(leatherId);
 
     const token = getTokenFrom(req) as string;
@@ -301,7 +301,6 @@ cartRouter.post<ParamsDictionary, any, CartItems>(
       const newCart = new Cart({
         userId: user._id,
         leatherId: leatherId,
-        qty: qty,
         // cart: { leatherId: leather, qty: qty },
       });
       // console.log("no existing item");
@@ -399,10 +398,11 @@ cartRouter.put<ParamsDictionary, any, CartItems>(
     }
 
     const updatedCart = await Cart.findOneAndUpdate(
-      { "cart.leatherId": leatherId },
+      { leatherId: leatherId },
       {
-        $inc: { "cart.$.qty": -1 },
-        // $pull: { cart: { _id: carts._id, qty: { $lt: 2 } } },
+        $inc: { qty: -1 },
+        // $pull: { leatherId: leatherId, qty: { $lt: 0 } },
+        // $pull: { cart: { leatherId: leatherId, qty: { $lt: 1 } } },
       },
       { new: true }
     );
@@ -421,7 +421,7 @@ cartRouter.get<ParamsDictionary, any, CartItems>(
     ) as JwtPayload;
     const user = await User.findById(decodedToken.id).populate({
       path: "cart",
-      populate: { path: "cart.leatherId" },
+      populate: { path: "leatherId" },
     });
     if (!user) {
       return res.status(404).json({ error: "User not found" }).end();
@@ -430,6 +430,47 @@ cartRouter.get<ParamsDictionary, any, CartItems>(
     }
   })
 );
+
+cartRouter.delete<ParamsDictionary, any, CartItems>(
+  "/",
+  asyncHandler(async (req, res): Promise<any> => {
+    const { leatherId } = req.body;
+    console.log(leatherId);
+    const token = getTokenFrom(req) as string;
+    const decodedToken = jwt.verify(
+      token,
+      `${process.env.SECRET}`
+    ) as JwtPayload;
+    const user = await User.findById(decodedToken.id);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    const updatedUser = await Cart.findOneAndDelete({ leatherId: leatherId });
+    res.json(updatedUser);
+  })
+);
+// cartRouter.delete<ParamsDictionary,any,CartItems>("/", asyncHandler(async(req,res): Promise<any> => {
+//   const { leatherId, qty } = req.body;
+//   console.log(leatherId);
+
+//   const token = getTokenFrom(req) as string;
+//   const decodedToken = jwt.verify(
+//     token,
+//     `${process.env.SECRET}`
+//   ) as JwtPayload;
+//   const user = await User.findById(decodedToken.id);
+
+//   if (!user) {
+//     return res.status(404).json({ error: "User not found" });
+//   }
+
+// //   let carts = await Cart.findOne({ userId: user._id });
+
+// //   const deleteItem = await Cart.findOneAndDelete({})
+
+// }));
 
 // cartRouter.delete<ParamsDictionary, any, CartItems & Carts>(
 //   "/:id",

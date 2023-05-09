@@ -2,9 +2,9 @@ import { useGetProductIdQuery } from "../redux/features/productApi";
 import { useAddToCartMutation } from "../redux/features/authApi";
 import { useAppSelector } from "../redux/hooks";
 import { useParams } from "react-router-dom";
-import { SyntheticEvent } from "react";
-import { CartItems } from "../types/type";
-import { ObjectId } from "mongoose";
+// import { SyntheticEvent } from "react";
+// import { CartItems } from "../types/type";
+// import { ObjectId } from "mongoose";
 function ProductById() {
   const { id } = useParams<{ id: string }>();
   const { user } = useAppSelector((state) => state.authUser);

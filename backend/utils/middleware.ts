@@ -45,6 +45,7 @@ export const errorHandler = (
     return response.status(400).json({ error: error.message });
   } else if (error.name === "TokenExpiredError") {
     return response.status(401).json({ error: "token expired" });
+    // .send({ data: "token expired", status: error });
   }
   next(error);
   return;

@@ -10,9 +10,24 @@ export interface LeatherInfo {
   img: string;
 }
 
+export interface ProductInfo {
+  leatherId: string | ObjectId;
+  qty: number;
+}
+
 export interface CartItems {
-  leatherId: ObjectId | string;
-  qty?: number;
+  id: string;
+  leatherId: {
+    id: string;
+    name: string;
+    cost: number;
+    type: string;
+    category: string;
+    inventory: number;
+    img: string;
+  };
+  // leatherId: ObjectId | string | LeatherInfo;
+  qty: number;
 }
 
 export interface User {
