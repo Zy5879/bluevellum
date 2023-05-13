@@ -12,11 +12,17 @@ function Wallets() {
   };
 
   if (isLoading) {
-    return <div>Loading....</div>;
+    return (
+      <div className="h-screen flex flex-col items-center justify-center">
+        Loading....
+      </div>
+    );
   }
 
   if (error) {
-    <div>Error: There's been an error fetching data</div>;
+    <div className="h-screen flex flex-col items-center justify-center">
+      Error: There's been an error fetching data
+    </div>;
   }
 
   if (data) {
@@ -29,7 +35,7 @@ function Wallets() {
               key={item.id}
               onClick={() => handleProductClick(item.id)}
             >
-              <img src={item.img} className="rounded-md w-full" />
+              <img src={item.img} className="rounded-md w-full items-center" />
               <div className="flex flex-col items-center justify-center">
                 <p className="text-sm text-center mt-6">{item.name}</p>
                 <p className="text-center">${item.cost}</p>

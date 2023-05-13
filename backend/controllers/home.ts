@@ -16,10 +16,12 @@ homeRouter.get<ParamsDictionary, any, IUser>(
       `${process.env.SECRET}`
     ) as JwtPayload;
 
-    const user = await User.findById(decodedToken.id).populate({
-      path: "cart",
-      populate: { path: "leatherId" },
-    });
+    // const user = await User.findById(decodedToken.id).populate({
+    //   path: "cart",
+    //   populate: { path: "leatherId" },
+    // });
+
+    const user = await User.findById(decodedToken.id).populate("cart");
 
     if (!user) {
       return res.status(404).json({ error: "No User Found" }).end();

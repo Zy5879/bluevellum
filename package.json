@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/morgan": "^1.9.4",
+    "@types/uuid": "^9.0.1",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -23,8 +24,10 @@
     "mongoose": "^7.0.3",
     "mongoose-unique-validator": "^4.0.0",
     "morgan": "^1.10.0",
+    "nanoid": "^4.0.2",
     "react-toastify": "^9.1.2",
-    "stripe": "^12.1.1"
+    "stripe": "^12.1.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.21.4",

@@ -1,5 +1,11 @@
 import mongoose from "mongoose";
 import { CartItems } from "../types";
+import { leatherSchema } from "./leather";
+// import { leatherSchema } from "./leather";
+// import { leatherSchema } from "./leather"
+// import { Leather } from "../types";
+// import { leatherSchema } from "./leather";
+// import { leatherSchema } from "./leather";
 // import { leatherSchema } from "./leather";
 
 export const cartSchema = new mongoose.Schema<CartItems>(
@@ -8,48 +14,10 @@ export const cartSchema = new mongoose.Schema<CartItems>(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-    leatherId: { type: mongoose.Schema.Types.ObjectId, ref: "Leather" },
-    qty: { type: Number, default: 1 },
 
-    //   cart: [
-    //     {
-    //       leatherId: {
-    //         type: mongoose.Schema.Types.ObjectId,
-    //         ref: "Leather",
-    //       },
-
-    //       qty: {
-    //         type: Number,
-    //         default: 1,
-    //       },
-    //     },
-    //   ],
+    items: [leatherSchema],
   },
-  // items: [
-  //   {
-  //     leatherId: {
-  //       type: mongoose.Schema.Types.ObjectId,
-  //       ref: "Leather"
-  //     },
-  //   {
-  //     qty: {
-  //       type: Number,
-  //       default: 1
-  //     }
-  //   },
-  // },
-  // ],
-  //   cart: [
-  //     {
-  //       type: mongoose.Schema.Types.ObjectId,
-  //       ref: "Leather",
-  //     },
-  //     qty: {
-  //       default: 1,
-  //       type: Number,
-  //     },
-  //   ],
-  // },
+
   { timestamps: true }
 );
 

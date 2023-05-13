@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-import { Category, Types, Leather } from "../types";
+import { Category, Types, LeatherItems } from "../types";
+import { v4 as uuidv4 } from "uuid";
 
 // interface Leather {
 //   name: string;
@@ -10,9 +11,10 @@ import { Category, Types, Leather } from "../types";
 //   img: string;
 // }
 
-export const leatherSchema = new mongoose.Schema<Leather>({
+export const leatherSchema = new mongoose.Schema<LeatherItems>({
   name: {
     type: String,
+    required: true,
   },
   cost: {
     type: Number,
@@ -20,6 +22,9 @@ export const leatherSchema = new mongoose.Schema<Leather>({
   type: {
     type: String,
     enum: Types,
+  },
+  uniqueId: {
+    type: String,
   },
   category: {
     type: String,
@@ -30,6 +35,10 @@ export const leatherSchema = new mongoose.Schema<Leather>({
   },
   img: {
     type: String,
+  },
+  qty: {
+    type: Number,
+    default: 1,
   },
 });
 
@@ -42,7 +51,7 @@ leatherSchema.set("toJSON", {
   },
 });
 
-const Leather = mongoose.model<Leather>("Leather", leatherSchema);
+const Leather = mongoose.model<LeatherItems>("Leather", leatherSchema);
 
 export const leather = [
   {
@@ -52,6 +61,8 @@ export const leather = [
     type: "bag",
     inventory: 1,
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/Gentleman_sBagVeg-Tan1800.1_400x.jpg?v=1599965048",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: '"KODIAK" GENTLEMANS BAG',
@@ -60,6 +71,8 @@ export const leather = [
     category: "gentlemanbag",
     inventory: 0,
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/Kodiak.2_400x.jpg?v=1599967007",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: 'AFRO-CENTRIC, "SADDLE TAN"',
@@ -68,6 +81,8 @@ export const leather = [
     type: "bag",
     inventory: 2,
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/Afro-CentricAfro1.1800x1800_1200x.jpg?v=1608343877",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: 'CLUTCH PURSE, "SADDLE TAN"',
@@ -76,6 +91,8 @@ export const leather = [
     category: "handbag",
     type: "bag",
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/CLUTCH_PURSE_SADDLE_TAN_600x.png?v=1577064347",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: 'CLUTCH PURSE, "RED"',
@@ -84,6 +101,8 @@ export const leather = [
     category: "handbag",
     type: "bag",
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/CLUTCH_PURSE_RED_600x.PNG?v=1565666034",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: "WOMEN'S CLUTCH 'SADDLE TAN'",
@@ -92,6 +111,8 @@ export const leather = [
     category: "handbag",
     type: "bag",
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/Womens_Clutch_Wallet_400x.png?v=1575756391",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: "BIKER MOTORCYCLE BEDROLL",
@@ -100,6 +121,8 @@ export const leather = [
     category: "custom",
     type: "bag",
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/Biker_Bedroll_400x.png?v=1577937244",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: "AFRO.78 | 'AFRO' WOMEN SATCHEL HANDBAG",
@@ -108,6 +131,8 @@ export const leather = [
     category: "custom",
     type: "bag",
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/Womens_leather_Purse_Front_400x.PNG?v=1564943992",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: "GENTLEMANS'S LEATHER BAG",
@@ -116,6 +141,8 @@ export const leather = [
     category: "custom",
     type: "bag",
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/20190515_204242_400x.jpg?v=1564943981",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: "BROWN TOTE",
@@ -124,6 +151,8 @@ export const leather = [
     category: "tote",
     type: "bag",
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/TOTE781800_600x.jpg?v=1599926971",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: 'TOTE "STEEL GRAY"',
@@ -132,6 +161,8 @@ export const leather = [
     category: "tote",
     type: "bag",
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/GrayTote1800x1800_600x.jpg?v=1610564090",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: "APPLE WATCHBAND 'NATURAL'",
@@ -140,6 +171,8 @@ export const leather = [
     type: "accessory",
     inventory: 2,
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/NATURAL_APPLE_WATCH_BAND_400x.jpg?v=1578444662",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: "APPLE WATCHBAND 'BLACK'",
@@ -148,6 +181,8 @@ export const leather = [
     type: "accessory",
     inventory: 2,
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/BLACK_APPLE_WATCH_BAND_400x.jpg?v=1578444070",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: "'SADDLE TAN' MENS'S LEATHER BELT",
@@ -156,6 +191,8 @@ export const leather = [
     type: "accessory",
     inventory: 2,
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/SADDLE_TAN_MEN_S_LEATHER_BELT1_jpeg_600x.png?v=1569188249",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: '"RUSSET", MINMALIST WALLET',
@@ -164,6 +201,8 @@ export const leather = [
     type: "wallet",
     inventory: 2,
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/NO.66RUSSET1275x275_200x.jpg?v=1611802352",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: '"BLACK BROWN", MINMALIST WALLET',
@@ -172,6 +211,8 @@ export const leather = [
     type: "wallet",
     inventory: 2,
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/NO.66BUCKBROWN1275x275_1ba6a1fa-d806-4042-840b-38b52efaaa1e_200x.jpg?v=1611802263",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: '"SADDLE TAN", MINMALIST WALLET',
@@ -180,6 +221,8 @@ export const leather = [
     type: "wallet",
     inventory: 2,
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/NO.66SADDLETANMINIMALIST275X275_200x.jpg?v=1611802412",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: 'NO.66 | "RUSSET", MINMALIST WALLET',
@@ -188,6 +231,8 @@ export const leather = [
     type: "wallet",
     inventory: 2,
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/NO.67RUSSETSTANDARD1275X275_200x.jpg?v=1611803672",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: 'NO.65 | "BLACK", MINMALIST WALLET',
@@ -196,6 +241,8 @@ export const leather = [
     type: "wallet",
     inventory: 2,
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/BLACK_MINI_WALLET_200x.jpg?v=1578441675",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: 'NO.65 | "SADDLE TAN", MINMALIST WALLET',
@@ -204,6 +251,8 @@ export const leather = [
     type: "wallet",
     inventory: 2,
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/Saddle_Tan_Wallet275_200x.jpg?v=1578441302",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: 'NO.65 | "MAHOGANY", MINMALIST WALLET',
@@ -212,6 +261,8 @@ export const leather = [
     type: "wallet",
     inventory: 2,
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/Saddle_Tan_Wallet275_200x.jpg?v=1578441302",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
   {
     name: 'NO.65 | "BRITISH TAN", MINMALIST WALLET',
@@ -220,7 +271,17 @@ export const leather = [
     type: "wallet",
     inventory: 2,
     img: "https://cdn.shopify.com/s/files/1/0053/6654/6521/products/BRITISH_TAN_MINI_WALLET_200x.jpg?v=1578442583",
+    qty: 1,
+    uniqueId: uuidv4(),
   },
 ];
+
+// Leather.insertMany(leather)
+//   .then((_result) => {
+//     console.log("data has been inserted");
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
 
 export default Leather;

@@ -1,15 +1,17 @@
 import homeleather from "../assets/images/homeleather.png";
+import { useNavigate } from "react-router-dom";
 function Home() {
+  const navigate = useNavigate();
   return (
     <main>
       <section>
         <img className="w-full h-screen" src={homeleather} alt="leather" />
       </section>
       <section className="absolute flex flex-col items-center justify-center top-0 right-0 left-0 bottom-0">
-        <div className="text-white font-bold md:text-3xl">
+        <div className="text-white font-bold text-xl ">
           HAND CRAFTED LEATHER GOODS
         </div>
-        <button className="text-white font-bold bg-black rounded p-4 mt-3 md:text-lg">
+        <button className="text-white font-bold bg-black rounded p-4 mt-3 text-xl md:text-base">
           SHOP PRODUCTS
         </button>
       </section>
@@ -22,7 +24,10 @@ function Home() {
             <div className="absolute top-0 left-0 w-full h-full bg-black/[0.5]"></div>
             <div className="absolute top-2/4 left-0 right-0 text-center">
               <p className="text-white font-bold">BAGS</p>
-              <button className="text-black font-bold bg-white rounded p-4 mt-3">
+              <button
+                onClick={() => navigate("/products/bags")}
+                className="text-black font-bold bg-white rounded p-4 mt-3"
+              >
                 SHOP BAGS
               </button>
             </div>
@@ -31,7 +36,10 @@ function Home() {
             <div className="absolute top-0 left-0 w-full h-full bg-black/[0.5]"></div>
             <div className="absolute top-2/4 left-0 right-0 text-center">
               <p className="text-white font-bold">WALLETS</p>
-              <button className="text-black font-bold bg-white rounded p-4 mt-3">
+              <button
+                onClick={() => navigate("/products/wallets")}
+                className="text-black font-bold bg-white rounded p-4 mt-3"
+              >
                 SHOP WALLETS
               </button>
             </div>
@@ -40,7 +48,10 @@ function Home() {
             <div className="absolute top-0 left-0 w-full h-full bg-black/[0.5]"></div>
             <div className="absolute top-2/4 left-0 right-0 text-center">
               <p className="text-white font-bold">ACCESSORIES</p>
-              <button className="text-black font-bold bg-white rounded p-4 mt-3">
+              <button
+                onClick={() => navigate("/products/accessories")}
+                className="text-black font-bold bg-white rounded p-4 mt-3"
+              >
                 SHOP ACCESSORIES
               </button>
             </div>

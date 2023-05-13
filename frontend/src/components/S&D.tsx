@@ -1,10 +1,10 @@
 function ShippingAndDelivery() {
   return (
-    <section className="mt-24">
+    <section className="mt-24 h-screen p-5 ">
       <header>
-        <h2>SHIPPING AND DELIVERY</h2>
+        <h2 className="font-bold text-xl mb-6">SHIPPING AND DELIVERY:</h2>
       </header>
-      <p>
+      <p className="text-sm">
         Due to the limited size of our business and inventory most of our items
         are made on demand. Once your order is shipped, you will receive an
         email notification with your tracking information. I will do my best to

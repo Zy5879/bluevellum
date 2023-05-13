@@ -2,6 +2,10 @@
 import mongoose from "mongoose";
 import { IUser } from "../types";
 import mongooseUniqueValidator from "mongoose-unique-validator";
+// import { car } from "./leather";
+// import { cartSchema } from "./cart";
+// import { leatherSchema } from "./leather";
+// import { leatherSchema } from "./leather";
 // import { leatherSchema } from "./leather";
 // import { leatherSchema } from "./leather";
 
@@ -22,19 +26,7 @@ const userSchema = new mongoose.Schema<IUser>({
     type: String,
     required: true,
   },
-  // cart: [
-  //   {
-  //     leatherId: {
-  //       type: mongoose.Schema.Types.ObjectId,
-  //       ref: "Leather",
-  //     },
-  //     qty: {
-  //       type: Number,
-  //     },
-  //   },
-  // ],
-  // cart: [{type: mongoose}],
-  cart: [{ type: mongoose.Schema.Types.ObjectId, ref: "Cart" }],
+  cart: { type: mongoose.Schema.Types.ObjectId, ref: "Cart" },
 });
 
 userSchema.plugin(mongooseUniqueValidator);

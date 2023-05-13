@@ -26,11 +26,19 @@ function Bags() {
   };
 
   if (isLoading) {
-    return <div>Loading....</div>;
+    return (
+      <div className="h-screen flex flex-col items-center justify-center">
+        Loading....
+      </div>
+    );
   }
 
   if (error) {
-    return <div>An error occured</div>;
+    return (
+      <div className="h-screen flex flex-col items-center justify-center">
+        An error occured
+      </div>
+    );
   }
 
   if (data) {
@@ -40,7 +48,7 @@ function Bags() {
           {data.map((item) => (
             <div
               className="cursor-pointer"
-              key={item.id}
+              key={item.uniqueId}
               onClick={() => handleProductClick(item.id)}
             >
               <img src={item.img} alt={item.name} className="rounded md" />

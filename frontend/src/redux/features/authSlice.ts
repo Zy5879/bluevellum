@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CartItems, LeatherInfo } from "../../types/type";
+import { CartItems } from "../../types/type";
 import { LoginResponse } from "../../types/type";
 
 interface AuthState {

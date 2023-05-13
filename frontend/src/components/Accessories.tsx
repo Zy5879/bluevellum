@@ -12,11 +12,19 @@ function Accessories() {
   };
 
   if (isLoading) {
-    return <div>Loading....</div>;
+    return (
+      <div className="h-screen flex flex-col items-center justify-center">
+        Loading....
+      </div>
+    );
   }
 
   if (isError) {
-    return <div>There's been problem retrieving data </div>;
+    return (
+      <div className="h-screen flex flex-col items-center justify-center">
+        There's been problem retrieving data{" "}
+      </div>
+    );
   }
 
   if (data) {

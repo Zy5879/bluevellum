@@ -29,7 +29,7 @@ export interface IUser {
   lastname: string;
   email: string;
   password: string;
-  cart: CartItems;
+  cart: ObjectId;
 }
 
 export interface ResUser {
@@ -38,24 +38,44 @@ export interface ResUser {
   email: string;
   cart: unknown[];
 }
-export interface Leather {
+export interface LeatherItems {
+  id: string;
+  // productId: string;
+  uniqueId: string;
   name: string;
   type: Types;
   cost: number;
   category: Category;
   inventory: number;
   img: string;
+  qty: number;
 }
 
 export interface CartItems {
   userId: ObjectId;
-  leatherId: ObjectId;
-  qty: number;
+  // productId: ObjectId | string;
+  items: LeatherItems;
+  // cart: ObjectId;
+  // qty: number;
 }
 
-export interface Carts {
-  userId: ObjectId;
-  cart: CartItems[];
+export interface StripeItems {
+  // userId: string;
+  leatherId: LeatherItems;
+  // leatherId: {
+  //   id: string;
+  //   name: string;
+  //   type: Types;
+  //   cost: number;
+  //   category: Category;
+  //   inventory: number;
+  //   img: string;
+  // };
+  // qty: number;
+}
+
+export interface StripeCart {
+  items: LeatherItems[];
 }
 
 export type NewBagData = Omit<BagData, "id">;

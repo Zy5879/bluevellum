@@ -3,10 +3,11 @@ import {
   LoginResponse,
   LoginRequest,
   SignUpRequest,
-  ProductInfo,
+  // ProductInfo,
   User,
-  // CartItems,
-  // CartItems
+  // Cart,
+  ProductItem,
+  // DeleteProductItem,
 } from "../../types/type";
 
 export const authApi = createApi({
@@ -44,7 +45,7 @@ export const authApi = createApi({
       query: () => "",
       providesTags: ["User"],
     }),
-    addToCart: builder.mutation<void, Partial<ProductInfo>>({
+    addToCart: builder.mutation<void, ProductItem>({
       query: (data) => ({
         url: "/cart",
         method: "POST",
@@ -52,7 +53,7 @@ export const authApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
-    updateCart: builder.mutation<void, Partial<ProductInfo>>({
+    updateCart: builder.mutation<void, ProductItem>({
       query: (data) => ({
         url: "/cart",
         method: "PUT",
@@ -60,7 +61,7 @@ export const authApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
-    deleteFromCart: builder.mutation<void, Partial<ProductInfo>>({
+    deleteFromCart: builder.mutation<void, ProductItem>({
       query: (data) => ({
         url: "/cart",
         method: "DELETE",
@@ -68,6 +69,13 @@ export const authApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
+    // checkout: builder.mutation<string, Partial<StripeItems>>({
+    //   query: (data) => ({
+    //     url: "/stripe/checkout",
+    //     method: "POST",
+    //     body: data,
+    //   }),
+    // }),
   }),
 });
 
@@ -78,4 +86,5 @@ export const {
   useAddToCartMutation,
   useUpdateCartMutation,
   useDeleteFromCartMutation,
+  // useCheckoutMutation,
 } = authApi;

@@ -28,8 +28,69 @@ function Navbar() {
     }
   }
 
-  const cartQuantity = data?.cart.reduce((acc, val) => acc + val.qty, 0);
-  console.log(cartQuantity);
+  // console.log(data);
+
+  const cartQuantity = data?.cart?.items.reduce((acc, val) => acc + val.qty, 0);
+  const checkQuant = cartQuantity === 0 ? "" : cartQuantity;
+
+  // const cartQuantity = data?.cart.reduce((acc, val) => {
+  //   const quantity = val.leatherId.reduce((itemQty, leatherItem) => {
+  //     return itemQty + leatherItem.qty;
+  //   }, 0);
+  //   return acc + quantity;
+  // }, 0);
+
+  // const updatedCart = cartQuantity === 0 ? undefined : cartQuantity;
+
+  // console.log(
+  //   data?.cart.reduce((acc, val) => {
+  //     const cartQty = val.leatherId.reduce((itemQty, leatherItem) => {
+  //       return itemQty + leatherItem.qty;
+  //     }, 0);
+  //     return acc + cartQty;
+  //   }, 0)
+  // );
+
+  // const list = data?.cart.map((item) => {
+  //   return item.leatherId.map((leatherItem) => {
+  //     const name = leatherItem.name;
+  //     const cost = leatherItem.cost;
+  //     const type = leatherItem.type;
+  //     const category = leatherItem.category;
+  //     const inventory = leatherItem.inventory;
+  //     const img = leatherItem.img;
+  //     const qty = leatherItem.qty;
+  //     const id = leatherItem.id;
+
+  //     console.log(id);
+  //     return leatherItem;
+  //   });
+  // });
+
+  // console.log(list);
+  // console.log(list?.map((item) => item.map((item) => item.name)));
+
+  // console.log(data?.map((item) => item.leatherId));
+  // console.log(data.map());
+  // console.log(data?.cart);
+  // console.log(data?.cart.map((item) => item.leatherId.qty));
+
+  // console.log(data.map((item) => item.name));
+
+  // console.log(data?.cart.leatherId.map((item) => item));
+
+  // if (error) {
+  //   if ("data" in error) {
+  //     userLogOut();
+  //   }
+  // }
+
+  // const list = data?.cart;
+
+  // const leather = list.leather.name;
+  // console.log(leather);
+  // const cartQuantity = data?.cart.reduce((acc, val) => acc + val.qty, 0);
+  // console.log(cartQuantity);
   useEffect(() => {
     const loggedUser = window.localStorage.getItem("loggedInUser");
 
@@ -47,7 +108,7 @@ function Navbar() {
   // };
 
   useEffect(() => {
-    dispatch(setCart({ shoppingcart: data?.cart }));
+    dispatch(setCart({ shoppingcart: data?.cart?.items }));
   }, [data]);
 
   // dispatch(setCart({ shoppingcart: cartData }));
@@ -148,8 +209,8 @@ function Navbar() {
               className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               to="/cart"
             >
-              {" "}
-              CART {shoppingcart ? cartQuantity : null}
+              CART
+              {shoppingcart ? checkQuant : null}
             </NavLink>
             <NavLink
               className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
