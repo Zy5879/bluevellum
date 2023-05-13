@@ -41,7 +41,7 @@ function Cart() {
       <div className="h-screen flex flex-col items-center justify-center">
         <span className="font-bold text-lg">SIGN IN TO SEE YOUR CART</span>
         <button
-          className="bg-black mt-3 hover:bg-black text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
+          className="bg-black mt-6 hover:bg-black text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
           onClick={() => navigate("/login")}
         >
           LOGIN
@@ -66,27 +66,95 @@ function Cart() {
 
     // console.log(currentData);
 
-    // if (currentData.cart.length === 0) {
-    //   return (
-    //     <div className="h-screen flex flex-col items-center justify-center">
-    //       <span>YOUR CART IS EMPTY! SHOP NPW</span>
-    //       <button onClick={() => navigate("/products/bags")}>SHOP</button>
-    //     </div>
-    //   );
-    // }
-
-    // const stripeData = currentData.cart.map((item) => {
-    //   return item.leatherId;
-    // });
-
     if (!currentData.cart || currentData.cart?.items.length === 0) {
       return (
         <div className="h-screen flex flex-col items-center justify-center">
-          <span>YOUR CART IS EMPTY! SHOP NPW</span>
-          <button onClick={() => navigate("/products/bags")}>SHOP</button>
+          <span className="font-bold text-xl">
+            YOUR CART IS EMPTY! SHOP NOW
+          </span>
+          <button
+            className="cursor-pointer mt-6 bg-black text-white font-bold py-2 px-4 rounded-md mb-5 focus:outline-none focus:shadow-outline enabled:hover:bg-white enabled:hover:text-black enabled:border enabled:border-black enabled:duration-500 enabled:ease-in-out"
+            onClick={() => navigate("/products/bags")}
+          >
+            SHOP
+          </button>
         </div>
       );
     }
+
+    const subTotal = currentData.cart?.items.reduce(
+      (acc, val) => acc + val.cost * val.qty,
+      0
+    );
+
+    const result = currentData.cart?.items.map((item) => {
+      return (
+        <div
+          key={item.uniqueId}
+          className="rounded-lg mt-20 h-screen md:w-full"
+        >
+          <div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md md:flex md:justify-start">
+            <img
+              src={item.img}
+              alt="product-image"
+              className="w-full rounded-lg sm:w-40"
+            />
+            <div className="md:ml-4 md:flex md:w-full md:justify-between lg:gap-5">
+              <div key={item.uniqueId} className="mt-5 sm:mt-0">
+                <h2 className="text-sm font-bold text-gray-900">{item.name}</h2>
+                <p className="mt-1 text-xs text-gray-700">{item.qty}</p>
+              </div>
+              <div className="mt-4 flex justify-between md:space-y-6 md:mt-0 md:block md:space-x-6">
+                <div className="flex items-center border-gray-100">
+                  <button
+                    disabled={item.qty === 1}
+                    onClick={() => void updateCart({ items: { ...item } })}
+                    className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                  >
+                    {" "}
+                    -{" "}
+                  </button>
+                  <span className="w-8 text-center">{item.qty}</span>
+                  {/* <input
+                    className="h-8 w-8 border bg-white text-center text-xs outline-none"
+                    type="number"
+                    value="2"
+                    min="1"
+                  /> */}
+                  <button
+                    onClick={() => void addToCart({ items: { ...item } })}
+                    className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                  >
+                    {" "}
+                    +{" "}
+                  </button>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <p className="text-sm">${item.cost * item.qty}</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="h-5 w-5 cursor-pointer duration-150 hover:text-red-500"
+                    onClick={() => void deleteFromCart({ ...item })}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        //   </div>
+        // </div>
+      );
+    });
 
     // const handleDeleteItem = async (uniqueId: string) => {
     //   try {
@@ -96,32 +164,37 @@ function Cart() {
     //   }
     // };
 
-    const result = currentData.cart?.items.map((item) => {
-      // console.log(item.id);
-      return (
-        <div key={item.uniqueId}>
-          <div>
-            <img src={item.img} alt={item.name} />
-          </div>
-          <div className="flex flex-col">
-            <span>{item.name}</span>
-            <span>{item.cost}</span>
-            <span>{item.qty}</span>
-          </div>
-          <div className="flex flex-col">
-            <button onClick={() => void addToCart({ items: { ...item } })}>
-              +
-            </button>
-            <button onClick={() => void updateCart({ items: { ...item } })}>
-              -
-            </button>
-            <button onClick={() => void deleteFromCart({ ...item })}>
-              REMOVE ITEM
-            </button>
-          </div>
-        </div>
-      );
-    });
+    // const result = currentData.cart?.items.map((item) => {
+    //   return (
+    //     <div className="grid" key={item.uniqueId}>
+    //       <div>
+    //         <img src={item.img} alt={item.name} className="w-10 h-10" />
+    //       </div>
+    //       <div className="flex flex-col">
+    //         <span>{item.name}</span>
+    //         <span>{item.cost}</span>
+    //         <span>{item.qty}</span>
+    //       </div>
+    //       <div className=" bg-black text-white">
+    //         <div>
+    //           <button onClick={() => void addToCart({ items: { ...item } })}>
+    //             +
+    //           </button>
+    //         </div>
+    //         <div>
+    //           <button onClick={() => void updateCart({ items: { ...item } })}>
+    //             -
+    //           </button>
+    //         </div>
+    //         <div>
+    //           <button onClick={() => void deleteFromCart({ ...item })}>
+    //             REMOVE ITEM
+    //           </button>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   );
+    // });
 
     // const result = currentData.cart.map((item) => {
     //   return item.leatherId.map((leatherItem) => {
@@ -173,16 +246,26 @@ function Cart() {
     // });
 
     return (
-      <>
-        <div>{result}</div>
-        <div>
-          {currentData.cart && (
-            <button onClick={() => void checkout(currentData.cart?.items)}>
-              PAY NOW
-            </button>
-          )}
-        </div>
-      </>
+      <main className="p-5 lg:flex lg:justify-between">
+        <div className="">{result}</div>
+        {currentData.cart && (
+          <>
+            <div className="h-full rounded-lg border bg-white p-6 shadow-md md:mt-20 md:w-1/3">
+              <div className="mb-2 flex justify-between">
+                <p className="text-gray-700 font-bold">SUBTOTAL</p>
+                <p className="text-gray-700">${subTotal}</p>
+              </div>
+              <hr className="my-4" />
+              <button
+                onClick={() => void checkout(currentData.cart?.items)}
+                className="w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600"
+              >
+                Check out
+              </button>
+            </div>
+          </>
+        )}
+      </main>
     );
     // console.log(currentData.cart.map((item) => item.leatherId));
     // const productData = currentData.cart.map((item) => item.leatherId);
@@ -276,8 +359,13 @@ function Cart() {
   if (!currentData) {
     return (
       <div className="h-screen flex flex-col items-center justify-center">
-        <span>SIGN IN TO SEE YOUR CART</span>
-        <button onClick={() => navigate("/login")}>LOGIN</button>
+        <span className="font-bold text-xl">SIGN IN TO SEE YOUR CART</span>
+        <button
+          className="cursor-pointer bg-black text-white font-bold py-2 px-4 rounded-md mb-5 focus:outline-none focus:shadow-outline enabled:hover:bg-white enabled:hover:text-black enabled:border enabled:border-black enabled:duration-500 enabled:ease-in-out"
+          onClick={() => navigate("/login")}
+        >
+          LOGIN
+        </button>
       </div>
     );
   }

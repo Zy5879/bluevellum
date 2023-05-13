@@ -42,7 +42,7 @@ function ProductById() {
             <div className="flex items-center justify-center mt-5">
               <button
                 onClick={() => void addToCart({ items: { ...data } })}
-                className="cursor-pointer bg-black hover:bg-black text-white font-bold py-2 px-4 rounded-md mb-5 focus:outline-none focus:shadow-outline"
+                className="cursor-pointer bg-black text-white font-bold py-2 px-4 rounded-md mb-5 focus:outline-none focus:shadow-outline enabled:hover:bg-white enabled:hover:text-black enabled:border enabled:border-black enabled:duration-500 enabled:ease-in-out"
                 disabled={!user}
               >
                 {!user ? "MUST BE SIGNED IN TO ADD TO CART" : "ADD TO CART"}

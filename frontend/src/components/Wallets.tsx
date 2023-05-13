@@ -20,9 +20,11 @@ function Wallets() {
   }
 
   if (error) {
-    <div className="h-screen flex flex-col items-center justify-center">
-      Error: There's been an error fetching data
-    </div>;
+    return (
+      <div className="h-screen flex flex-col items-center justify-center">
+        Error: There's been an error fetching data
+      </div>
+    );
   }
 
   if (data) {
