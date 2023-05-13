@@ -39,8 +39,13 @@ function Cart() {
   if (!user) {
     return (
       <div className="h-screen flex flex-col items-center justify-center">
-        <span>SIGN IN TO SEE YOUR CART</span>
-        <button onClick={() => navigate("/login")}>LOGIN</button>
+        <span className="font-bold text-lg">SIGN IN TO SEE YOUR CART</span>
+        <button
+          className="bg-black mt-3 hover:bg-black text-white font-bold py-2 px-4 rounded-md focus:outline-none focus:shadow-outline"
+          onClick={() => navigate("/login")}
+        >
+          LOGIN
+        </button>
       </div>
     );
   }

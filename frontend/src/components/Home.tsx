@@ -11,7 +11,7 @@ function Home() {
         <div className="text-white font-bold text-xl ">
           HAND CRAFTED LEATHER GOODS
         </div>
-        <button className="text-white font-bold bg-black rounded p-4 mt-3 text-xl md:text-base">
+        <button className="text-white font-bold bg-black rounded p-4 mt-3 text-xl md:text-base hover:bg-white hover:text-black duration-500 ease-in-out">
           SHOP PRODUCTS
         </button>
       </section>
@@ -26,7 +26,7 @@ function Home() {
               <p className="text-white font-bold">BAGS</p>
               <button
                 onClick={() => navigate("/products/bags")}
-                className="text-black font-bold bg-white rounded p-4 mt-3"
+                className="text-black font-bold bg-white rounded p-4 mt-3 hover:bg-black hover:text-white duration-500 ease-in-out"
               >
                 SHOP BAGS
               </button>
@@ -38,7 +38,7 @@ function Home() {
               <p className="text-white font-bold">WALLETS</p>
               <button
                 onClick={() => navigate("/products/wallets")}
-                className="text-black font-bold bg-white rounded p-4 mt-3"
+                className="text-black font-bold bg-white rounded p-4 mt-3 hover:bg-black hover:text-white duration-500 ease-in-out"
               >
                 SHOP WALLETS
               </button>
@@ -50,7 +50,7 @@ function Home() {
               <p className="text-white font-bold">ACCESSORIES</p>
               <button
                 onClick={() => navigate("/products/accessories")}
-                className="text-black font-bold bg-white rounded p-4 mt-3"
+                className="text-black font-bold bg-white rounded p-4 mt-3 hover:bg-black hover:text-white duration-500 ease-in-out"
               >
                 SHOP ACCESSORIES
               </button>

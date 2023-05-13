@@ -36,8 +36,8 @@ function ProductById() {
               />
             </div>
             <div className="flex flex-col items-center justify-center">
-              <p className="text-sm text-center mt-6">{data.name}</p>
-              <p className="text-center">$ {data.cost}</p>
+              <p className="text-sm font-bold text-center mt-6">{data.name}</p>
+              <p className="text-center text-sm italic">${data.cost}</p>
             </div>
             <div className="flex items-center justify-center mt-5">
               <button

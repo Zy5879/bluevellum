@@ -40,8 +40,10 @@ function Accessories() {
               <img src={item.img} className="rounded-md w-full" />
 
               <div className="flex flex-col items-center justify-center">
-                <p className="text-sm text-center mt-6">{item.name}</p>
-                <p className="text-center">${item.cost}</p>
+                <p className="text-sm font-bold text-center mt-6">
+                  {item.name}
+                </p>
+                <p className="text-sm italic text-center">${item.cost}</p>
               </div>
             </div>
           ))}

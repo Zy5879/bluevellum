@@ -53,8 +53,10 @@ function Bags() {
             >
               <img src={item.img} alt={item.name} className="rounded md" />
               <div className="flex flex-col items-center justify-center">
-                <p className="text-sm text-center mt-6">{item.name}</p>
-                <p>${item.cost}</p>
+                <p className="text-sm text-center mt-6 font-bold">
+                  {item.name}
+                </p>
+                <p className="text-sm italic">${item.cost}</p>
               </div>
             </div>
           ))}

@@ -12,6 +12,7 @@ function Navbar() {
   const { user, shoppingcart } = useAppSelector((state) => state.authUser);
   const { data, error } = useGetCartQuery(user ?? skipToken);
   const [open, setOpen] = useState<boolean>(false);
+  const [disabled, setDisabled] = useState<boolean>(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -32,6 +33,8 @@ function Navbar() {
 
   const cartQuantity = data?.cart?.items.reduce((acc, val) => acc + val.qty, 0);
   const checkQuant = cartQuantity === 0 ? "" : cartQuantity;
+
+  const linkStyles = disabled ? "pointer-events-none" : "pointer-events-auto";
 
   // const cartQuantity = data?.cart.reduce((acc, val) => {
   //   const quantity = val.leatherId.reduce((itemQty, leatherItem) => {
@@ -97,6 +100,9 @@ function Navbar() {
     if (loggedUser) {
       const user = JSON.parse(loggedUser) as LoginResponse;
       dispatch(setUser({ user: user, token: user.token }));
+      setDisabled(true);
+    } else {
+      setDisabled(false);
     }
   }, [data]);
 
@@ -170,7 +176,7 @@ function Navbar() {
         >
           <ul className="flex flex-col md:text-sm p-4 gap-3 font-medium md:p-0 mt-4 border-gray-100 rounded-lg md:flex-row md:mt-0 md:border-0  md:dark:bg-black dark:border-gray-700 transition-all duration-500 ease-in">
             <NavLink
-              className="block py-2 pl-3 pr-5 text-white hover:bg-gray-200 md:hover:bg-transparent rounded md:bg-transparent md:p-0 dark:text-white md:hover:text-blue-700"
+              className="block py-2 pl-3 pr-5 text-white hover:bg-gray-200 md:hover:bg-transparent rounded md:bg-transparent md:p-0 dark:text-white "
               // aria-current="page"
               to="/"
               onClick={() => setOpen(false)}
@@ -178,42 +184,42 @@ function Navbar() {
               HOME
             </NavLink>
             <NavLink
-              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               to="/products/bags"
               onClick={() => setOpen(false)}
             >
               BAGS
             </NavLink>
             <NavLink
-              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               to="/products/wallets"
               onClick={() => setOpen(false)}
             >
               WALLETS
             </NavLink>
             <NavLink
-              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               to="/products/accessories"
               onClick={() => setOpen(false)}
             >
               ACCESSORIES
             </NavLink>
             <NavLink
-              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               to="/products/customs"
               onClick={() => setOpen(false)}
             >
               CUSTOMS
             </NavLink>
             <NavLink
-              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               to="/cart"
             >
               CART
               {shoppingcart ? checkQuant : null}
             </NavLink>
             <NavLink
-              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              className={`block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ${linkStyles}`}
               to="/login"
               onClick={() => setOpen(false)}
             >
