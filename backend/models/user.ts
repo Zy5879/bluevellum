@@ -2,12 +2,6 @@
 import mongoose from "mongoose";
 import { IUser } from "../types";
 import mongooseUniqueValidator from "mongoose-unique-validator";
-// import { car } from "./leather";
-// import { cartSchema } from "./cart";
-// import { leatherSchema } from "./leather";
-// import { leatherSchema } from "./leather";
-// import { leatherSchema } from "./leather";
-// import { leatherSchema } from "./leather";
 
 const userSchema = new mongoose.Schema<IUser>({
   firstname: {
@@ -44,12 +38,3 @@ userSchema.set("toJSON", {
 const User = mongoose.model<IUser>("User", userSchema);
 
 export default User;
-
-//   // {
-//   item: {
-//     type: mongoose.Schema.Types.ObjectId,
-//     ref: "Leather",
-//   },
-// },
-// total: {
-//   type: Number,

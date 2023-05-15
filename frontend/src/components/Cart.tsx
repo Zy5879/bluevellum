@@ -27,6 +27,8 @@ function Cart() {
     }
   }, [data]);
 
+  console.log(currentData);
+
   const navigate = useNavigate();
   if (isLoading) {
     return (

@@ -205,14 +205,14 @@ function Navbar() {
               ACCESSORIES
             </NavLink>
             {/* <NavLink
-              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              className="pointer-events-none block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               to="/products/customs"
               onClick={() => setOpen(false)}
             >
               CUSTOMS
             </NavLink> */}
             <NavLink
-              className="pointer-events-none block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               to="/cart"
               onClick={() => setOpen(false)}
             >
@@ -226,7 +226,9 @@ function Navbar() {
             >
               {user ? `HELLO ${user.firstname}`.toUpperCase() : "LOGIN"}
             </NavLink>
-            {user && <button onClick={userLogOut}>LOG OUT</button>}
+            <li className="block py-2 pl-3 pr-4  hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+              {user && <button onClick={userLogOut}>LOG OUT</button>}
+            </li>
           </ul>
         </div>
       </div>

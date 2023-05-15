@@ -66,7 +66,7 @@ function Footer() {
           </div>
         </div>
       </section>
-      <div className="flex flex-col items-start p-5">
+      <div className="flex flex-col items-start p-5 mt-8">
         <p className="text-xs">© BLUE VELLUM LEATHER - CUSTOM LEATHER GOODS</p>
         <div>
           <img src={stripe} alt="stripe=logo" className="w-full h-6 mt-3" />

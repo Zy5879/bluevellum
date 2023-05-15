@@ -12,6 +12,7 @@ import ProductById from "./ProductById";
 import { Route, Routes } from "react-router-dom";
 import Login from "./Login";
 import SignUp from "./Signup";
+import CheckOutSuccess from "./CheckOutSucess";
 
 // type RouteProps = {
 //   handlePassword: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -39,6 +40,7 @@ function RouteProvider() {
       />
       <Route path="/products/item/:id" element={<ProductById />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="/checkout-success" element={<CheckOutSuccess />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

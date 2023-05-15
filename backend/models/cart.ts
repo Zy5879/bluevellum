@@ -1,12 +1,6 @@
 import mongoose from "mongoose";
 import { CartItems } from "../types";
 import { leatherSchema } from "./leather";
-// import { leatherSchema } from "./leather";
-// import { leatherSchema } from "./leather"
-// import { Leather } from "../types";
-// import { leatherSchema } from "./leather";
-// import { leatherSchema } from "./leather";
-// import { leatherSchema } from "./leather";
 
 export const cartSchema = new mongoose.Schema<CartItems>(
   {
