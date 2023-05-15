@@ -1,4 +1,5 @@
 import { ObjectId } from "mongoose";
+// import Stripe from "stripe";
 
 export enum Category {
   Wallet = "wallet",
@@ -77,6 +78,17 @@ export interface StripeItems {
 
 export interface StripeCart {
   items: LeatherItems[];
+}
+
+export interface OrderInterface {
+  metadata: {
+    customId: string;
+    cart: string;
+  };
+  data: {
+    customer: string;
+    payment_intent: string;
+  };
 }
 
 // export interface Customer {

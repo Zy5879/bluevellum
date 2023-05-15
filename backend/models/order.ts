@@ -2,7 +2,9 @@ import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema(
   {
+    customId: { type: String, require: true },
     customerId: { type: String, require: true },
+    paymentIntentId: { type: String, require: true },
     products: [
       {
         id: { type: String, require: true },

@@ -7,6 +7,8 @@ import Stripe from "stripe";
 import { ParamsDictionary } from "express-serve-static-core";
 import { LeatherItems } from "../types";
 import express from "express";
+import { OrderInterface } from "../types";
+import Order from "../models/order";
 import { v4 as uuidv4 } from "uuid";
 
 // import { ParamsDictionary } from "express-serve-static-core";
@@ -32,6 +34,7 @@ stripeRouter.post<ParamsDictionary, any, LeatherItems[]>(
     });
 
     console.log(customer);
+
     const customerId: string = customer.id;
 
     const line_items = req.body.map((item) => {
@@ -64,6 +67,16 @@ stripeRouter.post<ParamsDictionary, any, LeatherItems[]>(
   })
 );
 //Stripe CLI
+
+const createOrder = async (customer: OrderInterface, data: OrderInterface) => {
+  const items: unknown = JSON.parse(customer.metadata.cart);
+  const newOrder = new Order({
+    customId: customer.metadata.customId,
+    customerId: data.customer,
+    paymentIntentId: data.payment_intent,
+    products: items,
+  });
+};
 
 stripeRouter.post(
   "/webhook",
@@ -130,10 +143,6 @@ stripeRouter.post(
     return res.send().end();
   }
 );
-
-// let endpointSecret: string;
-// const endpointSecret =
-//   "whsec_f2f3b798108ca75ebadd9707846b8867d2263da49333413729f72f823035fa8f";
 
 // stripeRouter.post(
 //   "/webhook",
