@@ -7,7 +7,7 @@ import Stripe from "stripe";
 import { ParamsDictionary } from "express-serve-static-core";
 import { LeatherItems } from "../types";
 import express from "express";
-import { OrderInterface } from "../types";
+// import { OrderInterface } from "../types";
 import Order from "../models/order";
 import { v4 as uuidv4 } from "uuid";
 
@@ -59,7 +59,7 @@ stripeRouter.post<ParamsDictionary, any, LeatherItems[]>(
       customer: customerId,
       line_items,
       mode: "payment",
-      success_url: `${process.env.CLIENT_URL}/checkout-success`,
+      success_url: `${process.env.CLIENT_URL}/checkout-success/${customerId}`,
       cancel_url: `${process.env.CLIENT_URL}/cart`,
     });
 
@@ -68,14 +68,28 @@ stripeRouter.post<ParamsDictionary, any, LeatherItems[]>(
 );
 //Stripe CLI
 
-const createOrder = async (customer: OrderInterface, data: OrderInterface) => {
+const createOrder = async (
+  customer: Stripe.Customer,
+  data: Stripe.Checkout.Session
+) => {
   const items: unknown = JSON.parse(customer.metadata.cart);
   const newOrder = new Order({
     customId: customer.metadata.customId,
     customerId: data.customer,
     paymentIntentId: data.payment_intent,
     products: items,
+    subtotal: data.amount_subtotal,
+    total: data.amount_total,
+    shipping: data.customer_details,
+    payment_status: data.payment_status,
   });
+
+  try {
+    const savedOrder = await newOrder.save();
+    console.log("Proccessed Order", savedOrder);
+  } catch (err) {
+    console.log(`${String(err)}`);
+  }
 };
 
 stripeRouter.post(
@@ -112,7 +126,10 @@ stripeRouter.post(
           try {
             data = event.data.object as Stripe.Checkout.Session;
             const customer = data.customer as string;
-            const customerId = await stripe.customers.retrieve(customer);
+            const customerId = (await stripe.customers.retrieve(
+              customer
+            )) as Stripe.Customer;
+            await createOrder(customerId, data);
             console.log(customerId);
             console.log("data:", data);
           } catch (err) {

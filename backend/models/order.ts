@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import { IOrder } from "../types";
 
-const orderSchema = new mongoose.Schema(
+const orderSchema = new mongoose.Schema<IOrder>(
   {
     customId: { type: String, require: true },
     customerId: { type: String, require: true },
@@ -26,6 +27,6 @@ const orderSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Order = mongoose.model("Order", orderSchema);
+const Order = mongoose.model<IOrder>("Order", orderSchema);
 
 export default Order;

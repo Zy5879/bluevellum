@@ -40,7 +40,7 @@ function RouteProvider() {
       />
       <Route path="/products/item/:id" element={<ProductById />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/checkout-success" element={<CheckOutSuccess />} />
+      <Route path="/checkout-success/:id" element={<CheckOutSuccess />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

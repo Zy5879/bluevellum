@@ -80,15 +80,41 @@ export interface StripeCart {
   items: LeatherItems[];
 }
 
+export interface IOrder {
+  customId: string;
+  customerId: string;
+  paymentIntentId: string;
+  products: [
+    {
+      id: string;
+      uniqueId: string;
+      name: string;
+      type: string;
+      category: string;
+      inventory: number;
+      img: string;
+      qty: number;
+    }
+  ];
+  subtotal: number;
+  total: number;
+  shipping: object;
+  delivery_status: string;
+  payment_status: string;
+}
+
 export interface OrderInterface {
   metadata: {
     customId: string;
     cart: string;
   };
-  data: {
-    customer: string;
-    payment_intent: string;
-  };
+  customer: string;
+  payment_intent: string;
+  amount_subtotal: number;
+  amount_total: number;
+  customer_details: unknown;
+  // address: unknown;
+  payment_status: string;
 }
 
 // export interface Customer {
