@@ -2,6 +2,15 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    fontFamily: {
+      mont: ["Montserrat", "sans-serif"],
+    },
+    fontSize: {
+      title: `1.5rem;`,
+      subtitle: `1.3rem`,
+      paragraph: `1.0rem;`,
+      nav: `0.9rem`,
+    },
     extend: {
       backgroundImage: {
         wallet:

@@ -8,7 +8,7 @@ function Home() {
         <img className="w-full h-screen" src={homeleather} alt="leather" />
       </section>
       <section className="absolute flex flex-col items-center justify-center top-0 right-0 left-0 bottom-0">
-        <div className="text-white font-bold text-xl ">
+        <div className="text-white text-subtitle font-bold text-xl ">
           HAND CRAFTED LEATHER GOODS
         </div>
         <button
