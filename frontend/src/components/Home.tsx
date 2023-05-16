@@ -12,6 +12,7 @@ function Home() {
           HAND CRAFTED LEATHER GOODS
         </div>
         <button
+          id="shop-products"
           onClick={() => navigate("/products/bags")}
           className="text-white font-bold bg-black rounded p-4 mt-3 text-xl md:text-base hover:bg-white hover:text-black duration-500 ease-in-out"
         >

@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tsc": "tsc",
-    "dev": "ts-node-dev backend/index.ts",
+    "tsc": "NODE_ENV=production tsc",
+    "dev": "NODE_ENV=development ts-node-dev backend/index.ts",
     "start": "node backend/build/index.js",
-    "test": "jest --runInBand --verbose"
+    "test": "jest --runInBand --verbose",
+    "start:test": "NODE_ENV=test ts-node-dev backend/index.ts"
   },
   "author": "Zaire McAllister",
   "license": "ISC",
