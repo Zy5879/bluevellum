@@ -41,7 +41,6 @@ export interface ResUser {
 }
 export interface LeatherItems {
   id: string;
-  // productId: string;
   uniqueId: string;
   name: string;
   type: Types;
@@ -99,42 +98,7 @@ export interface OrderInterface {
   amount_subtotal: number;
   amount_total: number;
   customer_details: unknown;
-  // address: unknown;
   payment_status: string;
 }
-
-// export interface Customer {
-//   id: string;
-//   object: 'customer';
-//   address?: Stripe.Address;
-//   balance?: number;
-//   created: number;
-//   default_source?: string | Stripe.Card;
-//   delinquent?: boolean;
-//   description?: string;
-//   email?: string;
-//   invoice_prefix?: string;
-//   invoice_settings?: Stripe.CustomerInvoiceSettings;
-//   livemode: boolean;
-//   metadata?: Stripe.Metadata;
-//   name?: string;
-//   phone?: string;
-//   preferred_locales?: string[];
-//   shipping?: Stripe.ShippingDetails;
-//   sources?: Stripe.CustomerSources;
-//   subscriptions?: Stripe.CustomerSubscriptions;
-//   tax_exempt?: 'none' | 'exempt' | 'reverse';
-// }
-
-// export interface InvoiveSetting {
-//   custom_fields:CustomField[];
-//   default_payment_method?: string;
-//   footer?:string;
-// }
-
-// export interface CustomField {
-//   name:string;
-//   value:string;
-// }
 
 export type NewBagData = Omit<BagData, "id">;

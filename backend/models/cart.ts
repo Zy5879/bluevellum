@@ -24,7 +24,6 @@ cartSchema.set("toJSON", {
   },
 });
 
-// const Cart = mongoose.model<Leather>("Cart", cartSchema);
 const Cart = mongoose.model<CartItems>("Cart", cartSchema);
 
 export default Cart;

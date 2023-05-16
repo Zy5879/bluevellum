@@ -9,14 +9,7 @@ import { LeatherItems } from "../types";
 import express from "express";
 import Cart from "../models/cart";
 import User from "../models/user";
-// import { OrderInterface } from "../types";
 import Order from "../models/order";
-// import { v4 as uuidv4 } from "uuid";
-
-// import { ParamsDictionary } from "express-serve-static-core";
-// import { StripeCart } from "../types";
-// import { CartItems, IUser, Leather } from "../types";
-// import Leather from "../models/leather";
 
 const stripe = new Stripe(`${process.env.STRIPE_KEY}`, {
   apiVersion: "2022-11-15",

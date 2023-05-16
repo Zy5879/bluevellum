@@ -5,8 +5,7 @@ import asyncHandler from "express-async-handler";
 import { IUser } from "../types";
 import User from "../models/user";
 import { getTokenFrom } from "../utils/middleware";
-// import Cart from "../models/cart";
-// import Stripe from "stripe";
+
 export const homeRouter = Router();
 
 homeRouter.get<ParamsDictionary, any, IUser>(
@@ -18,11 +17,6 @@ homeRouter.get<ParamsDictionary, any, IUser>(
       `${process.env.SECRET}`
     ) as JwtPayload;
 
-    // const user = await User.findById(decodedToken.id).populate({
-    //   path: "cart",
-    //   populate: { path: "leatherId" },
-    // });
-
     const user = await User.findById(decodedToken.id).populate("cart");
 
     if (!user) {
@@ -32,17 +26,5 @@ homeRouter.get<ParamsDictionary, any, IUser>(
     }
   })
 );
-
-// homeRouter.delete(
-//   "/checkout/success/:id",
-//   asyncHandler(async (req, res) => {
-//     const userId = req.params.id;
-
-//     const cart = await Cart.findOneAndDelete({ userId: userId });
-//     const user = await User.findOneAndDelete({ cart: cart?._id });
-
-//     res.status(200).json(user);
-//   })
-// );
 
 export default homeRouter;

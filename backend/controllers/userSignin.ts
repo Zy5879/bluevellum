@@ -35,26 +35,4 @@ userLoginRouter.post<ParamsDictionary, any, IUser>(
   })
 );
 
-// userLoginRouter.get<ParamsDictionary, any, IUser>(
-//   "/",
-//   asyncHandler(async (req, res): Promise<any> => {
-//     const token = getTokenFrom(req) as string;
-//     const decodedToken = jwt.verify(
-//       token,
-//       `${process.env.SECRET}`
-//     ) as JwtPayload;
-
-//     const user = await User.findById(decodedToken.id).populate({
-//       path: "cart",
-//       populate: { path: "cart.leatherId" },
-//     });
-
-//     if (!user) {
-//       return res.status(404).json({ error: "No User Found" }).end();
-//     } else {
-//       return res.json(user);
-//     }
-//   })
-// );
-
 export default userLoginRouter;

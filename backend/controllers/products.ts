@@ -1,6 +1,5 @@
 import { Router } from "express";
 import asyncHandler from "express-async-handler";
-// import data from "../data/mockData";
 import Leather from "../models/leather";
 export const productsRouter = Router();
 
@@ -36,17 +35,7 @@ productsRouter.get(
     res.json(item);
   })
 );
-// productsRouter.get(
-//   "/bags/tote/:id",
-//   asyncHandler(async (req, res) => {
-//     const item = await Leather.findById(req.params.id);
-//     if (item) {
-//       res.json(item);
-//     } else {
-//       res.status(400).end();
-//     }
-//   })
-// );
+
 productsRouter.get(
   "/bags/handbag",
   asyncHandler(async (_req, res) => {
@@ -54,17 +43,7 @@ productsRouter.get(
     res.json(item);
   })
 );
-// productsRouter.get(
-//   "/bags/handbag/:id",
-//   asyncHandler(async (req, res) => {
-//     const item = await Leather.findById(req.params.id);
-//     if (item) {
-//       res.json(item);
-//     } else {
-//       res.status(400).end();
-//     }
-//   })
-// );
+
 //END OF BAG ROUTES
 
 productsRouter.get(
@@ -74,17 +53,6 @@ productsRouter.get(
     res.json(item);
   })
 );
-// productsRouter.get(
-//   "/wallets/:id",
-//   asyncHandler(async (req, res) => {
-//     const item = await Leather.findById(req.params.id);
-//     if (item) {
-//       res.json(item);
-//     } else {
-//       res.status(400).end();
-//     }
-//   })
-// );
 
 //END OF WALLET ROUTES
 
@@ -103,17 +71,7 @@ productsRouter.get(
     res.json(item);
   })
 );
-// productsRouter.get(
-//   "/accessories/belt/:id",
-//   asyncHandler(async (req, res) => {
-//     const item = await Leather.findById(req.params.id);
-//     if (item) {
-//       res.json(item);
-//     } else {
-//       res.status(400).end();
-//     }
-//   })
-// );
+
 productsRouter.get(
   "/accessories/watch",
   asyncHandler(async (_req, res) => {
@@ -121,17 +79,6 @@ productsRouter.get(
     res.json(item);
   })
 );
-// productsRouter.get(
-//   "/accessories/watch/:id",
-//   asyncHandler(async (req, res) => {
-//     const item = await Leather.findById(req.params.id);
-//     if (item) {
-//       res.json(item);
-//     } else {
-//       res.status(400).end();
-//     }
-//   })
-// );
 
 //END OF ACCESSORIES ROUTES
 
@@ -142,16 +89,5 @@ productsRouter.get(
     res.json(item);
   })
 );
-// productsRouter.get(
-//   "/customs/:id",
-//   asyncHandler(async (req, res) => {
-//     const item = await Leather.findById(req.params.id);
-//     if (item) {
-//       res.json(item);
-//     } else {
-//       res.status(400).end();
-//     }
-//   })
-// );
 
 //END OF CUSTOM ROUTES
