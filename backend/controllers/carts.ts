@@ -15,8 +15,6 @@ cartRouter.post<ParamsDictionary, any, CartItems>(
   asyncHandler(async (req, res): Promise<any> => {
     const { items } = req.body;
 
-    console.log(items);
-
     const token = getTokenFrom(req) as string;
     const decodedToken = jwt.verify(
       token,
@@ -28,6 +26,8 @@ cartRouter.post<ParamsDictionary, any, CartItems>(
     if (!user) {
       return res.status(404).json({ error: "User not found" });
     }
+    items.userId = user._id.toString();
+
     const leather = await Leather.findOne({ uniqueId: items.uniqueId });
     console.log(leather);
 

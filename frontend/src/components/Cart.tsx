@@ -68,7 +68,8 @@ function Cart() {
 
     // console.log(currentData);
 
-    if (!currentData.cart || currentData.cart?.items.length === 0) {
+    if (!currentData.cart.items || currentData.cart?.items.length === 0) {
+      console.log("This is true");
       return (
         <div className="h-screen flex flex-col items-center justify-center">
           <span className="font-bold text-xl">
@@ -358,15 +359,15 @@ function Cart() {
     // console.log(shop);
   }
 
-  if (!currentData) {
+  if (!currentData?.cart) {
     return (
       <div className="h-screen flex flex-col items-center justify-center">
-        <span className="font-bold text-xl">SIGN IN TO SEE YOUR CART</span>
+        <span className="font-bold text-xl"> YOUR CART IS EMPTY! SHOP NOW</span>
         <button
-          className="cursor-pointer bg-black text-white font-bold py-2 px-4 rounded-md mb-5 focus:outline-none focus:shadow-outline enabled:hover:bg-white enabled:hover:text-black enabled:border enabled:border-black enabled:duration-500 enabled:ease-in-out"
-          onClick={() => navigate("/login")}
+          className="cursor-pointer mt-6 bg-black text-white font-bold py-2 px-4 rounded-md mb-5 focus:outline-none focus:shadow-outline enabled:hover:bg-white enabled:hover:text-black enabled:border enabled:border-black enabled:duration-500 enabled:ease-in-out"
+          onClick={() => navigate("/products/bags")}
         >
-          LOGIN
+          SHOP
         </button>
       </div>
     );

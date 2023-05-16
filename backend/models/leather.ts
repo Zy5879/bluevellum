@@ -40,6 +40,7 @@ export const leatherSchema = new mongoose.Schema<LeatherItems>({
     type: Number,
     default: 1,
   },
+  userId: { type: String },
 });
 
 leatherSchema.set("toJSON", {

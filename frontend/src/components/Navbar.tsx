@@ -20,7 +20,7 @@ function Navbar() {
     dispatch(logout);
     navigate("/");
     window.localStorage.clear();
-    window.location.reload();
+    window.location.href = "/";
   };
 
   if (error) {
@@ -176,7 +176,7 @@ function Navbar() {
         >
           <ul className="flex flex-col md:text-sm p-4 gap-3 font-medium md:p-0 mt-4 border-gray-100 rounded-lg md:flex-row md:mt-0 md:border-0  md:dark:bg-black dark:border-gray-700 transition-all duration-500 ease-in">
             <NavLink
-              className="block py-2 pl-3 pr-5 text-white hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent rounded md:bg-transparent md:p-0 dark:text-white "
+              className="block py-2 pl-3 pr-5 text-white hover:bg-gray-200 md:hover:text-white md:hover:bg-transparent rounded md:bg-transparent md:p-0 dark:text-white md:dark:hover:bg-transparent dark:hover:bg-gray-700  "
               // aria-current="page"
               to="/"
               onClick={() => setOpen(false)}
@@ -184,49 +184,49 @@ function Navbar() {
               HOME
             </NavLink>
             <NavLink
-              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               to="/products/bags"
               onClick={() => setOpen(false)}
             >
               BAGS
             </NavLink>
             <NavLink
-              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               to="/products/wallets"
               onClick={() => setOpen(false)}
             >
               WALLETS
             </NavLink>
             <NavLink
-              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               to="/products/accessories"
               onClick={() => setOpen(false)}
             >
               ACCESSORIES
             </NavLink>
             {/* <NavLink
-              className="pointer-events-none block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              className="pointer-events-none block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               to="/products/customs"
               onClick={() => setOpen(false)}
             >
               CUSTOMS
             </NavLink> */}
             <NavLink
-              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+              className="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               to="/cart"
               onClick={() => setOpen(false)}
             >
               CART
-              {shoppingcart ? checkQuant : null}
+              {""} {shoppingcart ? checkQuant : null}
             </NavLink>
             <NavLink
-              className={`block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ${linkStyles}`}
+              className={`block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent ${linkStyles}`}
               to="/login"
               onClick={() => setOpen(false)}
             >
               {user ? `HELLO ${user.firstname}`.toUpperCase() : "LOGIN"}
             </NavLink>
-            <li className="block py-2 pl-3 pr-4  hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
+            <li className="block py-2 pl-3 pr-4  hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
               {user && <button onClick={userLogOut}>LOG OUT</button>}
             </li>
           </ul>

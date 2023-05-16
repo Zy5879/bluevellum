@@ -82,7 +82,7 @@ function SignUp() {
       setEmail("");
       setPassword("");
       setConfirmPassword("");
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       toast.error("SIGNUP FAILED", {
         position: toast.POSITION.TOP_RIGHT,

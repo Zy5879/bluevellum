@@ -51,6 +51,7 @@ export interface LeatherItems {
   inventory: number;
   img: string;
   qty: number;
+  userId: string;
 }
 
 export interface CartItems {

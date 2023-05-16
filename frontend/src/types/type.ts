@@ -10,6 +10,19 @@ export interface LeatherInfo {
   inventory: number;
   img: string;
   qty: number;
+  userId?: string;
+}
+
+export interface StripeRequest {
+  userId: string;
+  uniqueId: string;
+  name: string;
+  cost: number;
+  type: string;
+  category: string;
+  inventory: number;
+  img: string;
+  qty: number;
 }
 
 export type LeatherPreview = Omit<LeatherInfo, "id">;
@@ -38,6 +51,11 @@ export interface ProductItem {
 
 export interface DeleteProductItem {
   items: Partial<LeatherPreview>;
+}
+
+export interface CheckoutArgs {
+  items: LeatherInfo[];
+  userId: CartItems;
 }
 
 export interface StripeItems {

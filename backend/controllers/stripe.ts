@@ -7,9 +7,11 @@ import Stripe from "stripe";
 import { ParamsDictionary } from "express-serve-static-core";
 import { LeatherItems } from "../types";
 import express from "express";
+import Cart from "../models/cart";
+import User from "../models/user";
 // import { OrderInterface } from "../types";
 import Order from "../models/order";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 
 // import { ParamsDictionary } from "express-serve-static-core";
 // import { StripeCart } from "../types";
@@ -26,16 +28,16 @@ stripeRouter.post<ParamsDictionary, any, LeatherItems[]>(
   "/checkout",
   express.json({ type: "application/json" }),
   asyncHandler(async (req, res) => {
+    const userId = req.body[0].userId;
     const customer = await stripe.customers.create({
       metadata: {
-        userId: uuidv4(),
+        userId: userId,
         cart: JSON.stringify(req.body),
       },
     });
 
-    console.log(customer);
-
     const customerId: string = customer.id;
+    console.log(customerId);
 
     const line_items = req.body.map((item) => {
       return {
@@ -59,7 +61,7 @@ stripeRouter.post<ParamsDictionary, any, LeatherItems[]>(
       customer: customerId,
       line_items,
       mode: "payment",
-      success_url: `${process.env.CLIENT_URL}/checkout-success/${customerId}`,
+      success_url: `${process.env.CLIENT_URL}/checkout-success/${userId}`,
       cancel_url: `${process.env.CLIENT_URL}/cart`,
     });
 
@@ -86,6 +88,14 @@ const createOrder = async (
 
   try {
     const savedOrder = await newOrder.save();
+    const userId = customer.metadata.userId;
+    const cart = await Cart.findOneAndDelete({ userId: userId });
+    const user = await User.findOneAndUpdate(
+      { cart: cart?._id },
+      { $pull: { cart: cart?._id } },
+      { new: true }
+    );
+    console.log(user);
     console.log("Proccessed Order", savedOrder);
   } catch (err) {
     console.log(`${String(err)}`);
@@ -97,7 +107,6 @@ stripeRouter.post(
   express.raw({ type: "application/json" }),
   async (req, res) => {
     const webhookSecret = process.env.STRIPE_WEB_HOOK;
-    console.log(webhookSecret);
 
     let data;
     let event: Stripe.Event | undefined;
@@ -126,6 +135,7 @@ stripeRouter.post(
           try {
             data = event.data.object as Stripe.Checkout.Session;
             const customer = data.customer as string;
+            console.log(customer);
             const customerId = (await stripe.customers.retrieve(
               customer
             )) as Stripe.Customer;

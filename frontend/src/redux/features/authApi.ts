@@ -7,6 +7,7 @@ import {
   User,
   // Cart,
   ProductItem,
+  LeatherInfo,
   // DeleteProductItem,
 } from "../../types/type";
 
@@ -61,7 +62,7 @@ export const authApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
-    deleteFromCart: builder.mutation<void, ProductItem>({
+    deleteFromCart: builder.mutation<void, LeatherInfo>({
       query: (data) => ({
         url: "/cart",
         method: "DELETE",
@@ -69,6 +70,10 @@ export const authApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
+    // checkoutSucces: builder.query<User, void>({
+    //   query: () => "/checkout-success/:id",
+    // }),
+    // }),
     // checkout: builder.mutation<string, Partial<StripeItems>>({
     //   query: (data) => ({
     //     url: "/stripe/checkout",
@@ -86,5 +91,6 @@ export const {
   useAddToCartMutation,
   useUpdateCartMutation,
   useDeleteFromCartMutation,
+  // useCheckoutSuccesQuery,
   // useCheckoutMutation,
 } = authApi;
