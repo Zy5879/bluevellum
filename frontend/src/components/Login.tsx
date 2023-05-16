@@ -11,7 +11,6 @@ function Login() {
     useCheckLoginMutation();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  // const [isLoggedIn, setLogin] = useState<boolean>(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

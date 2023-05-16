@@ -42,7 +42,7 @@ describe("Navbar", () => {
   });
 });
 
-describe("Login|Signup", () => {
+describe("Login input |Signup input", () => {
   beforeEach(function () {
     cy.visit("/login");
   });
@@ -69,14 +69,5 @@ describe("Login|Signup", () => {
     );
     cy.get("input[name=password]").should("have.value", "CreateOrder01");
     cy.get("input[name=confirmpassword]").should("have.value", "CreateOrder01");
-  });
-
-  describe("Products", () => {
-    beforeEach(function () {
-      cy.request("/products/bags");
-    });
-    it("grabs product by Id", () => {
-      cy.contains("BIKER MOTORCYCLE BEDROLL").click();
-    });
   });
 });

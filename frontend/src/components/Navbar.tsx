@@ -106,44 +106,9 @@ function Navbar() {
     }
   }, [data]);
 
-  // const userLogOut = () => {
-  //   dispatch(logout);
-  //   window.localStorage.clear();
-  //   window.location.reload();
-  //   navigate("/");
-  // };
-
   useEffect(() => {
     dispatch(setCart({ shoppingcart: data?.cart?.items }));
   }, [data]);
-
-  // dispatch(setCart({ shoppingcart: cartData }));
-
-  // dispatch(setCart({ shoppingcart: data }));
-
-  // useEffect(() => {
-  //   // let subscribed = false;
-  //   const getUserCart = async () => {
-  //     if (user?.token) {
-  //       try {
-  //         const response = await homeService.getUserCart();
-  //         dispatch(setCart({ shoppingcart: response }));
-  //         console.log(response);
-  //         return response;
-  //       } catch (error) {
-  //         return;
-  //       }
-  //     } else {
-  //       return;
-  //     }
-  //   };
-
-  //   void getUserCart();
-
-  //   // return () => {
-  //   //   subscribed = true;
-  //   // };
-  // }, [dispatch]);
 
   return (
     <nav className="bg-black w-full backdrop-filter backdrop-blur-lg bg-opacity-20 top-0 z-[1] fixed border-gray-200 text-black dark:bg-black text-white">
@@ -206,19 +171,12 @@ function Navbar() {
             >
               ACCESSORIES
             </NavLink>
-            {/* <NavLink
-              className="pointer-events-none block text-nav py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              to="/products/customs"
-              onClick={() => setOpen(false)}
-            >
-              CUSTOMS
-            </NavLink> */}
             <NavLink
               className="block text-nav py-2 pl-3 pr-4 text-white rounded hover:bg-gray-200 hover:text-black md:hover:text-white md:hover:bg-transparent md:border-0  md:p-0 dark:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               to="/cart"
               onClick={() => setOpen(false)}
             >
-              CART
+              CART:
               {""} {shoppingcart ? checkQuant : null}
             </NavLink>
             <NavLink
