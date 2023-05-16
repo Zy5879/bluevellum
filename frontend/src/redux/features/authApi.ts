@@ -70,17 +70,6 @@ export const authApi = createApi({
       }),
       invalidatesTags: ["User"],
     }),
-    // checkoutSucces: builder.query<User, void>({
-    //   query: () => "/checkout-success/:id",
-    // }),
-    // }),
-    // checkout: builder.mutation<string, Partial<StripeItems>>({
-    //   query: (data) => ({
-    //     url: "/stripe/checkout",
-    //     method: "POST",
-    //     body: data,
-    //   }),
-    // }),
   }),
 });
 

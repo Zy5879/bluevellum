@@ -158,7 +158,7 @@ function Navbar() {
         >
           <span className="sr-only">Open main menu</span>
           <svg
-            className="w-6 h-6"
+            className="w-6 h-6 "
             aria-hidden="true"
             fill="white"
             viewBox="0 0 20 20"
@@ -173,10 +173,10 @@ function Navbar() {
         </button>
         <div
           className={`w-full md:block text-nav md:w-auto ${
-            open ? "block text-nav" : "hidden"
+            open ? "block text-nav " : "hidden"
           }`}
         >
-          <ul className="flex flex-col md:text-sm p-4 gap-3 font-medium md:p-0 mt-4 border-gray-100 rounded-lg md:flex-row md:mt-0 md:border-0  md:dark:bg-black dark:border-gray-700 transition-all duration-500 ease-in">
+          <ul className="flex flex-col md:text-sm p-4 gap-3 font-medium md:p-0 mt-4 border-gray-100 rounded-lg md:flex-row md:mt-0 md:border-0  md:dark:bg-black dark:border-gray-700  transition-all duration-500 ease-in">
             <NavLink
               className="block text-nav py-2 pl-3 pr-5 text-white hover:bg-gray-200 md:hover:text-white md:hover:bg-transparent rounded md:bg-transparent md:p-0 dark:text-white md:dark:hover:bg-transparent dark:hover:bg-gray-700  "
               // aria-current="page"

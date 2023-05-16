@@ -6,7 +6,7 @@ import stripe from "../assets/images/stripe.jpg";
 import { NavLink } from "react-router-dom";
 function Footer() {
   return (
-    <footer className="bg-black text-white">
+    <footer className="bg-black text-white text-footer">
       <h2 className="p-5 font-bold">
         <a href="/">BLUE VELLUM</a>
       </h2>
@@ -38,7 +38,7 @@ function Footer() {
         </div>
         <div>
           <h4 className="mb-6 mt-10 md:mt-0 font-bold md:text-center">
-            CONTACT US
+            CONTACT/FOLLOW US
           </h4>
           <div className="flex md:items-center md:justify-center gap-4">
             <a href="https://www.facebook.com/BlueVellum/">

@@ -63,7 +63,7 @@ function Home() {
         <section>
           <article className="p-5">
             <div className="border border-2 border-black rounded-md p-5">
-              <h4 className="font-bold text-center mb-4">ABOUT US</h4>
+              <h4 className="font-bold text-center  mb-4">ABOUT BLUE VELLUM</h4>
               <p className="font-bold">
                 Blue Vellum LLC began in July 2018 all because I wanted a
                 quality product that I would not have to break the bank to
