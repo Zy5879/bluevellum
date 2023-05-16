@@ -1,5 +1,4 @@
 import { ObjectId } from "mongoose";
-// import Stripe from "stripe";
 
 export enum Category {
   Wallet = "wallet",
@@ -56,25 +55,11 @@ export interface LeatherItems {
 
 export interface CartItems {
   userId: ObjectId;
-  // productId: ObjectId | string;
   items: LeatherItems;
-  // cart: ObjectId;
-  // qty: number;
 }
 
 export interface StripeItems {
-  // userId: string;
   leatherId: LeatherItems;
-  // leatherId: {
-  //   id: string;
-  //   name: string;
-  //   type: Types;
-  //   cost: number;
-  //   category: Category;
-  //   inventory: number;
-  //   img: string;
-  // };
-  // qty: number;
 }
 
 export interface StripeCart {

@@ -30,13 +30,6 @@ userSignupRouter.get(
   "/",
   asyncHandler(async (_req, res) => {
     const users = await User.find({}).populate("cart");
-    //   name: 1,
-    //   cost: 1,
-    //   category: 1,
-    //   inventory: 1,
-    //   img: 1,
-    // });
-    // });
     res.json(users);
   })
 );

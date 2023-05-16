@@ -9,7 +9,6 @@ function SignUp() {
   const navigate = useNavigate();
 
   const [signUp, { isLoading }] = useSignUpMutation();
-  // const [submitted, setSubmitted] = useState<boolean>(false);
 
   const [email, setEmail] = useState<string>("");
   const [errorEmail, setEmailError] = useState<boolean>(false);

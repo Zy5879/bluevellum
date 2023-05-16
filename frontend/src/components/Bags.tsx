@@ -29,7 +29,6 @@ function Bags() {
     return (
       <div className="h-screen flex flex-col items-center justify-center">
         <div className="border-t-transparent border-solid animate-spin  rounded-full border-gray-200 border-8 h-20 w-20"></div>
-        {/* Loading.... */}
       </div>
     );
   }

@@ -5,7 +5,6 @@ import { ParamsDictionary } from "express-serve-static-core";
 import asyncHandler from "express-async-handler";
 import { IUser } from "../types";
 import User from "../models/user";
-// import { getTokenFrom } from "../utils/middleware";
 export const userLoginRouter = Router();
 import { Secret } from "jsonwebtoken";
 
