@@ -25,7 +25,7 @@ stripeRouter.post<ParamsDictionary, any, LeatherItems[]>(
     const customer = await stripe.customers.create({
       metadata: {
         userId: userId,
-        cart: JSON.stringify(req.body),
+        cart: JSON.stringify(req.body.map((item) => item.name)),
       },
     });
 

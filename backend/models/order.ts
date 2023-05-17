@@ -8,14 +8,7 @@ const orderSchema = new mongoose.Schema<IOrder>(
     paymentIntentId: { type: String, require: true },
     products: [
       {
-        id: { type: String, require: true },
-        uniqueId: { type: String, require: true },
         name: { type: String, require: true },
-        type: { type: String, require: true },
-        category: { type: String, require: true },
-        inventory: { type: Number },
-        img: { type: String, require: true },
-        qty: { type: Number },
       },
     ],
     subtotal: { type: Number, require: true },

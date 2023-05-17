@@ -27,7 +27,7 @@ function Navbar() {
     //     userLogOut();
     //   }
     // }
-    // console.log(data);
+    console.log(data);
     const cartQuantity = (_a = data === null || data === void 0 ? void 0 : data.cart) === null || _a === void 0 ? void 0 : _a.items.reduce((acc, val) => acc + val.qty, 0);
     const checkQuant = cartQuantity === 0 ? "" : cartQuantity;
     const linkStyles = disabled ? "pointer-events-none" : "pointer-events-auto";

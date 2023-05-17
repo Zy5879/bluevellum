@@ -4,8 +4,8 @@ exports.useGetProductIdQuery = exports.useGetWalletsQuery = exports.useGetCustom
 const react_1 = require("@reduxjs/toolkit/query/react");
 exports.productApi = (0, react_1.createApi)({
     reducerPath: "productApi",
-    // baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000" }),
-    baseQuery: (0, react_1.fetchBaseQuery)({ baseUrl: "https://blue-vellum.onrender.com" }),
+    // baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/" }),
+    baseQuery: (0, react_1.fetchBaseQuery)({ baseUrl: "https://blue-vellum.onrender.com/" }),
     // baseQuery: fetchBaseQuery({ baseUrl: `${process.env.BACKEND_URL}/` }),
     endpoints: (builder) => ({
         getBags: builder.query({
@@ -17,60 +17,27 @@ exports.productApi = (0, react_1.createApi)({
         getProductId: builder.query({
             query: (id) => `products/item/${id}`,
         }),
-        // getBagsGbId: builder.query<LeatherInfo[], string>({
-        //   query: (id) => `bags/gentlemanbag/${id}`,
-        // }),
         getBagsTote: builder.query({
             query: () => "products/bags/tote",
         }),
-        // getBagsToteId: builder.query<LeatherInfo[], string>({
-        //   query: (id) => `bags/tote${id}`,
-        // }),
         getBagsHb: builder.query({
             query: () => "products/bags/handbag",
         }),
-        // getBagsHbId: builder.query<LeatherInfo[], string>({
-        //   query: (id) => `bag/handbag/${id}`,
-        // }),
         getWallets: builder.query({
             query: () => "products/wallets",
         }),
-        // getWalletsId: builder.query<LeatherInfo[], string>({
-        //   query: (id) => `wallets/${id}`,
-        // }),
         getAccess: builder.query({
             query: () => "products/accessories",
         }),
         getAccessBelt: builder.query({
             query: () => "products/accessories/belt",
         }),
-        // getAccessBeltId: builder.query<LeatherInfo[], string>({
-        //   query: (id) => `accessories/belt/${id}`,
-        // }),
         getAcessWatch: builder.query({
             query: () => "products/accessories/watch",
         }),
-        // getAcessWatchId: builder.query<LeatherInfo[], string>({
-        //   query: (id) => `accessories/watch/${id}`,
-        // }),
         getCustoms: builder.query({
             query: () => "products/customs",
         }),
-        // getCustomsId: builder.query<LeatherInfo[], string>({
-        //   query: (id) => `customs/${id}`,
-        // }),
     }),
 });
-// useGetAccessBeltIdQuery,
-exports.useGetAccessBeltQuery = exports.productApi.useGetAccessBeltQuery, exports.useGetAccessQuery = exports.productApi.useGetAccessQuery, 
-// useGetAcessWatchIdQuery,
-exports.useGetAcessWatchQuery = exports.productApi.useGetAcessWatchQuery, exports.useGetBagGbQuery = exports.productApi.useGetBagGbQuery, 
-// useGetBagsGbIdQuery,
-// useGetBagsHbIdQuery,
-exports.useGetBagsHbQuery = exports.productApi.useGetBagsHbQuery, exports.useGetBagsQuery = exports.productApi.useGetBagsQuery, 
-// useGetBagsToteIdQuery,
-exports.useGetBagsToteQuery = exports.productApi.useGetBagsToteQuery, 
-// useGetCustomsIdQuery,
-exports.useGetCustomsQuery = exports.productApi.useGetCustomsQuery, 
-// useGetWalletsIdQuery,
-exports.useGetWalletsQuery = exports.productApi.useGetWalletsQuery, exports.useGetProductIdQuery = exports.productApi.useGetProductIdQuery;
+exports.useGetAccessBeltQuery = exports.productApi.useGetAccessBeltQuery, exports.useGetAccessQuery = exports.productApi.useGetAccessQuery, exports.useGetAcessWatchQuery = exports.productApi.useGetAcessWatchQuery, exports.useGetBagGbQuery = exports.productApi.useGetBagGbQuery, exports.useGetBagsHbQuery = exports.productApi.useGetBagsHbQuery, exports.useGetBagsQuery = exports.productApi.useGetBagsQuery, exports.useGetBagsToteQuery = exports.productApi.useGetBagsToteQuery, exports.useGetCustomsQuery = exports.productApi.useGetCustomsQuery, exports.useGetWalletsQuery = exports.productApi.useGetWalletsQuery, exports.useGetProductIdQuery = exports.productApi.useGetProductIdQuery;

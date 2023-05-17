@@ -90,8 +90,11 @@ function Cart() {
     const result = currentData.cart?.items.map((item) => {
       return (
         <div>
-          <div key={item.uniqueId} className="rounded-lg  mt-20 md:w-full">
-            <div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md md:flex md:justify-start">
+          <div
+            key={item.uniqueId}
+            className="rounded-lg h-screen mt-20 md:w-full"
+          >
+            <div className="mb-6 rounded-lg bg-white p-6 shadow-md md:flex md:justify-start">
               <img
                 src={item.img}
                 alt="product-image"
@@ -150,7 +153,7 @@ function Cart() {
     });
 
     return (
-      <main className="p-5 h-screen lg:flex lg:justify-between">
+      <main className="p-5 md:h-screen lg:flex lg:justify-between">
         <div className="">{result}</div>
         {currentData.cart && (
           <>
