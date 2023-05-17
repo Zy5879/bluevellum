@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "tsc": "tsc",
-    "build": "npm install",
     "dev": "NODE_ENV=development ts-node-dev backend/index.ts",
-    "start": "tsc && node backend/build/backend/index.js",
+    "start": "node backend/build/backend/index.js",
     "test": "jest --runInBand --verbose",
     "start:test": "NODE_ENV=test ts-node-dev backend/index.ts"
   },
