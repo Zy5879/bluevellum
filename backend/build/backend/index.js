@@ -29,7 +29,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const dotenv = __importStar(require("dotenv"));
 dotenv.config();
 const app_1 = __importDefault(require("./app"));
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 app_1.default.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });

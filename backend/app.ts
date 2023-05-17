@@ -35,7 +35,6 @@ const app = express();
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.static("build"));
-
 app.use("/stripe", stripeRouter);
 app.use(express.json());
 app.use("/", homeRouter);
