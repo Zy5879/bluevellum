@@ -29,7 +29,7 @@ function Navbar() {
   //   }
   // }
 
-  // console.log(data);
+  console.log(data);
 
   const cartQuantity = data?.cart?.items.reduce((acc, val) => acc + val.qty, 0);
   const checkQuant = cartQuantity === 0 ? "" : cartQuantity;

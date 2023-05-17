@@ -14,8 +14,8 @@ import {
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    // baseUrl: `${process.env.BACKEND_URL}/`,
-    baseUrl: "https://blue-vellum.onrender.com",
+    baseUrl: "http://localhost:3000",
+    // baseUrl: "https://blue-vellum.onrender.com",
     prepareHeaders: (headers) => {
       const loggedUser = window.localStorage.getItem("loggedInUser");
       if (loggedUser) {
@@ -44,7 +44,7 @@ export const authApi = createApi({
       invalidatesTags: ["User"],
     }),
     getCart: builder.query<User, LoginResponse>({
-      query: () => "",
+      query: () => "/cart",
       providesTags: ["User"],
     }),
     addToCart: builder.mutation<void, ProductItem>({

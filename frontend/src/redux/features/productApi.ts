@@ -3,8 +3,8 @@ import { LeatherInfo } from "../../types/type";
 
 export const productApi = createApi({
   reducerPath: "productApi",
-  // baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000" }),
-  baseQuery: fetchBaseQuery({ baseUrl: "https://blue-vellum.onrender.com" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/" }),
+  // baseQuery: fetchBaseQuery({ baseUrl: "https://blue-vellum.onrender.com" }),
   // baseQuery: fetchBaseQuery({ baseUrl: `${process.env.BACKEND_URL}/` }),
   endpoints: (builder) => ({
     getBags: builder.query<LeatherInfo[], void>({
