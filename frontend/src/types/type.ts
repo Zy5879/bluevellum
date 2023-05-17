@@ -25,6 +25,12 @@ export interface StripeRequest {
   qty: number;
 }
 
+export interface ErrorResponse {
+  data: {
+    error: string;
+  };
+}
+
 export type LeatherPreview = Omit<LeatherInfo, "id">;
 
 export interface ProductInfo {

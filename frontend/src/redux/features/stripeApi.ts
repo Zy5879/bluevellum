@@ -3,7 +3,9 @@ import { LeatherInfo, StripeResponse } from "../../types/type";
 
 export const stripeApi = createApi({
   reducerPath: "stripeApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "https://blue-vellum.onrender.com" }),
+  // baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000" }),
+  // baseQuery: fetchBaseQuery({ baseUrl: `${process.env.BACKEND_URL}/` }),
   endpoints: (builder) => ({
     checkout: builder.mutation<StripeResponse, LeatherInfo[] | undefined>({
       query: (data) => ({

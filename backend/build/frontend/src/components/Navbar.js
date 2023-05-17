@@ -11,7 +11,7 @@ const authApi_1 = require("../redux/features/authApi");
 function Navbar() {
     var _a;
     const { user, shoppingcart } = (0, hooks_1.useAppSelector)((state) => state.authUser);
-    const { data, error } = (0, authApi_1.useGetCartQuery)(user !== null && user !== void 0 ? user : query_1.skipToken);
+    const { data } = (0, authApi_1.useGetCartQuery)(user !== null && user !== void 0 ? user : query_1.skipToken);
     const [open, setOpen] = (0, react_1.useState)(false);
     const [disabled, setDisabled] = (0, react_1.useState)(false);
     const navigate = (0, react_router_dom_2.useNavigate)();
@@ -22,11 +22,11 @@ function Navbar() {
         window.localStorage.clear();
         window.location.href = "/";
     };
-    if (error) {
-        if ("data" in error) {
-            userLogOut();
-        }
-    }
+    // if (error) {
+    //   if ("data") {
+    //     userLogOut();
+    //   }
+    // }
     // console.log(data);
     const cartQuantity = (_a = data === null || data === void 0 ? void 0 : data.cart) === null || _a === void 0 ? void 0 : _a.items.reduce((acc, val) => acc + val.qty, 0);
     const checkQuant = cartQuantity === 0 ? "" : cartQuantity;

@@ -5,7 +5,8 @@ const react_1 = require("@reduxjs/toolkit/query/react");
 exports.authApi = (0, react_1.createApi)({
     reducerPath: "authApi",
     baseQuery: (0, react_1.fetchBaseQuery)({
-        baseUrl: "http://localhost:3000",
+        // baseUrl: `${process.env.BACKEND_URL}/`,
+        baseUrl: "https://blue-vellum.onrender.com",
         prepareHeaders: (headers) => {
             const loggedUser = window.localStorage.getItem("loggedInUser");
             if (loggedUser) {

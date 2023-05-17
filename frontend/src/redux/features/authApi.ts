@@ -14,7 +14,8 @@ import {
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000",
+    // baseUrl: `${process.env.BACKEND_URL}/`,
+    baseUrl: "https://blue-vellum.onrender.com",
     prepareHeaders: (headers) => {
       const loggedUser = window.localStorage.getItem("loggedInUser");
       if (loggedUser) {

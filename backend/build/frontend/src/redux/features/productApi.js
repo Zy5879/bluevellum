@@ -4,7 +4,9 @@ exports.useGetProductIdQuery = exports.useGetWalletsQuery = exports.useGetCustom
 const react_1 = require("@reduxjs/toolkit/query/react");
 exports.productApi = (0, react_1.createApi)({
     reducerPath: "productApi",
-    baseQuery: (0, react_1.fetchBaseQuery)({ baseUrl: "http://localhost:3000/" }),
+    // baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000" }),
+    baseQuery: (0, react_1.fetchBaseQuery)({ baseUrl: "https://blue-vellum.onrender.com" }),
+    // baseQuery: fetchBaseQuery({ baseUrl: `${process.env.BACKEND_URL}/` }),
     endpoints: (builder) => ({
         getBags: builder.query({
             query: () => "products/bags",

@@ -18,7 +18,8 @@ exports.default = (0, vite_1.defineConfig)({
     server: {
         proxy: {
             "/products": {
-                target: "http://localhost:3000/",
+                target: "https://blue-vellum.onrender.com",
+                // target: "http://localhost:3000/",
                 changeOrigin: true,
                 secure: false,
             },

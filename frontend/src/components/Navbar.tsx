@@ -10,7 +10,7 @@ import { useGetCartQuery } from "../redux/features/authApi";
 
 function Navbar() {
   const { user, shoppingcart } = useAppSelector((state) => state.authUser);
-  const { data, error } = useGetCartQuery(user ?? skipToken);
+  const { data } = useGetCartQuery(user ?? skipToken);
   const [open, setOpen] = useState<boolean>(false);
   const [disabled, setDisabled] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -23,11 +23,11 @@ function Navbar() {
     window.location.href = "/";
   };
 
-  if (error) {
-    if ("data" in error) {
-      userLogOut();
-    }
-  }
+  // if (error) {
+  //   if ("data") {
+  //     userLogOut();
+  //   }
+  // }
 
   // console.log(data);
 
