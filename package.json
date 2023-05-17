@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "tsc": "NODE_ENV=production tsc",
+    "build": "npm install && tsc",
     "dev": "NODE_ENV=development ts-node-dev backend/index.ts",
     "start": "node backend/build/backend/index.js",
     "test": "jest --runInBand --verbose",
