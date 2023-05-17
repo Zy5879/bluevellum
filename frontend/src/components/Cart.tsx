@@ -24,8 +24,6 @@ function Cart() {
     }
   }, [data]);
 
-  // console.log(currentData);
-
   const navigate = useNavigate();
   if (isLoading) {
     return (
@@ -50,21 +48,6 @@ function Cart() {
   }
 
   if (currentData && currentData.cart) {
-    // const list = currentData?.cart.map((item) => {
-
-    //   return item.leatherId.map((leatherItem) => {
-    //     // const name = leatherItem.name;
-    //     // const cost = leatherItem.cost;
-    //     // const img = leatherItem.img;
-    //     // const qty = leatherItem.qty;
-    //     // const id = leatherItem.id;
-
-    //     return leatherItem;
-    //   });
-    // });
-
-    // console.log(currentData);
-
     if (!currentData.cart.items || currentData.cart?.items.length === 0) {
       console.log("This is true");
       return (
@@ -89,61 +72,54 @@ function Cart() {
 
     const result = currentData.cart?.items.map((item) => {
       return (
-        <div>
-          <div
-            key={item.uniqueId}
-            className="rounded-lg h-screen mt-20 md:w-full"
-          >
-            <div className="mb-6 rounded-lg bg-white p-6 shadow-md md:flex md:justify-start">
-              <img
-                src={item.img}
-                alt="product-image"
-                className="w-full rounded-lg sm:w-40"
-              />
-              <div className="md:ml-4 md:flex md:w-full md:justify-between lg:gap-5">
-                <div key={item.uniqueId} className="mt-5 sm:mt-0">
-                  <h2 className="text-sm font-bold text-gray-900">
-                    {item.name}
-                  </h2>
-                  <p className="mt-1 text-xs text-gray-700">{item.qty}</p>
+        <div key={item.uniqueId} className="rounded-lg mt-20 md:w-full">
+          <div className="mb-6 rounded-lg bg-white p-6 shadow-md md:flex md:justify-start">
+            <img
+              src={item.img}
+              alt="product-image"
+              className="w-full rounded-lg sm:w-40"
+            />
+            <div className="md:ml-4 md:flex md:w-full md:justify-between lg:gap-5">
+              <div key={item.uniqueId} className="mt-5 sm:mt-0">
+                <h2 className="text-sm font-bold text-gray-900">{item.name}</h2>
+                <p className="mt-1 text-xs text-gray-700">{item.qty}</p>
+              </div>
+              <div className="mt-4 flex justify-between md:space-y-6 md:mt-0 md:block md:space-x-6">
+                <div className="flex items-center border-gray-100">
+                  <button
+                    disabled={item.qty === 1}
+                    onClick={() => void updateCart({ items: { ...item } })}
+                    className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                  >
+                    {" "}
+                    -{" "}
+                  </button>
+                  <span className="w-8 text-center">{item.qty}</span>
+                  <button
+                    onClick={() => void addToCart({ items: { ...item } })}
+                    className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
+                  >
+                    {" "}
+                    +{" "}
+                  </button>
                 </div>
-                <div className="mt-4 flex justify-between md:space-y-6 md:mt-0 md:block md:space-x-6">
-                  <div className="flex items-center border-gray-100">
-                    <button
-                      disabled={item.qty === 1}
-                      onClick={() => void updateCart({ items: { ...item } })}
-                      className="cursor-pointer rounded-l bg-gray-100 py-1 px-3.5 duration-100 hover:bg-blue-500 hover:text-blue-50"
-                    >
-                      {" "}
-                      -{" "}
-                    </button>
-                    <span className="w-8 text-center">{item.qty}</span>
-                    <button
-                      onClick={() => void addToCart({ items: { ...item } })}
-                      className="cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50"
-                    >
-                      {" "}
-                      +{" "}
-                    </button>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <p className="text-sm">${item.cost * item.qty}</p>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="h-5 w-5 cursor-pointer duration-150 hover:text-red-500"
-                      onClick={() => void deleteFromCart({ ...item })}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </div>
+                <div className="flex items-center space-x-4">
+                  <p className="text-sm">${item.cost * item.qty}</p>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="h-5 w-5 cursor-pointer duration-150 hover:text-red-500"
+                    onClick={() => void deleteFromCart({ ...item })}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
                 </div>
               </div>
             </div>

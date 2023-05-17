@@ -10,7 +10,7 @@ import { useGetCartQuery } from "../redux/features/authApi";
 
 function Navbar() {
   const { user, shoppingcart } = useAppSelector((state) => state.authUser);
-  const { data } = useGetCartQuery(user ?? skipToken);
+  const { data, error } = useGetCartQuery(user ?? skipToken);
   const [open, setOpen] = useState<boolean>(false);
   const [disabled, setDisabled] = useState<boolean>(false);
   const navigate = useNavigate();
@@ -23,77 +23,17 @@ function Navbar() {
     window.location.href = "/";
   };
 
-  // if (error) {
-  //   if ("data") {
-  //     userLogOut();
-  //   }
-  // }
-
-  console.log(data);
+  if (error) {
+    if ("data" in error) {
+      userLogOut();
+    }
+  }
 
   const cartQuantity = data?.cart?.items.reduce((acc, val) => acc + val.qty, 0);
   const checkQuant = cartQuantity === 0 ? "" : cartQuantity;
 
   const linkStyles = disabled ? "pointer-events-none" : "pointer-events-auto";
 
-  // const cartQuantity = data?.cart.reduce((acc, val) => {
-  //   const quantity = val.leatherId.reduce((itemQty, leatherItem) => {
-  //     return itemQty + leatherItem.qty;
-  //   }, 0);
-  //   return acc + quantity;
-  // }, 0);
-
-  // const updatedCart = cartQuantity === 0 ? undefined : cartQuantity;
-
-  // console.log(
-  //   data?.cart.reduce((acc, val) => {
-  //     const cartQty = val.leatherId.reduce((itemQty, leatherItem) => {
-  //       return itemQty + leatherItem.qty;
-  //     }, 0);
-  //     return acc + cartQty;
-  //   }, 0)
-  // );
-
-  // const list = data?.cart.map((item) => {
-  //   return item.leatherId.map((leatherItem) => {
-  //     const name = leatherItem.name;
-  //     const cost = leatherItem.cost;
-  //     const type = leatherItem.type;
-  //     const category = leatherItem.category;
-  //     const inventory = leatherItem.inventory;
-  //     const img = leatherItem.img;
-  //     const qty = leatherItem.qty;
-  //     const id = leatherItem.id;
-
-  //     console.log(id);
-  //     return leatherItem;
-  //   });
-  // });
-
-  // console.log(list);
-  // console.log(list?.map((item) => item.map((item) => item.name)));
-
-  // console.log(data?.map((item) => item.leatherId));
-  // console.log(data.map());
-  // console.log(data?.cart);
-  // console.log(data?.cart.map((item) => item.leatherId.qty));
-
-  // console.log(data.map((item) => item.name));
-
-  // console.log(data?.cart.leatherId.map((item) => item));
-
-  // if (error) {
-  //   if ("data" in error) {
-  //     userLogOut();
-  //   }
-  // }
-
-  // const list = data?.cart;
-
-  // const leather = list.leather.name;
-  // console.log(leather);
-  // const cartQuantity = data?.cart.reduce((acc, val) => acc + val.qty, 0);
-  // console.log(cartQuantity);
   useEffect(() => {
     const loggedUser = window.localStorage.getItem("loggedInUser");
 

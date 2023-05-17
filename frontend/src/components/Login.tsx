@@ -66,7 +66,6 @@ function Login() {
           <label className="block text-black text sm font-bold mb-2">
             PASSWORD
           </label>
-          {/* password */}
           <input
             type="password"
             name="password"

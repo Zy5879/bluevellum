@@ -1,25 +1,9 @@
-// import { useEffect, useState } from "react";
-// import bagService from "../services/getBags";
 import { useGetBagsQuery } from "../redux/features/productApi";
 import { useNavigate } from "react-router-dom";
 
 function Bags() {
   const { data, isLoading, error } = useGetBagsQuery();
   const navigate = useNavigate();
-  // const [bags, setBags] = useState<LeatherInfo[]>();
-  // useEffect(() => {
-  //   const getBags = async () => {
-  //     try {
-  //       const response = await bagService.getAll();
-  //       setBags(response);
-  //     } catch (error: unknown) {
-  //       if (error instanceof Error) {
-  //         throw Error(error.message);
-  //       }
-  //     }
-  //   };
-  //   void getBags();
-  // }, []);
 
   const handleProductClick = (id: string) => {
     navigate(`/products/item/${id}`);
@@ -68,34 +52,6 @@ function Bags() {
   }
 
   return null;
-  // if(data) {
-  //   return(
-  //     <main>
-  //       <section>
-  //         {data.map((item) => {
-  //           <div key={item.id}></div>
-  //         })}
-  //       </section>
-  //     </main>
-  //   );
-  // }
-
-  // return (
-  //   <main>
-  //     <h1>This is bags</h1>
-  //     <section>
-  //       {bags
-  //         ? bags.map((item) => (
-  //             <div key={item.id}>
-  //               <p>{item.name}</p>
-  //               <p>{item.cost}</p>
-  //               <img src={item.img} />
-  //             </div>
-  //           ))
-  //         : ""}
-  //     </section>
-  //   </main>
-  // );
 }
 
 export default Bags;

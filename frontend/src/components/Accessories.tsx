@@ -1,6 +1,3 @@
-// import { useState, useEffect } from "react";
-// import { LeatherInfo } from "../types/type";
-// import accService from "../services/getAccessories";
 import { useGetAccessQuery } from "../redux/features/productApi";
 import { useNavigate } from "react-router-dom";
 function Accessories() {
