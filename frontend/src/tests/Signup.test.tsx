@@ -4,6 +4,7 @@ import Signup from "../components/Signup";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
+import { expect } from "@jest/globals";
 
 describe("Signup Page", () => {
   test("Signup page is loaded", () => {

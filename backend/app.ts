@@ -36,7 +36,6 @@ app.use(cors());
 app.use(morgan("dev"));
 app.use("/stripe", stripeRouter);
 app.use(express.json());
-
 app.use("/", homeRouter);
 app.use("/products", productsRouter);
 app.use("/login", userLoginRouter);

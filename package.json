@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "tsc": "NODE_ENV=production tsc",
+    "tsc": "tsc",
     "dev": "NODE_ENV=development ts-node-dev backend/index.ts",
-    "start": "node backend/build/index.js",
+    "start": "node backend/build/backend/index.js",
     "test": "jest --runInBand --verbose",
     "start:test": "NODE_ENV=test ts-node-dev backend/index.ts"
   },

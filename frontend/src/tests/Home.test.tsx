@@ -1,5 +1,6 @@
 import { describe, test } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
+import { expect } from "@jest/globals";
 import Home from "../components/Home";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";

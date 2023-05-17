@@ -18,5 +18,6 @@
     "types": ["cypress"]
   },
   "include": ["vite.config.ts", "src", ".eslintrc"],
+  "exclude": ["./cypress.config.ts", "node_modules", "cypress", "**/*.cy.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

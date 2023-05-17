@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import { Category, Types, LeatherItems } from "../types";
-import { v4 as uuidv4 } from "uuid";
 
 export const leatherSchema = new mongoose.Schema<LeatherItems>({
   name: {
