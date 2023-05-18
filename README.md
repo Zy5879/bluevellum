@@ -11,6 +11,8 @@ Blue vellum leathers is a company that makes a variety of creative and unique le
 ![Screenshots](/frontend/src/assets/images/leather5.png)
 ![Screenshots](/frontend/src/assets/images/leather6.png)
 ![Screenshots](/frontend/src/assets/images/leather7.png)
+![Screenshots](/frontend/src/assets/images/login.png)
+![Screenshots](/frontend/src/assets/images/signup.png)
 
 [LIVE PREVIEW](https://client-side-blue-vellum.onrender.com/)
 
