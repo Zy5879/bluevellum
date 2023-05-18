@@ -2,6 +2,16 @@
 
 Blue vellum leathers is a company that makes a variety of creative and unique leather bags. Along side the bags they make, they also create leather watch bands, belts, wallets etc.
 
+**SCREENSHOTS**
+
+![Screenshots](/frontend/src/assets/images/leather1.png)
+![Screenshots](/frontend/src/assets/images/leather2.png)
+![Screenshots](/frontend/src/assets/images/leather3.png)
+![Screenshots](/frontend/src/assets/images/leather4.png)
+![Screenshots](/frontend/src/assets/images/leather5.png)
+![Screenshots](/frontend/src/assets/images/leather6.png)
+![Screenshots](/frontend/src/assets/images/leather7.png)
+
 [LIVE PREVIEW](https://client-side-blue-vellum.onrender.com/)
 
 ## OVERVIEW
