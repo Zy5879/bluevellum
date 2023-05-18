@@ -20,7 +20,7 @@ Blue vellum leathers is a company that makes a variety of creative and unique le
 
 #
 
-TECH USED: HTML, CSS, TAILWIND REACT TYPESCRIPT, REDUX, REDUX QUERY, MONGODB, EXPRESS, MONGOOSE, NODE.JS, JEST, CYPRESS, REACT TESTING LIBRARY, STRIPE API
+TECH USED: HTML, CSS, TAILWIND REACT TYPESCRIPT, REACT ROUTER, REDUX, REDUX QUERY, MONGODB, EXPRESS, MONGOOSE, NODE.JS, JEST, CYPRESS, REACT TESTING LIBRARY, STRIPE API,
 
 - Used the MVC Design Pattern for my backend
 - Used mongoose to create my schema's that are saved to mongdb atlas database
